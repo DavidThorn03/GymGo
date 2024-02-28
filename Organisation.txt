@@ -5,5 +5,7 @@ Keep all css, images etc in correct folder
 
 Repeat structure for files/templates used accross all pages ie header, footers etc
 
+REMEMBER TO CHANGE PASSWORDS/NAME/USERNAME TO YOUR INFO IN CONNECTING TO DATABASE SCRIPTS
+
 
 

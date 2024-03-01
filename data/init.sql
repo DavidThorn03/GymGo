@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Lesson-Time` (
   `LessonTimeID` INT NOT NULL,
-  `Time` DATETIME NULL,
+  `Time` TIME NULL,
   `LessonID` INT NOT NULL,
   PRIMARY KEY (`LessonTimeID`, `LessonID`),
   INDEX `fk_Lesson-Time_Lessons_idx` (`LessonID` ASC) VISIBLE,

@@ -1,4 +1,6 @@
-<?php include 'templates/header.php'; ?>
+<?php include 'templates/header.php';
+?>
+
 <ul>
     <li>
         <a href="create.php"><strong>Create</strong></a> - add a user

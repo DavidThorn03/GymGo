@@ -57,9 +57,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\davyt\OneDrive - Technological University Dublin\College\GitHub\WebProject\dbQueries" />
+      <recent name="C:\Users\davyt\OneDrive - Technological University Dublin\College\GitHub\WebProject\public" />
+      <recent name="C:\Users\davyt\OneDrive - Technological University Dublin\College\GitHub\WebProject\src" />
+      <recent name="C:\Users\davyt\OneDrive - Technological University Dublin\College\GitHub\WebProject\public\templates" />
       <recent name="C:\laragon\www" />
-      <recent name="C:\laragon\www\public" />
-      <recent name="C:\laragon\www\templates" />
     </key>
   </component>
   <component name="RunManager">
@@ -92,6 +94,7 @@
       <workItem from="1709219741120" duration="313000" />
       <workItem from="1709224881642" duration="2735000" />
       <workItem from="1709293173641" duration="1763000" />
+      <workItem from="1709312713898" duration="5643000" />
     </task>
     <servers />
   </component>

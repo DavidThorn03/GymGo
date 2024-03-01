@@ -7,8 +7,8 @@ function enterBooking($userId, $lessonId)
         require_once "../src/DBconnection.php";
 
         $new_booking = array(
-            "userId" => $userId,
-            "lessonId" => $lessonId
+            "userID" => $userId,
+            "lessonID" => $lessonId
         );
 
         $sql = sprintf("INSERT INTO %s (%s) values (%s)", "Booked-Lesson", implode(", ",
@@ -21,5 +21,70 @@ function enterBooking($userId, $lessonId)
     }
 }
 
+function deleteBooking($bookingId){
+    try {
+        require_once '../src/DBconnection.php';
+        $sql = "DELETE FROM `booked-Lessons` WHERE bookingID = :bookingID";
+        $statement = $connection->prepare($sql);
+        $statement->bindValue(':bookingID', $bookingId, PDO::PARAM_INT);
+        $statement->execute();
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function getLessonInfo($lessonId){
+    try {
+
+        require_once "../src/DBconnection.php";
+
+        $sql = "SELECT * FROM lessons WHERE lessonID = :lessonID";
+
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':lessonID', $lessonId, PDO::PARAM_INT);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function getLessonTime($lessonTimeId)
+{
+    try {
+        require_once "../src/DBconnection.php";
+
+        $sql = "SELECT * FROM `lesson-time` WHERE lessonTimeID = :lessonTimeID";
+
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':lessonTimeID', $lessonTimeId, PDO::PARAM_STR);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
+function getBooking($lessonTimeId, $userId){
+    try {
+        require_once "../src/DBconnection.php";
+
+        $sql = "SELECT * FROM `lesson-time` WHERE lessonID = :lessonID AND userID = :userID";
+
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':lessonTimeID', $lessonTimeId, PDO::PARAM_STR);
+        $statement->bindParam(':userID', $userId, PDO::PARAM_STR);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
 
 ?>

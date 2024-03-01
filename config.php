@@ -5,7 +5,7 @@
  */
 $host = "localhost";
 $username = "root";
-$password = "Dave@MySQL1";
+$password = "";
 $dbname = "test"; // will use later
 $dsn = "mysql:host=$host;dbname=$dbname"; // will use later
 $options = array(

@@ -38,13 +38,15 @@ function getLessonInfo($lessonId){
 
         require_once "../src/DBconnection.php";
 
-        $sql = "SELECT * FROM lessons WHERE lessonID = :lessonID";
+        $sql = "SELECT * FROM lessons INNER JOIN gallary on lessons.ImageID = gallary.ImageID WHERE lessonID = :lessonID";
 
         $statement = $connection->prepare($sql);
         $statement->bindParam(':lessonID', $lessonId, PDO::PARAM_INT);
         $statement->execute();
 
         $result = $statement->fetchAll();
+        $result = $result[0];
+        return $result;
 
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
@@ -63,6 +65,8 @@ function getLessonTime($lessonTimeId)
         $statement->execute();
 
         $result = $statement->fetchAll();
+        $result = $result[0];
+        return $result;
 
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
@@ -81,6 +85,8 @@ function getBooking($lessonTimeId, $userId){
         $statement->execute();
 
         $result = $statement->fetchAll();
+        $result = $result[0];
+        return $result;
 
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();

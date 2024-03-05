@@ -1,6 +1,5 @@
 <?php
-function enterBooking($userId, $lessonId)
-{
+function enterBooking($userId, $lessonTimeId){
     require "../common.php";
 
     try {
@@ -8,7 +7,7 @@ function enterBooking($userId, $lessonId)
 
         $new_booking = array(
             "userID" => $userId,
-            "lessonID" => $lessonId
+            "lessonID" => $lessonTimeId
         );
 
         $sql = sprintf("INSERT INTO %s (%s) values (%s)", "Booked-Lesson", implode(", ",
@@ -16,7 +15,8 @@ function enterBooking($userId, $lessonId)
 
         $statement = $connection->prepare($sql);
         $statement->execute($new_booking);
-    } catch (PDOException $error) {
+    }
+    catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
@@ -24,51 +24,53 @@ function enterBooking($userId, $lessonId)
 function deleteBooking($bookingId){
     try {
         require_once '../src/DBconnection.php';
+
         $sql = "DELETE FROM `booked-Lessons` WHERE bookingID = :bookingID";
+
         $statement = $connection->prepare($sql);
         $statement->bindValue(':bookingID', $bookingId, PDO::PARAM_INT);
         $statement->execute();
-    } catch(PDOException $error) {
+    }
+    catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
 
-function getLessonInfo($lessonId){
+function getLessonInfo(){
     try {
-
         require_once "../src/DBconnection.php";
 
-        $sql = "SELECT * FROM lessons INNER JOIN gallary on lessons.ImageID = gallary.ImageID ";
+        $sql = "SELECT * FROM lessons INNER JOIN gallary on lessons.ImageID = gallary.ImageID";
 
         $statement = $connection->prepare($sql);
-        $statement->bindParam(':lessonID', $lessonId, PDO::PARAM_INT);
         $statement->execute();
 
         $result = $statement->fetchAll();
 
         return $result;
 
-    } catch(PDOException $error) {
+    }
+    catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
 
-function getLessonTime($day)
-{
+function getLessonTime($day){
     try {
         require_once "../src/DBconnection.php";
 
         $sql = "SELECT * FROM `lesson-time` WHERE Day = :Day";
 
         $statement = $connection->prepare($sql);
-        $statement->bindParam(':Day', $Day, PDO::PARAM_STR);
+        $statement->bindParam(':Day', $day, PDO::PARAM_STR);
         $statement->execute();
 
         $result = $statement->fetchAll();
 
         return $result;
 
-    } catch(PDOException $error) {
+    }
+    catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
@@ -88,7 +90,8 @@ function getBooking($lessonTimeId, $userId){
         $result = $result[0];
         return $result;
 
-    } catch(PDOException $error) {
+    }
+    catch(PDOException $error){
         echo $sql . "<br>" . $error->getMessage();
     }
 }

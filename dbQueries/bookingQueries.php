@@ -75,19 +75,18 @@ function getLessonTime($day){
     }
 }
 
-function getBooking($lessonTimeId, $userId){
+function getBooking($userId){
     try {
         require_once "../src/DBconnection.php";
 
-        $sql = "SELECT * FROM `lesson-time` WHERE lessonID = :lessonID AND userID = :userID";
+        $sql = "SELECT * FROM `booked-lesson` WHERE UserID = :userID";
 
         $statement = $connection->prepare($sql);
-        $statement->bindParam(':lessonTimeID', $lessonTimeId, PDO::PARAM_STR);
         $statement->bindParam(':userID', $userId, PDO::PARAM_STR);
         $statement->execute();
 
         $result = $statement->fetchAll();
-        $result = $result[0];
+        
         return $result;
 
     }

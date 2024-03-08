@@ -79,6 +79,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Booked-Lesson` (
   `BookedLessonID` INT NOT NULL AUTO_INCREMENT,
+  `Date` DATE,
   `LessonTimeID` INT NOT NULL,
   `UserID` INT NOT NULL,
   PRIMARY KEY (`BookedLessonID`, `LessonTimeID`, `UserID`),

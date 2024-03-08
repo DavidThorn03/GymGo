@@ -1,5 +1,5 @@
 <?php
-function enterBooking($userId, $lessonTimeId){
+function enterBooking($date, $lessonTimeID, $userID){
     require "../common.php";
     try {
         require "../config.php";
@@ -10,11 +10,12 @@ function enterBooking($userId, $lessonTimeId){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
 
-        $sql = "INSERT INTO `booked-lesson` (bookedLessonID, lessonTimeID, userID) VALUES (AUTO_INCREMENT, :lessonTimeID, :userID)";
+        $sql = "INSERT INTO `booked-lesson` (`Date`, LessonTimeID, UserID) VALUES (:date, :lessonTimeID, :userID)";
 
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':lessonTimeID', $lessonTimeId, PDO::PARAM_INT);
-        $statement->bindValue(':userID', $userId, PDO::PARAM_INT);
+        $statement->bindValue(':date', $date, PDO::PARAM_STR);
+        $statement->bindValue(':lessonTimeID', $lessonTimeID, PDO::PARAM_INT);
+        $statement->bindValue(':userID', $userID, PDO::PARAM_INT);
         $statement->execute();
     }
     catch (PDOException $error) {
@@ -22,7 +23,7 @@ function enterBooking($userId, $lessonTimeId){
     }
 }
 
-function deleteBooking($bookingId){
+function deleteBooking($bookedLessonId){
     try {
         require "../config.php";
         try {
@@ -32,10 +33,10 @@ function deleteBooking($bookingId){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
 
-        $sql = "DELETE FROM `booked-Lessons` WHERE bookingID = :bookingID";
+        $sql = "DELETE FROM `booked-Lesson` WHERE bookedLessonID = :bookedLessonID";
 
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':bookingID', $bookingId, PDO::PARAM_INT);
+        $statement->bindValue(':bookedLessonID', $bookedLessonId, PDO::PARAM_INT);
         $statement->execute();
     }
     catch(PDOException $error) {

@@ -20,7 +20,7 @@
         echo "<br>";
     }
 
-    /*
+
     //initialise lessonTimes as lessonTimes array
     $lessonTimes = array();
     $lessonTimesFromDB = getLessonTime(1);
@@ -37,7 +37,17 @@
         echo $lessonTime->getDay();
         echo $lessonTime->getTime();
     }
-    */
+
+    $bookedLessons = array();
+    $bookedLessonsFromDB = getBookedLessons(1);
+    foreach ($bookedLessionsFromDB as $row) {
+        foreach ($lessonTimes as $lessonTime) {
+            if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
+                $bookedLessons[] = new BookedLesson($lessonTime, $row);
+            }
+        }
+    }
+    var_dump($bookedLessons);
     function generateLesson($lesson){
         ?>
         Name: <?php echo $lesson->getLessonName(); ?>

@@ -59,10 +59,10 @@ function getLessonTime($day){
     try {
         require_once "../src/DBconnection.php";
 
-        $sql = "SELECT * FROM `lesson-time` WHERE Day = :Day";
+        $sql = "SELECT * FROM `lesson-time` WHERE Day = :day";
 
         $statement = $connection->prepare($sql);
-        $statement->bindParam(':Day', $day, PDO::PARAM_STR);
+        $statement->bindParam(':day', $day, PDO::PARAM_STR);
         $statement->execute();
 
         $result = $statement->fetchAll();

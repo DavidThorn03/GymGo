@@ -1,20 +1,21 @@
 <?php
 function enterBooking($userId, $lessonTimeId){
     require "../common.php";
-
     try {
-        require_once "../src/DBconnection.php";
+        require "../config.php";
+        try {
+            $connection = new PDO($dsn, $username, $password, $options);
+        }
+        catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
 
-        $new_booking = array(
-            "userID" => $userId,
-            "lessonID" => $lessonTimeId
-        );
-
-        $sql = sprintf("INSERT INTO %s (%s) values (%s)", "Booked-Lesson", implode(", ",
-            array_keys($new_booking)), ":" . implode(", :", array_keys($new_booking)));
+        $sql = "INSERT INTO `booked-lesson` (bookedLessonID, lessonTimeID, userID) VALUES (AUTO_INCREMENT, :lessonTimeID, :userID)";
 
         $statement = $connection->prepare($sql);
-        $statement->execute($new_booking);
+        $statement->bindValue(':lessonTimeID', $lessonTimeId, PDO::PARAM_INT);
+        $statement->bindValue(':userID', $userId, PDO::PARAM_INT);
+        $statement->execute();
     }
     catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
@@ -23,7 +24,13 @@ function enterBooking($userId, $lessonTimeId){
 
 function deleteBooking($bookingId){
     try {
-        require_once '../src/DBconnection.php';
+        require "../config.php";
+        try {
+            $connection = new PDO($dsn, $username, $password, $options);
+        }
+        catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
 
         $sql = "DELETE FROM `booked-Lessons` WHERE bookingID = :bookingID";
 
@@ -38,7 +45,13 @@ function deleteBooking($bookingId){
 
 function getLessonInfo(){
     try {
-        require_once "../src/DBconnection.php";
+        require "../config.php";
+        try {
+            $connection = new PDO($dsn, $username, $password, $options);
+        }
+        catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
 
         $sql = "SELECT * FROM lessons INNER JOIN gallary on lessons.ImageID = gallary.ImageID";
 
@@ -57,9 +70,21 @@ function getLessonInfo(){
 
 function getLessonTime($day){
     try {
-        require_once "../src/DBconnection.php";
+        require "../config.php";
+        try {
+            $connection = new PDO($dsn, $username, $password, $options);
+        }
+        catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
 
         $sql = "SELECT * FROM `lesson-time` WHERE Day = :day";
+
+        try {
+            $connection = new PDO($dsn, $username, $password, $options);
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
 
         $statement = $connection->prepare($sql);
         $statement->bindParam(':day', $day, PDO::PARAM_STR);
@@ -77,9 +102,21 @@ function getLessonTime($day){
 
 function getBooking($userId){
     try {
-        require_once "../src/DBconnection.php";
+        require "../config.php";
+        try {
+            $connection = new PDO($dsn, $username, $password, $options);
+        }
+        catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
 
         $sql = "SELECT * FROM `booked-lesson` WHERE UserID = :userID";
+
+        try {
+            $connection = new PDO($dsn, $username, $password, $options);
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+        }
 
         $statement = $connection->prepare($sql);
         $statement->bindParam(':userID', $userId, PDO::PARAM_STR);

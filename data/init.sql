@@ -18,7 +18,7 @@ USE `gymdb` ;
 -- Table `gymdb`.`Gallary`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Gallary` (
-  `ImageID` INT NOT NULL,
+  `ImageID` INT NOT NULL AUTO_INCREMENT,
   `ImageLink` VARCHAR(45) NULL,
   PRIMARY KEY (`ImageID`))
 ENGINE = InnoDB;
@@ -28,7 +28,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Lessons`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Lessons` (
-  `LessonID` INT NOT NULL,
+  `LessonID` INT NOT NULL AUTO_INCREMENT,
   `LessonName` VARCHAR(45) NULL,
   `DurationMin` INT NULL,
   `NumPlaces` INT NULL,
@@ -49,7 +49,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Lesson-Time`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Lesson-Time` (
-  `LessonTimeID` INT NOT NULL,
+  `LessonTimeID` INT NOT NULL AUTO_INCREMENT,
   `Time` TIME NULL,
   `Day` INT NULL,
   `LessonID` INT NOT NULL,
@@ -67,7 +67,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`User` (
-  `UserID` INT NOT NULL,
+  `UserID` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(45) NULL,
   `Password` VARCHAR(45) NULL,
   PRIMARY KEY (`UserID`))
@@ -78,7 +78,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Booked-Lesson`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Booked-Lesson` (
-  `BookedLessonID` INT NOT NULL,
+  `BookedLessonID` INT NOT NULL AUTO_INCREMENT,
   `LessonTimeID` INT NOT NULL,
   `UserID` INT NOT NULL,
   PRIMARY KEY (`BookedLessonID`, `LessonTimeID`, `UserID`),
@@ -101,7 +101,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Admin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Admin` (
-  `AdminID` INT NOT NULL,
+  `AdminID` INT NOT NULL AUTO_INCREMENT,
   `UserID` INT NOT NULL,
   PRIMARY KEY (`AdminID`, `UserID`),
   CONSTRAINT `fk_Admin_User1`
@@ -116,7 +116,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Products`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Products` (
-  `ProductID` INT NOT NULL,
+  `ProductID` INT NOT NULL AUTO_INCREMENT,
   `ProductName` VARCHAR(45) NULL,
   `Price` FLOAT NULL,
   `Description` VARCHAR(500) NULL,

@@ -5,8 +5,7 @@ class LessonTime extends Lesson{
     private $day;
     private $time;
 
-    public function __construct($lesson, $LessonTime){
-        parent::__construct($lesson);
+    public function __construct($LessonTime){
         $this->lessonTimeID = $LessonTime["LessonTimeID"];
         $this->day = $LessonTime["Day"];
         $this->time = $LessonTime["Time"];

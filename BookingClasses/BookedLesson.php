@@ -3,8 +3,7 @@
 class BookedLesson extends LessonTime{
     private $userID;
     private $bookedLessonID;
-    public function __construct($lessonTime, $bookedLesson){
-        parent::__construct($lessonTime);
+    public function __construct($bookedLesson){
         $this->bookedLessonID = $bookedLesson["BookedLessonID"];
         $this->userID = $bookedLesson["UserID"];
     }
@@ -18,9 +17,5 @@ class BookedLesson extends LessonTime{
     {
         $this->bookedLessonID = $bookedLessonID;
     }
-
-
-
-
 }
 ?>

@@ -3,51 +3,55 @@
     require "../dbQueries/bookingQueries.php";
     require "../BookingClasses/Lesson.php";
     require "../BookingClasses/LessonTime.php";
+    require "../BookingClasses/BookedLesson.php";
 
 
-    // Initialise lessons as lessons array
     $lessons = array();
 
-    //if($lessons = null) {
-    $lessonsFromDB = getLessonInfo(1);
+    $lessonsFromDB = getLessonInfo();
 
     foreach ($lessonsFromDB as $row) {
         $lessons[] = new Lesson($row);
     }
-    //}
+
     foreach ($lessons as $lesson) {
         generateLesson($lesson);
         echo "<br>";
     }
 
-
-    //initialise lessonTimes as lessonTimes array
     $lessonTimes = array();
     $lessonTimesFromDB = getLessonTime(1);
+    $counter = 0;
 
     foreach ($lessonTimesFromDB as $row) {
         foreach ($lessons as $lesson) {
             if ($lesson->getLessonID() == $row["LessonID"]) {
-                $lessonTimes[] = new LessonTime($lesson, $row);
+                $lessonTimes[] = new LessonTime($row);
+                $lessonTimes[$counter]->Lesson = $lesson;
             }
         }
+        $counter++;
     }
     foreach ($lessonTimes as $lessonTime) {
         echo $lessonTime->getLessonTimeID();
         echo $lessonTime->getDay();
         echo $lessonTime->getTime();
+        echo $lessonTime->Lesson->getLessonName();
     }
 
     $bookedLessons = array();
-    $bookedLessonsFromDB = getBookedLessons(1);
-    foreach ($bookedLessionsFromDB as $row) {
+    $bookedLessonsFromDB = getBooking(2);
+    $counter = 0;
+    foreach ($bookedLessonsFromDB as $row) {
         foreach ($lessonTimes as $lessonTime) {
             if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
-                $bookedLessons[] = new BookedLesson($lessonTime, $row);
+                $bookedLessons[] = new BookedLesson($row);
+                $bookedLessons[$counter]->LessonTime = $lessonTime;
             }
         }
+        $counter++;
     }
-    var_dump($bookedLessons);
+    enterBooking(2, 1);
     function generateLesson($lesson){
         ?>
         Name: <?php echo $lesson->getLessonName(); ?>
@@ -65,6 +69,14 @@
         <?php } ?>
 
 <a href="index.php">Back to home</a>
+
+<?php
+    function generate()
+    {
+
+    }
+
+?>
 
 <?php include "templates/footer.php"; ?>
 

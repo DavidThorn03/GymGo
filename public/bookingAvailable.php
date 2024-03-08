@@ -14,12 +14,25 @@ require_once "templates/booking.php";
     <br>
 </form>
 <?php
-for($i = 0; $i < 7; $i++){
+for($i = 1; $i < 8; $i++){
     if(isset($_POST[$i])){
         foreach ($lessonTimes as $lessonTime) {
             if($lessonTime->getDay() == $i){
                 generateLesson($lessonTime);
             }
+        }
+    }
+}
+if(isset($_POST['lessonTimeID'])){
+    foreach ($lessonTimes as $lessonTime){
+        if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
+            $newBooking = new BookedLesson(null);
+            $newBooking->makeBooking(2, $lessonTime);
+            $newBooking->LessonTime = $lessonTime;
+            enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
+        }
+        if($lessonTime->getDay() == $i){
+            generateLesson($lessonTime);
         }
     }
 }

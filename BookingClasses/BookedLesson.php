@@ -31,10 +31,10 @@ class BookedLesson extends LessonTime{
         if($diff < 0){
             $diff = $diff + 7;
         }
-        $date = date('Y-m-d', strtotime(' + $diff days'));
+        $timestamp = date("Y-m-d");
+        $date = date("Y-m-d", strtotime($timestamp . " +" . $diff . " days"));
         $this->date = $date;
         $this->userID = $userID;
     }
-
 }
 ?>

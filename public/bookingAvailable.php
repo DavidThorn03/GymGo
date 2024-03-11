@@ -5,24 +5,35 @@ require_once "templates/booking.php";
 <br>
 <form method="post">
     <input type="submit" name=1 value="Monday">
-    <input type="submit" name=1 value="Tuesday">
-    <input type="submit" name=1 value="Wednesday">
-    <input type="submit" name=1 value="Thursday">
-    <input type="submit" name=1 value="Friday">
-    <input type="submit" name=1 value="Saturday">
-    <input type="submit" name=1 value="Sunday">
+    <input type="submit" name=2 value="Tuesday">
+    <input type="submit" name=3 value="Wednesday">
+    <input type="submit" name=4 value="Thursday">
+    <input type="submit" name=5 value="Friday">
+    <input type="submit" name=6 value="Saturday">
+    <input type="submit" name=7 value="Sunday">
     <br>
 </form>
 <?php
-for($i = 1; $i < 8; $i++){
-    if(isset($_POST[$i])){
-        foreach ($lessonTimes as $lessonTime) {
-            if($lessonTime->getDay() == $i){
-                generateLesson($lessonTime);
+if (count($_POST) == 0) {
+    foreach ($lessonTimes as $lessonTime) {
+        if ($lessonTime->getDay() == date("w")) {
+            generateLesson($lessonTime);
+        }
+    }
+}
+else {
+    for ($i = 1; $i < 8; $i++) {
+        if (isset($_POST[$i])) {
+            foreach ($lessonTimes as $lessonTime) {
+                if ($lessonTime->getDay() == $i) {
+                    generateLesson($lessonTime);
+                }
             }
         }
     }
 }
+
+
 if(isset($_POST['lessonTimeID'])){
     foreach ($lessonTimes as $lessonTime){
         if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){

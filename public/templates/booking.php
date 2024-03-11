@@ -3,8 +3,6 @@
     require "../dbQueries/bookingQueries.php";
     require "../BookingClasses/Lesson.php";
     require "../BookingClasses/LessonTime.php";
-    require "../BookingClasses/BookedLesson.php";
-
 
     $lessons = array();
 
@@ -15,7 +13,7 @@
     }
 
     $lessonTimes = array();
-    $lessonTimesFromDB = getLessonTime(1);
+    $lessonTimesFromDB = getLessonTime();
     $counter = 0;
 
     foreach ($lessonTimesFromDB as $row) {

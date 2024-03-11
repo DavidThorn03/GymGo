@@ -69,7 +69,7 @@ function getLessonInfo(){
     }
 }
 
-function getLessonTime($day){
+function getLessonTime(){
     try {
         require "../config.php";
         try {
@@ -79,7 +79,7 @@ function getLessonTime($day){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
 
-        $sql = "SELECT * FROM `lesson-time` WHERE Day = :day";
+        $sql = "SELECT * FROM `lesson-time`";
 
         try {
             $connection = new PDO($dsn, $username, $password, $options);
@@ -88,7 +88,7 @@ function getLessonTime($day){
         }
 
         $statement = $connection->prepare($sql);
-        $statement->bindParam(':day', $day, PDO::PARAM_STR);
+        //$statement->bindParam(':day', $day, PDO::PARAM_STR);
         $statement->execute();
 
         $result = $statement->fetchAll();

@@ -7,6 +7,8 @@ insert into gallary (ImageLink) values ("blabla");
 insert into lessons (LessonName, DurationMin, NumPlaces, Trainer, About, ImageID) values ("Spin", 60, 24, "Bob Ross", "BlaBlaBal", 1);
 insert into lessons (LessonName, DurationMin, NumPlaces, Trainer, About, ImageID) values ("Yoga", 30, 24, "Daniel Connors", "BlaBlaBal", 1);
 insert into `lesson-time` (`Time`, `Day`, LessonID) values ('19:30', 1, 1);
+insert into `lesson-time` (`Time`, `Day`, LessonID) values ('20:30', 2, 2);
+insert into `lesson-time` (`Time`, `Day`, LessonID) values ('19:30', 1, 2);
 insert into `booked-lesson` (`Date`, LessonTimeID, UserID) values ('2024-04-07', 1, 2);
 insert into `products` (ProductName, Price, `Description`, Size, Colour, ImageID) values ("Hoodie", 30, "BlaBlaBla", "Medium", "Red",1);
 insert into orders (UserID, ProductID, OrderTime) value (2, 1, '2024-04-05 20:30:23');

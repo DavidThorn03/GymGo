@@ -46,6 +46,7 @@ if(isset($_POST['lessonTimeID'])){
             generateLesson($lessonTime);
         }
     }
+    header("Refresh:0");
 }
     function generateLesson($lessonTime){
     ?>
@@ -59,7 +60,7 @@ if(isset($_POST['lessonTimeID'])){
     <br>
     Time: <?php echo $lessonTime->getTime(); ?>
     <br>
-    Image(Link): <?php echo $lessonTime->Lesson->getImageLink();?>
+    <img src= "<?php echo $lessonTime->Lesson->getImageLink() ?>" alt="Image" width="300px" length="300px">
     <br>
     <a href="bookingInfo.php">MoreInfo</a>
     <form method="post">

@@ -3,6 +3,7 @@
     require "../dbQueries/bookingQueries.php";
     require "../BookingClasses/Lesson.php";
     require "../BookingClasses/LessonTime.php";
+    require "../BookingClasses/BookedLesson.php";
 
     $lessons = array();
 

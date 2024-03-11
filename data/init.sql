@@ -18,7 +18,7 @@ USE `gymdb` ;
 -- Table `gymdb`.`Gallary`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Gallary` (
-  `ImageID` INT NOT NULL AUTO_INCREMENT,
+  `ImageID` INT NOT NULL,
   `ImageLink` VARCHAR(45) NULL,
   PRIMARY KEY (`ImageID`))
 ENGINE = InnoDB;
@@ -28,7 +28,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Lessons`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Lessons` (
-  `LessonID` INT NOT NULL AUTO_INCREMENT,
+  `LessonID` INT NOT NULL,
   `LessonName` VARCHAR(45) NULL,
   `DurationMin` INT NULL,
   `NumPlaces` INT NULL,
@@ -49,7 +49,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Lesson-Time`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Lesson-Time` (
-  `LessonTimeID` INT NOT NULL AUTO_INCREMENT,
+  `LessonTimeID` INT NOT NULL,
   `Time` TIME NULL,
   `Day` INT NULL,
   `LessonID` INT NOT NULL,
@@ -102,7 +102,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Admin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Admin` (
-  `AdminID` INT NOT NULL AUTO_INCREMENT,
+  `AdminID` INT NOT NULL,
   `UserID` INT NOT NULL,
   PRIMARY KEY (`AdminID`, `UserID`),
   CONSTRAINT `fk_Admin_User1`
@@ -117,7 +117,7 @@ ENGINE = InnoDB;
 -- Table `gymdb`.`Products`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Products` (
-  `ProductID` INT NOT NULL AUTO_INCREMENT,
+  `ProductID` INT NOT NULL,
   `ProductName` VARCHAR(45) NULL,
   `Price` FLOAT NULL,
   `Description` VARCHAR(500) NULL,

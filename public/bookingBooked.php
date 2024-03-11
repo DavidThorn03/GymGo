@@ -43,7 +43,7 @@ function generateBookings($bookedLesson){
     <br>
     Start Date: <?php echo $bookedLesson->getDate(); ?>
     <br>
-    Image(Link): <?php echo $bookedLesson->LessonTime->Lesson->getImageLink();?>
+    <img src= "<?php echo $bookedLesson->LessonTime->Lesson->getImageLink() ?>" alt="Image" width="300px" length="300px">
     <br>
     <a href="bookingInfo.php">MoreInfo</a>
     <form method="post">

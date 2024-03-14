@@ -23,11 +23,11 @@ class Product
         return $this->productName;
     }
 
-    public function description(){
+    public function getDescription(){
         return $this->description;
     }
 
-    public function price(){
+    public function getPrice(){
         return $this->price;
     }
 
@@ -44,11 +44,11 @@ class Product
         $this->productName = $productName;
     }
 
-    public function description($description){
+    public function setDescription($description){
         $this->description = $description;
     }
 
-    public function price($price){
+    public function setPrice($price){
         $this->price = $price;
     }
 

@@ -1,8 +1,6 @@
 <?php
 require_once "templates/booking.php";
-
 ?>
-<br>
 <form method="post">
     <input type="submit" name=1 value="Monday">
     <input type="submit" name=2 value="Tuesday">
@@ -13,61 +11,102 @@ require_once "templates/booking.php";
     <input type="submit" name=7 value="Sunday">
     <br>
 </form>
-<?php
-if (count($_POST) == 0) {
-    foreach ($lessonTimes as $lessonTime) {
-        if ($lessonTime->getDay() == date("w")) {
-            generateLesson($lessonTime);
-        }
-    }
-}
-else {
-    for ($i = 1; $i < 8; $i++) {
-        if (isset($_POST[$i])) {
-            foreach ($lessonTimes as $lessonTime) {
-                if ($lessonTime->getDay() == $i) {
-                    generateLesson($lessonTime);
+
+<section class="job_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                RECENT & FEATURED JOBS
+            </h2>
+        </div>
+        <div class="job_container">
+            <h4 class="job_heading">
+                Featured Jobs
+            </h4>
+            <div class="row">
+
+                <?php
+                if (count($_POST) == 0) {
+                    foreach ($lessonTimes as $lessonTime) {
+                        if ($lessonTime->getDay() == date("w")) {
+                            generateLesson($lessonTime);
+                        }
+                    }
                 }
-            }
-        }
-    }
-}
+                else {
+                    for ($i = 1; $i < 8; $i++) {
+                        if (isset($_POST[$i])) {
+                            foreach ($lessonTimes as $lessonTime) {
+                                if ($lessonTime->getDay() == $i) {
+                                    generateLesson($lessonTime);
+                                }
+                            }
+                        }
+                    }
+                }
 
 
-if(isset($_POST['lessonTimeID'])){
-    foreach ($lessonTimes as $lessonTime){
-        if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
-            $newBooking = new BookedLesson(null);
-            $newBooking->makeBooking(2, $lessonTime);
-            $newBooking->LessonTime = $lessonTime;
-            enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
-        }
-        if($lessonTime->getDay() == $i){
-            generateLesson($lessonTime);
-        }
-    }
-    header("Refresh:0");
-}
-    function generateLesson($lessonTime){
-    ?>
-    Name: <?php echo $lessonTime->Lesson->getLessonName(); ?>
-    <br>
-    Duration: <?php echo $lessonTime->Lesson->getDurationMin(); ?> Minutes
-    <br>
-    Number of places: <?php echo $lessonTime->Lesson->getNumPlaces(); ?>
-    <br>
-    Trainer: <?php echo $lessonTime->Lesson->getTrainer(); ?>
-    <br>
-    Time: <?php echo $lessonTime->getTime(); ?>
-    <br>
-    <img src= "<?php echo $lessonTime->Lesson->getImageLink() ?>" alt="Image" width="300px" length="300px">
-    <br>
-    <a href="bookingInfo.php">MoreInfo</a>
-    <form method="post">
-        <input type="hidden" name="lessonTimeID" value="<?php echo $lessonTime->getLessonTimeID(); ?>">
-        <input type="submit" value="Book">
-    </form>
-    <br>
-    <br>
-<?php } ?>
-<a href="index.php">Back to home</a>
+                if(isset($_POST['lessonTimeID'])){
+                    foreach ($lessonTimes as $lessonTime){
+                        if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
+                            $newBooking = new BookedLesson(null);
+                            $newBooking->makeBooking(2, $lessonTime);
+                            $newBooking->LessonTime = $lessonTime;
+                            enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
+                        }
+                        if($lessonTime->getDay() == $i){
+                            generateLesson($lessonTime);
+                        }
+                    }
+                    header("Refresh:0");
+                }
+                function generateLesson($lessonTime){
+                    ?>
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <div class="job_content-box">
+                                <div class="img-box">
+                                    <img src="<?php echo $lessonTime->Lesson->getImageLink(); ?>" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        <?php echo $lessonTime->Lesson->getLessonName(); ?>
+                                    </h5>
+                                    <div class="detail-info">
+
+                                        <h6>
+                                            <span>Duration: <?php echo $lessonTime->Lesson->getDurationMin(); ?> Minutes</span>
+                                        </h6>
+                                        <h6>
+                                            <span>Number of places: <?php echo $lessonTime->Lesson->getNumPlaces(); ?></span>
+                                        </h6>
+                                        <h6>
+                                            <span>Trainer: <?php echo $lessonTime->Lesson->getTrainer(); ?></span>
+                                        </h6>
+                                        <h6>
+                                            <span>Time: <?php echo $lessonTime->getTime(); ?></span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="option-box">
+                                <a href="bookingInfo.php">MoreInfo</a>
+                                <form method="post">
+                                    <input type="hidden" name="lessonTimeID" value="<?php echo $lessonTime->getLessonTimeID(); ?>">
+                                    <input type="submit" value="Book" class="apply-btn">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="">
+                View All
+            </a>
+        </div>
+    </div>
+</section>
+<?php require_once "templates/footer.php"; ?>

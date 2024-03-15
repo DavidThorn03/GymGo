@@ -19,6 +19,7 @@ USE `gymdb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Gallary` (
   `ImageID` INT NOT NULL,
+  `GallaryName` VARCHAR(45) NULL, 
   `ImageLink` VARCHAR(45) NULL,
   PRIMARY KEY (`ImageID`))
 ENGINE = InnoDB;

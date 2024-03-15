@@ -1,4 +1,6 @@
 <?php include "templates/header.php"; ?>
+<form action="../dbQueries/userQueries.php" method="post">
+
 <head>
     <title>Register</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -19,32 +21,33 @@
             <form>
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" class="form-control" placeholder="First Name" required>
+                    <input type="text" class="form-control" placeholder="First Name"  name="Fname" required>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" placeholder="Last Name" required>
+                    <input type="text" class="form-control" placeholder="Last Name" name="Lname" required>
                 </div>
                 <div class="form-group">
                     <label>Date of Birth</label>
-                    <input type="date" class="form-control" placeholder="Date of Birth" required>
+                    <input type="date" class="form-control" placeholder="Date of Birth" name="DOB" required>
                 </div>
                 <div class="form-group">
                     <label>Eircode</label>
-                    <input type="text" class="form-control" placeholder="Eircode" required>
+                    <input type="text" class="form-control" placeholder="Eircode" name="Eircode" required>
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="tel" class="form-control" placeholder="Phone Number"/>
-                    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="086 123 9876"
+                           name="phone" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" required />
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Email" required>
+                    <input type="email" class="form-control" placeholder="Email" name="firstname" required>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control" placeholder="Password" required>
+                    <input type="password" class="form-control" placeholder="Password" name="firstname" required>
                 </div>
 
                 <button type="submit" class="btn main">Register</button>

@@ -31,7 +31,7 @@ session_start(); // Start the session
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
 
     <!-- Custom styles for this template -->
-    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/stylesheet.scss" rel="stylesheet" />
     <!-- responsive style -->
     <link href="../css/responsive.css" rel="stylesheet" />
 

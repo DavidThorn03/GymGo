@@ -15,11 +15,10 @@ CREATE SCHEMA IF NOT EXISTS `gymdb` DEFAULT CHARACTER SET utf8 ;
 USE `gymdb` ;
 
 -- -----------------------------------------------------
--- Table `gymdb`.`Gallary`
+-- Table `gymdb`.`Image`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gymdb`.`Gallary` (
+CREATE TABLE IF NOT EXISTS `gymdb`.`Image` (
   `ImageID` INT NOT NULL,
-  `GallaryName` VARCHAR(45) NULL, 
   `ImageLink` VARCHAR(45) NULL,
   PRIMARY KEY (`ImageID`))
 ENGINE = InnoDB;
@@ -37,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `gymdb`.`Lessons` (
   `About` VARCHAR(500) NULL,
   `ImageID` INT NOT NULL,
   PRIMARY KEY (`LessonID`, `ImageID`),
-  INDEX `fk_Lessons_Gallary1_idx` (`ImageID` ASC) VISIBLE,
-  CONSTRAINT `fk_Lessons_Gallary1`
+  INDEX `fk_Lessons_Image1_idx` (`ImageID` ASC) VISIBLE,
+  CONSTRAINT `fk_Lessons_Image1`
     FOREIGN KEY (`ImageID`)
-    REFERENCES `gymdb`.`Gallary` (`ImageID`)
+    REFERENCES `gymdb`.`Image` (`ImageID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -126,10 +125,10 @@ CREATE TABLE IF NOT EXISTS `gymdb`.`Products` (
   `Colour` VARCHAR(45) NULL,
   `ImageID` INT NOT NULL,
   PRIMARY KEY (`ProductID`, `ImageID`),
-  INDEX `fk_Products_Gallary1_idx` (`ImageID` ASC) VISIBLE,
-  CONSTRAINT `fk_Products_Gallary1`
+  INDEX `fk_Products_Image1_idx` (`ImageID` ASC) VISIBLE,
+  CONSTRAINT `fk_Products_Image1`
     FOREIGN KEY (`ImageID`)
-    REFERENCES `gymdb`.`Gallary` (`ImageID`)
+    REFERENCES `gymdb`.`Image` (`ImageID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

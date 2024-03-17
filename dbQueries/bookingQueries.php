@@ -54,7 +54,7 @@ function getLessonInfo(){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
 
-        $sql = "SELECT * FROM lessons INNER JOIN gallary on lessons.ImageID = gallary.ImageID";
+        $sql = "SELECT * FROM lessons";
 
         $statement = $connection->prepare($sql);
         $statement->execute();

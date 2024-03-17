@@ -3,7 +3,7 @@ insert into `user` (Email, `Password`) values ("admin@gmail.com", "Password");
 insert into `user` (Email, `Password`) values ("user@gmail.com", "Password");
 insert into `admin` (AdminID, UserID) value (1, 1);
 insert into cust (Fname, Sname, DOB, EirCode, Phone, UserID) values ("David", "Thornton", '2003-10-01', 'B16W375', 0862268473, 2);
-insert into gallary (ImageID, ImageLink) values 
+insert into Image (ImageID, ImageLink) values 
 (1, "../Images/Lessons/Spin.jpg"),
 (2, "../Images/Lessons/Yoga.jpg"),
 (3, "../Images/Lessons/Aerobics.jpg"),

@@ -5,14 +5,14 @@ class Product
     private $productName;
     private $description;
     private $price;
-    private $imageLink;
+    private $image;
 
     public function __construct($product){
         $this->productID = $product["ProductID"];
         $this->productName = $product["ProductName"];
         $this->description = $product["Description"];
         $this->price = $product["Price"];
-        $this->imageLink = $product["ImageLink"];
+        $this->image = $product["ImageLink"];
     }
 
     public function getProductID(){
@@ -32,28 +32,11 @@ class Product
     }
 
     public function getImageLink(){
-        return $this->imageLink;
+        return $this->image->getImageLink();
     }
 
-
-    public function setProductID($productID){
-        $this->productID = $productID;
-    }
-
-    public function setProductName($productName){
-        $this->productName = $productName;
-    }
-
-    public function setDescription($description){
-        $this->description = $description;
-    }
-
-    public function setPrice($price){
-        $this->price = $price;
-    }
-
-    public function setImageLink($imageLink){
-        $this->imageLink = $imageLink;
+    public function setImage($image){
+        $this->image = $image;
     }
 
 }

@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a488ee66-5389-4f3a-bb63-2ef3d3a25904" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/signin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/logout.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WebProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WebProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbQueries/userQueries.php" beforeDir="false" afterPath="$PROJECT_DIR$/dbQueries/userQueries.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/responsive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBconnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBconnection.php" afterDir="false" />
-    </list>
+    <list default="true" id="a488ee66-5389-4f3a-bb63-2ef3d3a25904" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,6 +128,8 @@
       <workItem from="1710496881121" duration="1410000" />
       <workItem from="1710502389669" duration="1684000" />
       <workItem from="1710515987221" duration="2644000" />
+      <workItem from="1710593231464" duration="836000" />
+      <workItem from="1710696009419" duration="1570000" />
     </task>
     <servers />
   </component>

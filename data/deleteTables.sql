@@ -7,4 +7,4 @@ delete from lessons;
 delete from orders;
 delete from products;
 delete from `user`;
-delete from gallary;
+delete from gallery;

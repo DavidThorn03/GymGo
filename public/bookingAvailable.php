@@ -1,5 +1,8 @@
 <?php
 require_once "templates/booking.php";
+if($day = null){
+    $day = date("l");
+}
 ?>
 <form method="post">
     <input type="submit" name=1 value="Monday">
@@ -16,12 +19,12 @@ require_once "templates/booking.php";
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
-                RECENT & FEATURED JOBS
+                Lessons Available
             </h2>
         </div>
         <div class="job_container">
             <h4 class="job_heading">
-                Featured Jobs
+                <?php echo date("l");?>
             </h4>
             <div class="row">
 
@@ -33,12 +36,13 @@ require_once "templates/booking.php";
                         }
                     }
                 }
-                else {
+                else{
                     for ($i = 1; $i < 8; $i++) {
                         if (isset($_POST[$i])) {
                             foreach ($lessonTimes as $lessonTime) {
                                 if ($lessonTime->getDay() == $i) {
                                     generateLesson($lessonTime);
+                                    $day = date("l", strtotime("Sunday +" . $i . " days"));
                                 }
                             }
                         }
@@ -66,7 +70,7 @@ require_once "templates/booking.php";
                         <div class="box">
                             <div class="job_content-box">
                                 <div class="img-box">
-                                    <img src="<?php echo $lessonTime->Lesson->getImageLink(); ?>" alt="">
+                                    <img src="<?php echo $lessonTime->Lesson->getImageLink(); ?>" alt="" width="300">
                                 </div>
                                 <div class="detail-box">
                                     <h5>

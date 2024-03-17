@@ -15,6 +15,8 @@ if(isset($_POST['Submit']))
     /* these currently check against variable values stored in
    config.php but later we will see how these can be checked against
    information in a database*/
+    $Username = $_POST['Username'];
+    $Password = $_POST['Password'];
     if( ($_POST['Username'] == $Username) && ($_POST['Password'] == $Password) )
     {
 

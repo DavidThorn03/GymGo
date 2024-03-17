@@ -6,31 +6,25 @@ if (isset($_POST['register'])) {
         require_once "../src/DBconnection.php";
 
         $new_user = array(
-            "fname" => escape($_POST['firstname']),
-            "sname" => escape($_POST['lastname']),
-            "dob" => escape($_POST['date of birth']),
-            "eircode" => escape($_POST['eircode']),
-            "phone" => escape($_POST['phone']),
+            "fname" => $_POST['firstname'],
+            "sname" => $_POST['lastname'],
+            "dob" => $_POST['date_of_birth'],
+            "eircode" => $_POST['eircode'],
+            "phone" => $_POST['phone'],
+            "email" => $_POST['email'],
+            "password" => $_POST['password'],
             "date" => date("Y-m-d H:m:s")//didnt see this in tutorial but its needed
         );
 
-        $sql = sprintf("INSERT INTO %s (%s) values (%s)", "users", implode(", ",
-            array_keys($new_user)), ":" . implode(", :", array_keys($new_user)));
-
+        $sql = "INSERT INTO cust (Fname, Sname, DOB, EirCode, Phone) 
+                VALUES (:fname, :sname, :dob, :eircode, :phone, )";
 
         $statement = $connection->prepare($sql);
         $statement->execute($new_user);
+
+        echo "User successfully added";
     } catch (PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
+        echo "Error: " . $error->getMessage();
     }
 }
-require "../public/templates/header.php";
-if (isset($_POST['submit']) && $statement){
-    echo $new_user['firstname']. ' successfully added';
-}
 ?>
-
-
-
-
-<?php require "../public/templates/footer.php"; ?>

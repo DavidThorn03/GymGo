@@ -1,6 +1,7 @@
 <?php
 require_once "../common.php";
 require_once "../src/DBconnection.php";
+require "../dbQueries/userQueries.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $userID = $_POST['userID'];
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($result as $row) : ?>
+    <?php foreach ($result as $row){ ?>
         <tr>
             <td><?php echo escape($row["id"]); ?></td>
             <td><?php echo escape($row["firstname"]); ?></td>
@@ -56,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <td><a href="update-single.php?id=<?php echo escape($row["id"]);
                 ?>">Edit</a></td>
         </tr>
-    <?php endforeach; ?>
+    <?php } ?>
     </tbody>
 </table>
 <a href="index.php">Back to home</a>

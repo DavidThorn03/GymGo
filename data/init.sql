@@ -12,6 +12,14 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema gymdb
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `gymdb` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
+-- Schema gymdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema gymdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `gymdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `gymdb` ;
 
 -- -----------------------------------------------------
@@ -34,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `gymdb`.`Lessons` (
   `NumPlaces` INT NULL,
   `Trainer` VARCHAR(45) NULL,
   `About` VARCHAR(500) NULL,
-  `ImageID` INT NOT NULL,
-  PRIMARY KEY (`LessonID`, `ImageID`),
+  `ImageID` INT NULL,
+  PRIMARY KEY (`LessonID`),
   INDEX `fk_Lessons_Image1_idx` (`ImageID` ASC) VISIBLE,
   CONSTRAINT `fk_Lessons_Image1`
     FOREIGN KEY (`ImageID`)
@@ -79,7 +87,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Booked-Lesson` (
   `BookedLessonID` INT NOT NULL AUTO_INCREMENT,
-  `Date` DATE,
+  `Date` DATE NULL,
   `LessonTimeID` INT NOT NULL,
   `UserID` INT NOT NULL,
   PRIMARY KEY (`BookedLessonID`, `LessonTimeID`, `UserID`),
@@ -123,8 +131,8 @@ CREATE TABLE IF NOT EXISTS `gymdb`.`Products` (
   `Description` VARCHAR(500) NULL,
   `Size` VARCHAR(45) NULL,
   `Colour` VARCHAR(45) NULL,
-  `ImageID` INT NOT NULL,
-  PRIMARY KEY (`ProductID`, `ImageID`),
+  `ImageID` INT NULL,
+  PRIMARY KEY (`ProductID`),
   INDEX `fk_Products_Image1_idx` (`ImageID` ASC) VISIBLE,
   CONSTRAINT `fk_Products_Image1`
     FOREIGN KEY (`ImageID`)
@@ -174,7 +182,6 @@ CREATE TABLE IF NOT EXISTS `gymdb`.`Cust` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -2,7 +2,6 @@
     <!-- slider section -->
 <?php
 require_once('config.php'); // Include configuration
-
 ?>
 <?php require_once('../public/templates/header.php'); ?>
 

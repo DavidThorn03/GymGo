@@ -16,7 +16,7 @@ class Lesson
         $this->numPlaces = $lesson["NumPlaces"];
         $this->trainer = $lesson["Trainer"];
         $this->about = $lesson["About"];
-        $this->image = $lesson["ImageID"];
+        //$this->image = $lesson["ImageID"];
     }
 
     public function getLessonID(){
@@ -44,7 +44,13 @@ class Lesson
     }
 
     public function getImageLink(){
-        return $this->image->getImageLink();
+        if($this->image != null){
+            return $this->image->getImageLink();
+        }
+    }
+
+    public function getImage(){
+        return $this->image;
     }
     public function setImage($image){
         $this->image = $image;

@@ -37,16 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label>Phone Number</label>
-
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="086 123 9876" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="password" required>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="0861239876" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
                     </div>
 
                     <button type="submit" class="btn main" name="register">Register</button>

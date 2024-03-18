@@ -6,18 +6,16 @@ if (isset($_POST['register'])) {
         require_once "../src/DBconnection.php";
 
         $new_user = array(
-            "fname" => $_POST['firstname'],
-            "sname" => $_POST['lastname'],
-            "dob" => $_POST['date_of_birth'],
-            "eircode" => $_POST['eircode'],
-            "phone" => $_POST['phone'],
-            "email" => $_POST['email'],
-            "password" => $_POST['password'],
-            "date" => date("Y-m-d H:m:s")//didnt see this in tutorial but its needed
+            "Fname" => $_POST['firstname'],
+            "Sname" => $_POST['lastname'],
+            "DOB" => $_POST['date_of_birth'],
+            "EirCode" => $_POST['eircode'],
+            "Phone" => $_POST['phone'],
         );
 
+
         $sql = "INSERT INTO cust (Fname, Sname, DOB, EirCode, Phone) 
-                VALUES (:fname, :sname, :dob, :eircode, :phone, )";
+        VALUES (:Fname, :Sname, :DOB, :EirCode, :Phone)";
 
         $statement = $connection->prepare($sql);
         $statement->execute($new_user);

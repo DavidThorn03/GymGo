@@ -62,7 +62,6 @@ if($day = null){
                             generateLesson($lessonTime);
                         }
                     }
-                    header("Refresh:0");
                 }
                 function generateLesson($lessonTime){
                     ?>
@@ -105,11 +104,6 @@ if($day = null){
                 <?php } ?>
 
             </div>
-        </div>
-        <div class="btn-box">
-            <a href="">
-                View All
-            </a>
         </div>
     </div>
 </section>

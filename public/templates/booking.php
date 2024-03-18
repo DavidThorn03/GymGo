@@ -44,6 +44,19 @@ include "header.php";
         }
         $counter++;
     }
+
+    $bookedLessons = array();
+    $bookedLessonsFromDB = getBooking(2);
+    $counter = 0;
+    foreach ($bookedLessonsFromDB as $row) {
+        foreach ($lessonTimes as $lessonTime) {
+            if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
+                $bookedLessons[] = new BookedLesson($row);
+                $bookedLessons[$counter]->LessonTime = $lessonTime;
+            }
+        }
+        $counter++;
+    }
     ?>
     <a href="../bookingBooked.php">Booked</a>
     <a href="../bookingAvailable.php">Available</a>

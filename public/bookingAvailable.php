@@ -1,7 +1,15 @@
 <?php
 require_once "templates/booking.php";
-if($day = null){
-    $day = date("l");
+if(isset($_POST['lessonTimeID'])){
+    foreach ($lessonTimes as $lessonTime){
+        if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
+            $newBooking = new BookedLesson(null);
+            $newBooking->makeBooking(2, $lessonTime);
+            $newBooking->LessonTime = $lessonTime;
+            enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
+        }
+        header("Refresh:0");
+    }
 }
 ?>
 <form method="post">
@@ -45,21 +53,6 @@ if($day = null){
                                     $day = date("l", strtotime("Sunday +" . $i . " days"));
                                 }
                             }
-                        }
-                    }
-                }
-
-
-                if(isset($_POST['lessonTimeID'])){
-                    foreach ($lessonTimes as $lessonTime){
-                        if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
-                            $newBooking = new BookedLesson(null);
-                            $newBooking->makeBooking(2, $lessonTime);
-                            $newBooking->LessonTime = $lessonTime;
-                            enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
-                        }
-                        if($lessonTime->getDay() == $i){
-                            generateLesson($lessonTime);
                         }
                     }
                 }

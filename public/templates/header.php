@@ -41,7 +41,6 @@ session_start(); // Start the session
 
 <div class="hero_area">
     <!-- header section strats -->
-    <header class="header_section">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand" href="index.php">
@@ -88,5 +87,4 @@ session_start(); // Start the session
                 </div>
             </nav>
         </div>
-    </header>
     <!-- end header section -->

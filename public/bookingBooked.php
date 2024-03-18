@@ -1,6 +1,26 @@
 <?php
 require_once "templates/booking.php";
 
+if(isset($_POST['delete'])){
+    deleteBooking($_POST['delete']);
+    foreach ($bookedLessons as $bookedLesson){
+        if($bookedLesson->getBookedLessonID() == $_POST['delete']){
+            array_splice($bookedLessons, array_search($bookedLesson, $bookedLessons), 1);
+        }
+    }
+    header("Refresh:0");
+}
+
+if(isset($_POST['lessonTimeID'])){
+    foreach ($lessonTimes as $lessonTime){
+        if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
+            $newBooking = new BookedLesson(null);
+            $newBooking->makeBooking(2, $lessonTime);
+            $newBooking->LessonTime = $lessonTime;
+            enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
+        }
+    }
+}
 ?>
 
     <section class="job_section layout_padding">
@@ -17,20 +37,6 @@ require_once "templates/booking.php";
 
 foreach ($bookedLessons as $bookedLesson){
     generateBookings($bookedLesson);
-}
-if(isset($_POST['delete'])){
-    deleteBooking($_POST['delete']);
-    header("Refresh:0");
-}
-if(isset($_POST['lessonTimeID'])){
-    foreach ($lessonTimes as $lessonTime){
-        if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
-            $newBooking = new BookedLesson(null);
-            $newBooking->makeBooking(2, $lessonTime);
-            $newBooking->LessonTime = $lessonTime;
-            enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
-        }
-    }
 }
 function generateBookings($bookedLesson){
     ?>

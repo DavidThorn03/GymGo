@@ -1,0 +1,110 @@
+/* GENERAL BODY */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Styles the main container for the shopping cart */
+.container {
+    background-color: white;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Sets styles for page titles */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styles for the list that holds cart items */
+.list-group {
+    list-style: none;
+    padding: 0;
+}
+
+/* Styles for individual cart items */
+.list-group-item {
+    background-color: #fafafa;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+/* Styles for product information */
+.product-info {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Container for quantity adjustment buttons */
+.adjust-quantity {
+    display: flex;
+    align-items: center;
+}
+
+/* General button styles */
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Styles for different button types */
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Button hover effects */
+.btn-info:hover,
+.btn-warning:hover,
+.btn-primary:hover,
+.btn-success:hover {
+    opacity: 0.9;
+}
+
+.mt-3 {
+    margin-top: 16px;
+    text-align: center;
+}
+
+/* Adjusts layout for smaller screens */
+@media (max-width: 768px) {
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .adjust-quantity {
+        margin-top: 10px;
+    }
+}

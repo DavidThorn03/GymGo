@@ -1,0 +1,76 @@
+/* Overall body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container for the form */
+.container2 {
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the form */
+form#registration {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling for input fields and select box */
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+/* Spacing for label elements */
+label.space {
+    margin-top: 20px;
+}
+
+/* Styling for the checkbox */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Label for terms and conditions with a pointer cursor */
+label.bruh {
+    cursor: pointer; /* Makes it clear the label is clickable */
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; 
+}
+
+/* Change button color on hover */
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Responsive design: Adjust form width on smaller screens */
+@media (max-width: 600px) {
+    .container2 {
+        width: 90%;
+        padding: 10px;
+    }
+}

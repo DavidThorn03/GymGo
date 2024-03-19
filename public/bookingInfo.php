@@ -1,5 +1,6 @@
 <?php
 require "templates/header.php";
+generateLesson($_POST['moreInfo']);
 function generateLesson($lesson){
         ?>
         Name: <?php echo $lesson->getLessonName(); ?>

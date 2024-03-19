@@ -80,7 +80,7 @@ function getLessonTime(){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
 
-        $sql = "SELECT * FROM `lesson-time`";
+        $sql = "SELECT * FROM `lesson-time` order by Time desc";
 
         try {
             $connection = new PDO($dsn, $username, $password, $options);

@@ -14,9 +14,10 @@ if(isset($_POST['lessonTimeID'])){
             array_splice($lessonTimes, $count , 1);
             $_SESSION['lessonTimes'] = serialize($lessonTimes);
         }
-        header("Refresh:0");
         $count++;
     }
+    header("Refresh:0");
+
 }
 ?>
 <form method="post">

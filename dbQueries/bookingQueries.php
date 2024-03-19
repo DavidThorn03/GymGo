@@ -23,7 +23,7 @@ function enterBooking($date, $lessonTimeID, $userID){
     }
 }
 
-function deleteBooking($bookedLessonId){
+function deleteBooking($userID, $lessonTimeID){
     try {
         require "../config.php";
         try {
@@ -33,10 +33,11 @@ function deleteBooking($bookedLessonId){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
 
-        $sql = "DELETE FROM `booked-Lesson` WHERE bookedLessonID = :bookedLessonID";
+        $sql = "DELETE FROM `booked-Lesson` where userID = :userID AND LessonTimeID = :lessonTimeID";
 
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':bookedLessonID', $bookedLessonId, PDO::PARAM_INT);
+        $statement->bindValue(':lessonTimeID', $lessonTimeID, PDO::PARAM_INT);
+        $statement->bindValue(':userID', $userID, PDO::PARAM_INT);
         $statement->execute();
     }
     catch(PDOException $error) {

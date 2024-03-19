@@ -1,14 +1,21 @@
 <?php
 require_once "templates/booking.php";
+
 if(isset($_POST['lessonTimeID'])){
+    $count = 0;
     foreach ($lessonTimes as $lessonTime){
         if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
             $newBooking = new BookedLesson(null);
             $newBooking->makeBooking(2, $lessonTime);
             $newBooking->LessonTime = $lessonTime;
+            $bookedLessons[] = $newBooking;
+            $_SESSION['bookedLessons'] = serialize($bookedLessons);
             enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
+            array_splice($lessonTimes, $count , 1);
+            $_SESSION['lessonTimes'] = serialize($lessonTimes);
         }
         header("Refresh:0");
+        $count++;
     }
 }
 ?>

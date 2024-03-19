@@ -59,4 +59,18 @@ function updateUser($user){
         echo "Error: " . $error->getMessage();
     }
 }
+function getUserInfo($id){
+    require "../common.php";
+    try {
+        require_once '../src/DBconnection.php';
+        $sql = "SELECT * FROM cust WHERE userid = :userid";
+        $statement = $connection->prepare($sql);
+        $statement->bindValue(':userid', $id);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        return $user;
+    } catch (PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
 ?>

@@ -1,43 +1,13 @@
 
 <?php
-$user = array("userid"=>"2", "Fname"=>"David", "Sname"=>"Thornton", "Phone"=>"0861234567");
     require "../common.php";
+    require "../dbQueries/userQueries.php";
     if (isset($_POST['submit'])) {
-        try {
-            require_once '../src/DBconnection.php';
-            $user =[
-                "userid" => escape($_POST['userid']),
-                "Fname" => escape($_POST['Fname']),
-                "Sname" => escape($_POST['Sname']),
-                "Phone" => escape($_POST['Phone'])
-            ];
-            $sql = "UPDATE cust SET userid = :userid, Fname = :Fname, Sname = :Sname, Phone = :Phone WHERE userid = :userid";
-
-            $statement = $connection->prepare($sql);
-            $statement->execute($user);
-        }
-        catch(PDOException $error) {
-            echo $sql . "<br>" . $error->getMessage();
-        }
+        updateUser($_POST);
     }
 
     if (isset($_GET['id'])) {
-        try {
-            require_once '../src/DBconnection.php';
-            $id = $_GET['id'];
-            $sql = "SELECT userid, Fname, Sname, Phone FROM cust WHERE userid = :userid";
-            $statement = $connection->prepare($sql);
-            $statement->bindValue(':userid', $id);
-            $statement->execute();
-            $user = $statement->fetch(PDO::FETCH_ASSOC);
-        }
-        catch(PDOException $error) {
-            echo $sql . "<br>" . $error->getMessage();
-        }
-    }
-    else {
-        echo "Something went wrong!";
-        exit;
+        $user = getUserInfo($_GET['id']);
     }
 ?>
 <?php require "templates/header.php"; ?>

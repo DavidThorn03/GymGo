@@ -3,10 +3,14 @@ require_once "templates/booking.php";
 
 if(isset($_POST['delete'])){
     deleteBooking($_POST['delete']);
+    $counter = 0;
     foreach ($bookedLessons as $bookedLesson){
         if($bookedLesson->getBookedLessonID() == $_POST['delete']){
-            array_splice($bookedLessons, array_search($bookedLesson, $bookedLessons), 1);
+            deleteBooking($bookedLesson->getUserId(), $bookedLesson->LessonTime->getLessonTimeID());
+            array_splice($bookedLessons, $counter, 1);
+            $_SESSION['bookedLessons'] = serialize($bookedLessons);
         }
+        $counter++;
     }
     header("Refresh:0");
 }
@@ -48,7 +52,8 @@ function generateBookings($bookedLesson){
                 </div>
                 <div class="detail-box">
                     <h5>
-                        <?php echo $bookedLesson->LessonTime->Lesson->getLessonName(); ?>
+                        <?php echo $bookedLesson->LessonTime->Lesson->getLessonName();
+                        echo $bookedLesson->getBookedLessonID()?>
                     </h5>
                     <div class="detail-info">
 

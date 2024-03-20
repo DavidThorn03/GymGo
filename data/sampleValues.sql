@@ -11,7 +11,10 @@ insert into Image (ImageID, ImageLink) values
 (5, "../Images/Lessons/Gymnastics.jpg"),
 (6, "../Images/Lessons/Crossfit.jpg"),
 (7, "../Images/Lessons/ElderlyFitness.jpg"),
-(8, "../Images/Lessons/KidsCrossfit.jpg");
+(8, "../Images/Lessons/KidsCrossfit.jpg"),
+(9, 'http://example.com/image.jpg');
+
+
 
 insert into lessons (LessonID, LessonName, DurationMin, NumPlaces, Trainer, About, ImageID) values 
 (1, "Spin", 60, 24, "Bob Ross", "Experience the exhilarating world of Spin at our gym. Harness the power of music and high-intensity cycling for a full-body workout. Join our dynamic classes led by expert instructors, pushing your limits in a supportive, energetic environment.", 1),

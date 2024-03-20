@@ -17,7 +17,6 @@ if(isset($_POST['lessonTimeID'])){
         $count++;
     }
     header("Refresh:0");
-
 }
 ?>
 <form method="post">

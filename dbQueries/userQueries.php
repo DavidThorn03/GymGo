@@ -1,7 +1,8 @@
 <?php
+require "../common.php";
 function createUser(){
 if (isset($_POST['register'])) {
-    require "../common.php";
+    //require "../common.php";
 
     try {
         require_once "../src/DBconnection.php";
@@ -28,31 +29,22 @@ if (isset($_POST['register'])) {
 }
 }
 function updateUser($user){
-    require "../common.php";
+    //require "../common.php";
 
     try {
         require_once "../src/DBconnection.php";
 
-        $new_user = array(
-            "Fname" => $_POST['firstname'],
-            "Sname" => $_POST['lastname'],
-            "DOB" => $_POST['date_of_birth'],
-            "EirCode" => $_POST['eircode'],
-            "Phone" => $_POST['phone'],
-        );
-
-
-        $sql = "UPDATE cust set Fname = :Fname, Sname = :Sname, DOB = :DOB, EirCode = :EirCode, Phone = ;Phone
+        $sql = "UPDATE cust set Fname = :Fname, Sname = :Sname, DOB = :DOB, EirCode = :EirCode, Phone = :Phone
         where UserID = :userID";
 
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':Fname', $user["firstname"]);
-        $statement->bindValue(':Sname', $user["lastname"]);
-        $statement->bindValue(':DOB', $user["dob"]);
-        $statement->bindValue(':EirCode', $user["eircode"]);
-        $statement->bindValue(':Phone', $user["phone"]);
-        $statement->bindValue(':userID', $user["id"]);
-        $statement->execute($new_user);
+        $statement->bindValue(':Fname', $user["Fname"]);
+        $statement->bindValue(':Sname', $user["Sname"]);
+        $statement->bindValue(':DOB', $user["DOB"]);
+        $statement->bindValue(':EirCode', $user["EirCode"]);
+        $statement->bindValue(':Phone', $user["Phone"]);
+        $statement->bindValue(':userID', $user["UserID"]);
+        $statement->execute();
 
         echo "User successfully added";
     } catch (PDOException $error) {
@@ -60,7 +52,7 @@ function updateUser($user){
     }
 }
 function getUserInfo($id){
-    require "../common.php";
+    //require "../common.php";
     try {
         require_once '../src/DBconnection.php';
         $sql = "SELECT * FROM cust WHERE userid = :userid";

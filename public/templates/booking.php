@@ -8,6 +8,7 @@ include "header.php";
     require "../BookingClasses/LessonTime.php";
     require "../BookingClasses/BookedLesson.php";
     require "../GalleryClasses/Image.php";
+
     session_start();
 
     if(!isset($_SESSION['images'])){
@@ -31,9 +32,11 @@ include "header.php";
 
         foreach ($lessonsFromDB as $row) {
             $lessons[] = new Lesson($row);
-            foreach ($images as $image) {
-                if ($image->getImageID() == $row["ImageID"]) {
-                    $lessons[count($lessons) - 1]->setImage($image);
+            if(isset($_SESSION['images'])) {
+                foreach ($images as $image) {
+                    if ($image->getImageID() == $row["ImageID"]) {
+                        $lessons[count($lessons) - 1]->setImage($image);
+                    }
                 }
             }
         }
@@ -66,15 +69,19 @@ include "header.php";
     if(!isset($_SESSION['bookedLessons'])) {
         $bookedLessons = array();
         $bookedLessonsFromDB = getBooking(2);
-        $counter = 0;
+        $outerCounter = 0;
         foreach ($bookedLessonsFromDB as $row) {
+            $innerCounter = 0;
             foreach ($lessonTimes as $lessonTime) {
                 if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
                     $bookedLessons[] = new BookedLesson($row);
-                    $bookedLessons[$counter]->LessonTime = $lessonTime;
+                    $bookedLessons[$outerCounter]->LessonTime = $lessonTime;
+                    //array_splice($lessonTimes, $innerCounter, 1);
+                    //$_SESSION['lessonTimes'] = serialize($lessonTimes);
                 }
+                //$innerCounter++;
             }
-            $counter++;
+            $outerCounter++;
         }
         $_SESSION['bookedLessons'] = serialize($bookedLessons);
     }

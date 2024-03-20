@@ -29,8 +29,6 @@ if (isset($_POST['register'])) {
 }
 }
 function updateUser($user){
-    //require "../common.php";
-
     try {
         require_once "../src/DBconnection.php";
 

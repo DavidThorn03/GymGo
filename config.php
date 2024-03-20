@@ -1,8 +1,4 @@
 <?php
-/**
- * Configuration for database connection
- *
- */
 $host = "localhost";
 $username = "root";
 $password = "Dave@MySQL1"; //ENTER YOUR PASSWORD

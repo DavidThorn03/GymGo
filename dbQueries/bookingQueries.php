@@ -1,6 +1,7 @@
 <?php
+require "../common.php";
+
 function enterBooking($date, $lessonTimeID, $userID){
-    require "../common.php";
     try {
         require "../config.php";
         try {
@@ -82,12 +83,6 @@ function getLessonTime(){
 
         $sql = "SELECT * FROM `lesson-time` order by Time desc";
 
-        try {
-            $connection = new PDO($dsn, $username, $password, $options);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
-
         $statement = $connection->prepare($sql);
         //$statement->bindParam(':day', $day, PDO::PARAM_STR);
         $statement->execute();
@@ -113,12 +108,6 @@ function getBooking($userId){
         }
 
         $sql = "SELECT * FROM `booked-lesson` WHERE UserID = :userID";
-
-        try {
-            $connection = new PDO($dsn, $username, $password, $options);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
 
         $statement = $connection->prepare($sql);
         $statement->bindParam(':userID', $userId, PDO::PARAM_STR);

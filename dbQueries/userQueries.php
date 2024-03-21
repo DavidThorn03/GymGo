@@ -5,7 +5,7 @@ if (isset($_POST['register'])) {
     //require "../common.php";
 
     try {
-        require_once "../src/DBconnection.php";
+        require "../src/DBconnection.php";
 
         $new_user = array(
             "Fname" => $_POST['firstname'],
@@ -22,7 +22,6 @@ if (isset($_POST['register'])) {
         $statement = $connection->prepare($sql);
         $statement->execute($new_user);
 
-        echo "User successfully added";
     } catch (PDOException $error) {
         echo "Error: " . $error->getMessage();
     }
@@ -30,7 +29,7 @@ if (isset($_POST['register'])) {
 }
 function updateUser($user){
     try {
-        require_once "../src/DBconnection.php";
+        require "../src/DBconnection.php";
 
         $sql = "UPDATE cust set Fname = :Fname, Sname = :Sname, DOB = :DOB, EirCode = :EirCode, Phone = :Phone
         where UserID = :userID";
@@ -44,7 +43,6 @@ function updateUser($user){
         $statement->bindValue(':userID', $user["UserID"]);
         $statement->execute();
 
-        echo "User successfully added";
     } catch (PDOException $error) {
         echo "Error: " . $error->getMessage();
     }
@@ -52,8 +50,8 @@ function updateUser($user){
 function getUserInfo($id){
     //require "../common.php";
     try {
-        require_once '../src/DBconnection.php';
-        $sql = "SELECT * FROM cust WHERE userid = :userid";
+        require '../src/DBconnection.php';
+        $sql = "SELECT * FROM cust inner join user on cust.userid = user.userid WHERE cust.userid = :userid";
         $statement = $connection->prepare($sql);
         $statement->bindValue(':userid', $id);
         $statement->execute();

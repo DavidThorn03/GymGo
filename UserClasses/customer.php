@@ -1,5 +1,5 @@
 <?php
-
+require "user.php";
 class Customer extends User {
     protected $Fname;
     protected $Sname;

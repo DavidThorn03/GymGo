@@ -3,13 +3,7 @@ require "../common.php";
 
 function enterBooking($date, $lessonTimeID, $userID){
     try {
-        require "../config.php";
-        try {
-            $connection = new PDO($dsn, $username, $password, $options);
-        }
-        catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
+        require "../src/DBconnection.php";
 
         $sql = "INSERT INTO `booked-lesson` (`Date`, LessonTimeID, UserID) VALUES (:date, :lessonTimeID, :userID)";
 
@@ -26,13 +20,8 @@ function enterBooking($date, $lessonTimeID, $userID){
 
 function deleteBooking($userID, $lessonTimeID){
     try {
-        require "../config.php";
-        try {
-            $connection = new PDO($dsn, $username, $password, $options);
-        }
-        catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
+        require "../src/DBconnection.php";
+
 
         $sql = "DELETE FROM `booked-Lesson` where userID = :userID AND LessonTimeID = :lessonTimeID";
 
@@ -48,13 +37,7 @@ function deleteBooking($userID, $lessonTimeID){
 
 function getLessonInfo(){
     try {
-        require "../config.php";
-        try {
-            $connection = new PDO($dsn, $username, $password, $options);
-        }
-        catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
+        require "../src/DBconnection.php";
 
         $sql = "SELECT * FROM lessons";
 
@@ -73,13 +56,8 @@ function getLessonInfo(){
 
 function getLessonTime(){
     try {
-        require "../config.php";
-        try {
-            $connection = new PDO($dsn, $username, $password, $options);
-        }
-        catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
+        require "../src/DBconnection.php";
+
 
         $sql = "SELECT * FROM `lesson-time` order by Time desc";
 
@@ -99,13 +77,8 @@ function getLessonTime(){
 
 function getBooking($userId){
     try {
-        require "../config.php";
-        try {
-            $connection = new PDO($dsn, $username, $password, $options);
-        }
-        catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
+        require "../src/DBconnection.php";
+
 
         $sql = "SELECT * FROM `booked-lesson` WHERE UserID = :userID";
 

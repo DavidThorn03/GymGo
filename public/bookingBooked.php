@@ -62,7 +62,7 @@ function generateBooking($bookedLesson){
                             <span>Time: <?php echo $bookedLesson->LessonTime->getTime(); ?></span>
                         </h6>
                         <h6>
-                            <span>Time: <?php echo $bookedLesson->getDate(); ?></span>
+                            <span>Date: <?php echo $bookedLesson->getDate(); ?></span>
                         </h6>
                     </div>
                 </div>

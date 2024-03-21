@@ -76,10 +76,10 @@ include "header.php";
                 if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
                     $bookedLessons[] = new BookedLesson($row);
                     $bookedLessons[$outerCounter]->LessonTime = $lessonTime;
-                    //array_splice($lessonTimes, $innerCounter, 1);
-                    //$_SESSION['lessonTimes'] = serialize($lessonTimes);
+                    array_splice($lessonTimes, $innerCounter, 1);
+                    $_SESSION['lessonTimes'] = serialize($lessonTimes);
                 }
-                //$innerCounter++;
+                $innerCounter++;
             }
             $outerCounter++;
         }

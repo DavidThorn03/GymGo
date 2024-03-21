@@ -12,7 +12,7 @@
 <body>
     <div class="container2">
         <h2>Checkout</h2>
-        <form action="../ProductClasses/checkout.php" method="post" id="registration">
+        <form action="../ProductClasses/Order.php" method="post" id="registration">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" required>
             <label for="add" class="space">Address</label>

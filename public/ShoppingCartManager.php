@@ -10,7 +10,7 @@ require_once '../ProductClasses/ShoppingCart.php';
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../public/css/cart.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

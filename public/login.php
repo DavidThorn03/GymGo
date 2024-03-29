@@ -1,8 +1,5 @@
 <?php include "templates/header.php"; ?>
 <?php
-
-require_once ('../public/templates/header.php');
-
 require_once ('config.php'); // This is where the username and
 // password are currently stored (hardcoded in variables)
 /* Check if login form has been submitted */

@@ -8,7 +8,6 @@ if (isset($_POST['submit'])) {
     header("Location: profile.php");
 }
     $userFromDB = getUserInfo(2);
-    var_dump($userFromDB);
     $user = new Customer($userFromDB["UserID"], $userFromDB["Email"], $userFromDB["Password"], $userFromDB["Fname"], $userFromDB["Sname"], $userFromDB["DOB"], $userFromDB["EirCode"], $userFromDB["Phone"]);
 ?>
 <?php require "templates/header.php"; ?>

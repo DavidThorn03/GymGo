@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <link rel="stylesheet" href="../public/css/shipping.css">
+    <link rel="stylesheet" href="css/shipping.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <script src="../public/js/form-validation.js"></script>
+    <script src="js/form-validation.js"></script>
 </head>
 <body>
     <div class="container2">

@@ -11,7 +11,7 @@ $allProducts = getProducts(); // Get all products from the database
     <meta charset="UTF-8">
     <title>Product List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

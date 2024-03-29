@@ -2,15 +2,24 @@
 use GalleryClasses\Image;
 
 include "header.php";
+/*
     require "../dbQueries/bookingQueries.php";
     require "../dbQueries/ImageQueries.php";
     require "../BookingClasses/Lesson.php";
     require "../BookingClasses/LessonTime.php";
     require "../BookingClasses/BookedLesson.php";
     require "../GalleryClasses/Image.php";
+*/
+require_once "../src/session.php";
 
     session_start();
-
+$session = new session();
+$session->initialiseSessionItems();
+$session->initialiseUserSessionItems(2);
+$lessons = unserialize($_SESSION['lessons']);
+$lessonTimes = unserialize($_SESSION['lessonTimes']);
+$bookedLessons = unserialize($_SESSION['bookedLessons']);
+    /*
     if(!isset($_SESSION['images'])){
         $images = array();
 
@@ -88,6 +97,7 @@ include "header.php";
     else{
         $bookedLessons = unserialize($_SESSION['bookedLessons']);
     }
+    */
     ?>
     <a href="../bookingBooked.php">Booked</a>
     <a href="../bookingAvailable.php">Available</a>

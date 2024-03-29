@@ -2,6 +2,7 @@
 require_once "templates/booking.php";
 
 if(isset($_POST['lessonTimeID'])){
+    //if(isset($_SESSION['user'])){
     $count = 0;
     foreach ($lessonTimes as $lessonTime){
         if($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']){
@@ -17,6 +18,12 @@ if(isset($_POST['lessonTimeID'])){
         $count++;
     }
     header("Refresh:0");
+    /*
+    }
+    else{
+        header("Location: login.php");
+    }
+    */
 }
 ?>
 <form method="post">

@@ -1,6 +1,4 @@
 <?php
-use GalleryClasses\Image;
-
 include "header.php";
 /*
     require "../dbQueries/bookingQueries.php";
@@ -10,12 +8,7 @@ include "header.php";
     require "../BookingClasses/BookedLesson.php";
     require "../GalleryClasses/Image.php";
 */
-require_once "../src/session.php";
 
-    session_start();
-$session = new session();
-$session->initialiseSessionItems();
-$session->initialiseUserSessionItems(2);
 $lessons = unserialize($_SESSION['lessons']);
 $lessonTimes = unserialize($_SESSION['lessonTimes']);
 $bookedLessons = unserialize($_SESSION['bookedLessons']);

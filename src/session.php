@@ -25,7 +25,7 @@ class session
         header("location:login.php"); /* Redirect to login page */
         exit;
     }
-    public function initialiseSessionItems(){
+    public static function initialiseSessionItems(){
 
         require "../dbQueries/bookingQueries.php";
         require "../dbQueries/ImageQueries.php";
@@ -89,7 +89,7 @@ class session
             $lessonTimes = unserialize($_SESSION['lessonTimes']);
         }
     }
-    public function initialiseUserSessionItems($userID){
+    public static function initialiseUserSessionItems($userID){
 
         if(!isset($_SESSION['bookedLessons'])) {
             $bookedLessons = array();

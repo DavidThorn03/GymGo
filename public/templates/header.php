@@ -1,5 +1,9 @@
 <?php
-//session_start(); // Start the session
+require_once "../src/session.php";
+
+session_start();
+session::initialiseSessionItems();
+session::initialiseUserSessionItems(2);
 
 ?>
 <!DOCTYPE html>

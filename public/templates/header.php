@@ -36,10 +36,10 @@ session::initialiseUserSessionItems(2);
 
     <!-- Custom styles for this template -->
     <link href="../css/stylesheet.scss" rel="stylesheet" />
-    <!-- responsive style -->
-    <link href="../css/responsive.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="../css/style.scss" />
+    <link rel="stylesheet" href="../css/style.css" />
+
 
 </head>
 

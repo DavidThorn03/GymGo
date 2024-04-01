@@ -94,6 +94,4 @@ $bookedLessons = unserialize($_SESSION['bookedLessons']);
     ?>
     <a href="../bookingBooked.php">Booked</a>
     <a href="../bookingAvailable.php">Available</a>
-
-    <br>
 <?php

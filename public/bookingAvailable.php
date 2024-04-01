@@ -27,15 +27,17 @@ if(isset($_POST['lessonTimeID'])){
 }
 ?>
 <form method="post">
-    <input type="submit" name=1 value="Monday">
-    <input type="submit" name=2 value="Tuesday">
-    <input type="submit" name=3 value="Wednesday">
-    <input type="submit" name=4 value="Thursday">
-    <input type="submit" name=5 value="Friday">
-    <input type="submit" name=6 value="Saturday">
-    <input type="submit" name=7 value="Sunday">
-    <br>
+    <div class="lesson-buttons">
+        <button type="submit" name=1 class="btn-primary">Monday</button>
+        <button type="submit" name=2 class="btn-primary">Tuesday</button>
+        <button type="submit" name=3 class="btn-primary">Wednesday</button>
+        <button type="submit" name=4 class="btn-primary">Thursday</button>
+        <button type="submit" name=5 class="btn-primary">Friday</button>
+        <button type="submit" name=6 class="btn-primary">Saturday</button>
+        <button type="submit" name=7 class="btn-primary">Sunday</button>
+    </div>
 </form>
+<br>
 
 <section class="job_section layout_padding">
     <div class="container">

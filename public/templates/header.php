@@ -39,6 +39,8 @@ session::initialiseUserSessionItems(2);
     <!-- responsive style -->
     <link href="../css/responsive.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="../css/style.scss" />
+
 </head>
 
 <body>

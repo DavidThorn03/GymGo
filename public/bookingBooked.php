@@ -15,14 +15,10 @@ if(isset($_POST['delete'])){
     }
     header("Refresh:0");
 }
-else if(isset($_POST['MoreInfo'])){
-    foreach ($lessons as $lesson){
-        if($lesson->getLessonID() == $_POST['moreInfo']){
-            $_SESSION['lessonInfo'] = $lesson;
-            header("Location: bookingInfo.php");
-        }
-    }
+else if(isset($_GET['lessonID'])){
+    $_SESSION['lessonID'] = $_GET['lessonID'];
     header("Location: bookingInfo.php");
+
 }
 ?>
 
@@ -68,10 +64,14 @@ function generateBooking($bookedLesson){
                 </div>
             </div>
             <div class="option-box">
-                <a href="bookingInfo.php">MoreInfo</a>
+                <form method="get">
+                    <input type="hidden" name="lessonID" value="<?php echo $bookedLesson->LessonTime->Lesson->getLessonID(); ?>">
+                    <input type="submit" value="More Info" class="apply-btn">
+                </form>
+                &nbsp;&nbsp;
                 <form method="post">
                     <input type="hidden" name="delete" value="<?php echo $bookedLesson->LessonTime->getLessonTimeID(); ?>">
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Delete" class="apply-btn">
                 </form>
             </div>
         </div>

@@ -22,8 +22,12 @@ class session
     public function forgetSession()
     {
         $this->killSession();
-        header("location:login.php"); /* Redirect to login page */
         exit;
+    }
+    public function forgetUserSession()
+    {
+        //when user sessions are done use this when logging out to remove user specific data
+        unset($_SESSION['bookedLessons']);
     }
     public static function initialiseSessionItems(){
 
@@ -90,7 +94,7 @@ class session
         }
     }
     public static function initialiseUserSessionItems($userID){
-
+        $lessonTimes = unserialize($_SESSION['lessonTimes']);
         if(!isset($_SESSION['bookedLessons'])) {
             $bookedLessons = array();
             $bookedLessonsFromDB = getBooking($userID);

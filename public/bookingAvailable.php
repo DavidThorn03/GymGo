@@ -25,6 +25,11 @@ if(isset($_POST['lessonTimeID'])){
     }
     */
 }
+else if(isset($_GET['lessonID'])){
+    $_SESSION['lessonID'] = $_GET['lessonID'];
+    header("Location: bookingInfo.php");
+
+}
 ?>
 <form method="post">
     <div class="lesson-buttons">
@@ -102,7 +107,11 @@ if(isset($_POST['lessonTimeID'])){
                                 </div>
                             </div>
                             <div class="option-box">
-                                <a href="bookingInfo.php">MoreInfo</a>
+                                <form method="get">
+                                    <input type="hidden" name="lessonID" value="<?php echo $lessonTime->Lesson->getLessonID(); ?>">
+                                    <input type="submit" value="More Info" class="apply-btn">
+                                </form>
+                                &nbsp;&nbsp;
                                 <form method="post">
                                     <input type="hidden" name="lessonTimeID" value="<?php echo $lessonTime->getLessonTimeID(); ?>">
                                     <input type="submit" value="Book" class="apply-btn">

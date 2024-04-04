@@ -1,16 +1,16 @@
 <?php
-session_start();
+require "templates/header.php";
 require "../dbQueries/userQueries.php";
 require "../UserClasses/customer.php";
-
+$user = unserialize($_SESSION['user']);
 if (isset($_POST['submit'])) {
     updateUser($_POST);
+    $userNew = new Customer($user->getUserID(), $user->getEmail(), $user->getPassword(), $_POST['Fname'], $_POST['Sname'], $_POST['DOB'], $_POST['EirCode'], $_POST['Phone']);
+    $_SESSION['user'] = serialize($userNew);
     header("Location: profile.php");
 }
-    $userFromDB = getUserInfo(2);
-    $user = new Customer($userFromDB["UserID"], $userFromDB["Email"], $userFromDB["Password"], $userFromDB["Fname"], $userFromDB["Sname"], $userFromDB["DOB"], $userFromDB["EirCode"], $userFromDB["Phone"]);
+
 ?>
-<?php require "templates/header.php"; ?>
 
     <h2>Update Profile Info</h2>
     <form method="post">

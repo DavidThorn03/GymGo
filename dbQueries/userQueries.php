@@ -38,7 +38,7 @@ function updateUser($user){
         $statement->bindValue(':Phone', $user["Phone"]);
         $statement->bindValue(':userID', $user["UserID"]);
         $statement->execute();
-
+        echo "User updated successfully";
     } catch (PDOException $error) {
         echo "Error: " . $error->getMessage();
     }

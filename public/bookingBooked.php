@@ -1,9 +1,9 @@
 <?php
 require_once "templates/booking.php";
-$bookedLessons = unserialize($_SESSION['bookedLessons']);
 if(!isset($_SESSION['user'])) {
     header("Location: login.php");
 }
+$bookedLessons = unserialize($_SESSION['bookedLessons']);
 if(isset($_POST['delete'])){
     $counter = 0;
     foreach ($bookedLessons as $bookedLesson){

@@ -24,10 +24,17 @@ class session
         $this->killSession();
         exit;
     }
-    public function forgetUserSession()
-    {
-        //when user sessions are done use this when logging out to remove user specific data
+    public static function logout(){
+        $bookedLessons = unserialize($_SESSION['bookedLessons']);
+        $lessonTimes = unserialize($_SESSION['lessonTimes']);
+        foreach ($bookedLessons as $bookedLesson){
+            $lessonTimes[] = $bookedLesson->LessonTime;
+        }
+        $_SESSION['lessonTimes'] = serialize($lessonTimes);
+
+        unset($_SESSION['user']);
         unset($_SESSION['bookedLessons']);
+        header("Location: login.php");
     }
     public static function initialiseSessionItems(){
 
@@ -48,9 +55,6 @@ class session
             }
             $_SESSION['images'] = serialize($images);
         }
-        else{
-            $images[] = unserialize($_SESSION['images']);
-        }
 
         if(!isset($_SESSION['lessons'])) {
             $lessons = array();
@@ -69,9 +73,6 @@ class session
             }
             $_SESSION['lessons'] = serialize($lessons);
         }
-        else{
-            $lessons = $_SESSION['lessons'];
-        }
 
         if(!isset($_SESSION['lessonTimes'])) {
             $lessonTimes = array();
@@ -88,9 +89,6 @@ class session
                 $counter++;
             }
             $_SESSION['lessonTimes'] = serialize($lessonTimes);
-        }
-        else{
-            $lessonTimes = unserialize($_SESSION['lessonTimes']);
         }
     }
     public static function initialiseUserSessionItems($userID){
@@ -113,9 +111,6 @@ class session
                 $outerCounter++;
             }
             $_SESSION['bookedLessons'] = serialize($bookedLessons);
-        }
-        else{
-            $bookedLessons = unserialize($_SESSION['bookedLessons']);
         }
     }
 }

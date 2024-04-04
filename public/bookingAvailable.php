@@ -16,7 +16,6 @@ if(isset($_POST['lessonTimeID'])){
                 array_splice($lessonTimes, $count , 1);
                 $_SESSION['lessonTimes'] = serialize($lessonTimes);
                 header("Refresh:0");
-
             }
             $count++;
         }
@@ -54,7 +53,7 @@ else if(isset($_GET['lessonID'])){
         </div>
         <div class="job_container">
             <h4 class="job_heading">
-                <?php echo date("l");?>
+                <?php echo date("l"); ?>
             </h4>
             <div class="row">
 

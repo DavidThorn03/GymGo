@@ -3,7 +3,8 @@ require_once "../src/session.php";
 
 session_start();
 session::initialiseSessionItems();
-session::initialiseUserSessionItems(2);
+
+session::initialiseUserSessionItems(2);//bring this to when logged in
 
 ?>
 <!DOCTYPE html>

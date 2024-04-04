@@ -1,28 +1,19 @@
 <?php include "templates/header.php"; ?>
 <?php
-require_once ('config.php'); // This is where the username and
-// password are currently stored (hardcoded in variables)
-/* Check if login form has been submitted */
-/* isset — Determine if a variable is declared and is different than
-NULL*/
-
+require ('../dbQueries/userQueries.php');
+require ('../UserClasses/customer.php');
 if(isset($_POST['Submit']))
 {
-    /* Check if the form's username and password matches */
-    /* these currently check against variable values stored in
-   config.php but later we will see how these can be checked against
-   information in a database*/
-    $Username = $_POST['Username'];
-    $Password = $_POST['Password'];
-    if( ($_POST['Username'] == $Username) && ($_POST['Password'] == $Password) )
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $check = checkLogin($email, $password);
+    if($check > 0)
     {
-
-        $_SESSION['Username'] = $Username;
-        $_SESSION['Active'] = true;
-        header("location:index.php"); /* 'header() is used to redirect
-the browser */
-        exit; //we’ve just used header() to redirect to another page but
-        // we must terminate all current code so that it doesn’t run when we redirect
+        $userFromDB = getUserInfo($email);
+        $user = new Customer($userFromDB['UserID'], $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone'], $userFromDB['Email'], $userFromDB['Password']);
+        $_SESSION['user'] = serialize($user);
+        session::initialiseUserSessionItems($user->getUserID());
+        //header("Location: index.php");
     }
     else
         echo 'Incorrect Username or Password';
@@ -45,18 +36,20 @@ the browser */
 <div class="container">
     <form action="" method="post" name="Login_Form" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputUsername" >Username</label>
-        <input name="Username" type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputEmail" >Username</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
         <label for="inputPassword">Password</label>
-        <input name="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="password" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
         <button name="Submit" value="Login" class="button" type="submit">Sign in</button>
-
     </form>
+    <p>
+        Not a member? <a href="register.php">Register Here</a>
+    </p>
 </div>
 </body>
 </html>

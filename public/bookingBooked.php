@@ -1,6 +1,8 @@
 <?php
 require_once "templates/booking.php";
-
+if(!isset($_SESSION['user'])) {
+    header("Location: login.php");
+}
 if(isset($_POST['delete'])){
     $counter = 0;
     foreach ($bookedLessons as $bookedLesson){

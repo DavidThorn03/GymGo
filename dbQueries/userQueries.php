@@ -1,36 +1,32 @@
 <?php
-require "../common.php";
-function createUser(){
-if (isset($_POST['register'])) {
-    //require "../common.php";
+//require "../common.php";
+
+function createUser($user){
+    require "../src/DBconnection.php";
+    require "../UserClasses/Customer.php";
 
     try {
-        require "../src/DBconnection.php";
-
-        $new_user = array(
-            "Fname" => $_POST['firstname'],
-            "Sname" => $_POST['lastname'],
-            "DOB" => $_POST['date_of_birth'],
-            "EirCode" => $_POST['eircode'],
-            "Phone" => $_POST['phone'],
-        );
-
-
-        $sql = "INSERT INTO cust (Fname, Sname, DOB, EirCode, Phone) 
+        $sql = "INSERT INTO cust (Email, Password, Fname, Sname, DOB, EirCode, Phone) 
         VALUES (:Fname, :Sname, :DOB, :EirCode, :Phone)";
-
         $statement = $connection->prepare($sql);
-        $statement->execute($new_user);
-
+        $statement->bindValue(':Email', $user->getEmail());
+        $statement->bindValue(':Password', $user->getPassword());
+        $statement->bindValue(':Fname', $user->getFname());
+        $statement->bindValue(':Sname', $user->getSname());
+        $statement->bindValue(':DOB', $user->getDOB());
+        $statement->bindValue(':EirCode', $user->getEirCode());
+        $statement->bindValue(':Phone', $user->getPhone());
+        $statement->bindValue(':userID', $user->getUserID());
+        $statement->execute();
+        echo "User added successfully";
     } catch (PDOException $error) {
         echo "Error: " . $error->getMessage();
     }
 }
-}
 function updateUser($user){
-    try {
-        require "../src/DBconnection.php";
+    require "../src/DBconnection.php";
 
+    try {
         $sql = "UPDATE cust set Fname = :Fname, Sname = :Sname, DOB = :DOB, EirCode = :EirCode, Phone = :Phone
         where UserID = :userID";
 
@@ -47,16 +43,30 @@ function updateUser($user){
         echo "Error: " . $error->getMessage();
     }
 }
-function getUserInfo($id){
-    //require "../common.php";
+function getUserInfo($email){
+    require "../src/DBconnection.php";
+
     try {
-        require '../src/DBconnection.php';
-        $sql = "SELECT * FROM cust inner join user on cust.userid = user.userid WHERE cust.userid = :userid";
+        $sql = "SELECT * FROM cust inner join user on cust.userid = user.userid WHERE user.email = :email";
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':userid', $id);
+        $statement->bindValue(':email', $email);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         return $user;
+    } catch (PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+function checkLogin($email, $userpassword){
+    require "../src/DBconnection.php";
+    try {
+        $sql = "SELECT count(*) FROM user WHERE Email = :email and Password = :password";
+        $statement = $connection->prepare($sql);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':password', $userpassword);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        return $user['count(*)'];
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }

@@ -13,7 +13,7 @@ if(isset($_POST['Submit']))
         $user = new Customer($userFromDB['UserID'], $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone'], $userFromDB['Email'], $userFromDB['Password']);
         $_SESSION['user'] = serialize($user);
         session::initialiseUserSessionItems($user->getUserID());
-        //header("Location: index.php");
+        header("Location: index.php");
     }
     else
         echo 'Incorrect Username or Password';

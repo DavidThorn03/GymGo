@@ -11,7 +11,7 @@ include "header.php";
 
 $lessons = unserialize($_SESSION['lessons']);
 $lessonTimes = unserialize($_SESSION['lessonTimes']);
-$bookedLessons = unserialize($_SESSION['bookedLessons']);
+//$bookedLessons = unserialize($_SESSION['bookedLessons']);
     /*
     if(!isset($_SESSION['images'])){
         $images = array();

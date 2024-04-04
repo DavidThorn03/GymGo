@@ -1,5 +1,6 @@
 <?php
 require_once "templates/booking.php";
+$bookedLessons = unserialize($_SESSION['bookedLessons']);
 if(!isset($_SESSION['user'])) {
     header("Location: login.php");
 }

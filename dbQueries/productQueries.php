@@ -27,8 +27,8 @@ function getOrderDetailsForUser($userID) {
         $connection = new PDO($dsn, $username, $password, $options);
 
         $sql = "SELECT o.UserID, o.ProductID, p.ProductName, o.Quantity, o.OrderTime
-                FROM orders o
-                JOIN products p ON o.ProductID = p.ProductID
+                FROM orders as o
+                JOIN products as p ON o.ProductID = p.ProductID
                 WHERE o.UserID = :userID
                 ORDER BY o.OrderTime DESC";
 

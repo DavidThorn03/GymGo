@@ -40,5 +40,3 @@ INSERT INTO products (ProductID, ProductName, Price, Description, Size, Colour, 
 (1, 'Dumbbells Set', 50, 'A set of adjustable weight dumbbells perfect for strength training at home.', 'Adjustable', 'Black', 9),
 (2, 'Yoga Mat', 20, 'High-quality, non-slip yoga mat for all types of yoga and fitness exercises.', '68x24 inches', 'Purple', 9),
 (3, 'Resistance Bands', 30, 'A set of 5 resistance bands with different strengths for a versatile workout.', '5-pack', 'Multicolor', 9);
-
-insert into orders (UserID, ProductID, OrderTime) value (2, 1, '2024-04-05 20:30:23');

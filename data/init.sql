@@ -147,6 +147,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gymdb`.`Orders` (
   `UserID` INT NOT NULL,
+  `Quantity` INT NOT NULL,
   `ProductID` INT NOT NULL,
   `OrderTime` DATETIME NULL,
   PRIMARY KEY (`UserID`, `ProductID`),

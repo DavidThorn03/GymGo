@@ -11,9 +11,7 @@ insert into Image (ImageID, ImageLink) values
 (5, "../Images/Lessons/Gymnastics.jpg"),
 (6, "../Images/Lessons/Crossfit.jpg"),
 (7, "../Images/Lessons/ElderlyFitness.jpg"),
-(8, "../Images/Lessons/KidsCrossfit.jpg"),
-(9, 'http://example.com/image.jpg');
-
+(8, "../Images/Lessons/KidsCrossfit.jpg");
 
 
 insert into lessons (LessonID, LessonName, DurationMin, NumPlaces, Trainer, About, ImageID) values 
@@ -37,6 +35,6 @@ insert into `lesson-time` (LessonTimeID, `Time`, `Day`, LessonID) values
 (22, '16:30', 1, 8), (23, '17:00', 3, 8), (24, '12:00', 6, 8);
 
 INSERT INTO products (ProductID, ProductName, Price, Description, Size, Colour, ImageID) VALUES
-(1, 'Dumbbells Set', 50, 'A set of adjustable weight dumbbells perfect for strength training at home.', 'Adjustable', 'Black', 9),
-(2, 'Yoga Mat', 20, 'High-quality, non-slip yoga mat for all types of yoga and fitness exercises.', '68x24 inches', 'Purple', 9),
-(3, 'Resistance Bands', 30, 'A set of 5 resistance bands with different strengths for a versatile workout.', '5-pack', 'Multicolor', 9);
+(1, 'Dumbbells Set', 50, 'A set of adjustable weight dumbbells perfect for strength training at home.', 'Adjustable', 'Black', 1),
+(2, 'Yoga Mat', 20, 'High-quality, non-slip yoga mat for all types of yoga and fitness exercises.', '68x24 inches', 'Purple', 1),
+(3, 'Resistance Bands', 30, 'A set of 5 resistance bands with different strengths for a versatile workout.', '5-pack', 'Multicolor', 1);

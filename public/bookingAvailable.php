@@ -28,7 +28,6 @@ if(isset($_POST['lessonTimeID'])){
 else if(isset($_GET['lessonID'])){
     $_SESSION['lessonID'] = $_GET['lessonID'];
     header("Location: bookingInfo.php");
-
 }
 ?>
 <form method="post">
@@ -120,7 +119,6 @@ else if(isset($_GET['lessonID'])){
                         </div>
                     </div>
                 <?php } ?>
-
             </div>
         </div>
     </div>

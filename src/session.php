@@ -25,13 +25,6 @@ class session
         exit;
     }
     public static function logout(){
-        $bookedLessons = unserialize($_SESSION['bookedLessons']);
-        $lessonTimes = unserialize($_SESSION['lessonTimes']);
-        foreach ($bookedLessons as $bookedLesson){
-            $lessonTimes[] = $bookedLesson->LessonTime;
-        }
-        $_SESSION['lessonTimes'] = serialize($lessonTimes);
-
         unset($_SESSION['user']);
         unset($_SESSION['bookedLessons']);
         header("Location: login.php");
@@ -71,10 +64,6 @@ class session
                     }
                 }
             }
-            $_SESSION['lessons'] = serialize($lessons);
-        }
-
-        if(!isset($_SESSION['lessonTimes'])) {
             $lessonTimes = array();
             $lessonTimesFromDB = getLessonTime();
             $counter = 0;
@@ -82,33 +71,31 @@ class session
             foreach ($lessonTimesFromDB as $row) {
                 foreach ($lessons as $lesson) {
                     if ($lesson->getLessonID() == $row["LessonID"]) {
+                        $lesson->addLessonTime(new LessonTime($row));
                         $lessonTimes[] = new LessonTime($row);
-                        $lessonTimes[$counter]->Lesson = $lesson;
                     }
                 }
                 $counter++;
             }
-            $_SESSION['lessonTimes'] = serialize($lessonTimes);
+            $_SESSION['lessons'] = serialize($lessons);
         }
     }
     public static function initialiseUserSessionItems($userID){
-        $lessonTimes = unserialize($_SESSION['lessonTimes']);
+        $lessons = unserialize($_SESSION['lessons']);
         if(!isset($_SESSION['bookedLessons'])) {
             $bookedLessons = array();
             $bookedLessonsFromDB = getBooking($userID);
-            $outerCounter = 0;
+            $counter = 0;
             foreach ($bookedLessonsFromDB as $row) {
-                $innerCounter = 0;
-                foreach ($lessonTimes as $lessonTime) {
-                    if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
-                        $bookedLessons[] = new BookedLesson($row);
-                        $bookedLessons[$outerCounter]->LessonTime = $lessonTime;
-                        array_splice($lessonTimes, $innerCounter, 1);
-                        $_SESSION['lessonTimes'] = serialize($lessonTimes);
+                foreach($lessons as $lesson) {
+                    foreach ($lesson->getLessonTimes() as $lessonTime) {
+                        if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
+                            $bookedLessons[] = new BookedLesson($row);
+                            $bookedLessons[$counter]->setLessonTime($lessonTime);
+                        }
                     }
-                    $innerCounter++;
                 }
-                $outerCounter++;
+                $counter++;
             }
             $_SESSION['bookedLessons'] = serialize($bookedLessons);
         }

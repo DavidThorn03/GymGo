@@ -7,16 +7,14 @@ $bookedLessons = unserialize($_SESSION['bookedLessons']);
 if(isset($_POST['delete'])){
     $counter = 0;
     foreach ($bookedLessons as $bookedLesson){
-        if($bookedLesson->LessonTime->getLessonTimeID() == $_POST['delete']){
-            deleteBooking($bookedLesson->getUserID(), $bookedLesson->LessonTime->getLessonTimeID());
-            $lessonTimes[] = $bookedLesson->LessonTime;
+        if($bookedLesson->getLessonTime()->getLessonTimeID() == $_POST['delete']){
+            deleteBooking($bookedLesson->getUserID(), $bookedLesson->getLessonTime()->getLessonTimeID());
             array_splice($bookedLessons, $counter, 1);
             $_SESSION['bookedLessons'] = serialize($bookedLessons);
-            $_SESSION['lessonTimes'] = serialize($lessonTimes);
+            header("Refresh:0");
         }
         $counter++;
     }
-    header("Refresh:0");
 }
 else if(isset($_GET['lessonID'])){
     $_SESSION['lessonID'] = $_GET['lessonID'];
@@ -38,27 +36,33 @@ else if(isset($_GET['lessonID'])){
 <?php
 
 foreach ($bookedLessons as $bookedLesson){
-    generateBooking($bookedLesson);
+    foreach ($lessons as $lesson){
+        foreach ($lesson->getLessonTimes() as $lessonTime) {
+            if($lessonTime->getLessonTimeID() == $bookedLesson->getLessonTime()->getLessonTimeID()){
+                generateBooking($bookedLesson, $lesson);
+            }
+        }
+    }
 }
-function generateBooking($bookedLesson){
+function generateBooking($bookedLesson, $lesson){
     ?>
     <div class="col-lg-6">
         <div class="box">
             <div class="job_content-box">
                 <div class="img-box">
-                    <img src="<?php echo $bookedLesson->LessonTime->Lesson->getImageLink(); ?>" alt="" width="300">
+                    <img src="<?php echo $lesson->getImageLink(); ?>" alt="" width="300">
                 </div>
                 <div class="detail-box">
                     <h5>
-                        <?php echo $bookedLesson->LessonTime->Lesson->getLessonName();?>
+                        <?php echo $lesson->getLessonName();?>
                     </h5>
                     <div class="detail-info">
 
                         <h6>
-                            <span>Duration: <?php echo $bookedLesson->LessonTime->Lesson->getDurationMin(); ?> Minutes</span>
+                            <span>Duration: <?php echo $lesson->getDurationMin(); ?> Minutes</span>
                         </h6>
                         <h6>
-                            <span>Time: <?php echo $bookedLesson->LessonTime->getTime(); ?></span>
+                            <span>Time: <?php echo $bookedLesson->getLessonTime()->getTime(); ?></span>
                         </h6>
                         <h6>
                             <span>Date: <?php echo $bookedLesson->getDate(); ?></span>
@@ -68,12 +72,12 @@ function generateBooking($bookedLesson){
             </div>
             <div class="option-box">
                 <form method="get">
-                    <input type="hidden" name="lessonID" value="<?php echo $bookedLesson->LessonTime->Lesson->getLessonID(); ?>">
+                    <input type="hidden" name="lessonID" value="<?php echo $lesson->getLessonID(); ?>">
                     <input type="submit" value="More Info" class="apply-btn">
                 </form>
                 &nbsp;&nbsp;
                 <form method="post">
-                    <input type="hidden" name="delete" value="<?php echo $bookedLesson->LessonTime->getLessonTimeID(); ?>">
+                    <input type="hidden" name="delete" value="<?php echo $bookedLesson->getLessonTime()->getLessonTimeID(); ?>">
                     <input type="submit" value="Delete" class="apply-btn">
                 </form>
             </div>

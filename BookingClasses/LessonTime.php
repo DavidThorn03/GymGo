@@ -1,6 +1,6 @@
 <?php
 
-class LessonTime extends Lesson{
+class LessonTime{
     private $lessonTimeID;
     private $day;
     private $time;

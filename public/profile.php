@@ -40,14 +40,15 @@ $user = unserialize($_SESSION['user']);
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="update-Profile.php">Update Profile</a>
+                <a href="update-Profile.php" class="btn btn-primary">Update Profile</a>
                 <br>
                 <br>
                 <br>
                 <br>
                 <br>
+
                 <form method="post">
-                    <button name="Logout" value="Logout">Logout</button>
+                    <button name="Logout" class="btn btn-primary" value="Logout">Logout</button>
                 </form>
             </div>
         </div>

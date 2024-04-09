@@ -8,6 +8,7 @@ class Lesson
     private $trainer;
     private $about;
     private $image;
+    private $lessonTimes;
 
     public function __construct($lesson){
         $this->lessonID = $lesson["LessonID"];
@@ -16,7 +17,7 @@ class Lesson
         $this->numPlaces = $lesson["NumPlaces"];
         $this->trainer = $lesson["Trainer"];
         $this->about = $lesson["About"];
-        //$this->image = $lesson["ImageID"];
+        $this->lessonTimes = array();
     }
 
     public function getLessonID(){
@@ -54,6 +55,23 @@ class Lesson
     }
     public function setImage($image){
         $this->image = $image;
+    }
+    public function getLessonTimes(){
+        return $this->lessonTimes;
+    }
+    public function addLessonTime($lessonTime){
+        $this->lessonTimes[] = $lessonTime;
+    }
+    public function removeLessonTime($lessonTime){
+        $key = array_search($lessonTime, $this->lessonTimes);
+        unset($this->lessonTimes[$key]);
+    }
+    public function getLessonTime($lessonTimeID){
+        foreach($this->lessonTimes as $lessonTime){
+            if($lessonTime->getLessonTimeID() == $lessonTimeID){
+                return $lessonTime;
+            }
+        }
     }
 }
 ?>

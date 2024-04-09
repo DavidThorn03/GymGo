@@ -1,15 +1,18 @@
 <?php
 
-class BookedLesson extends LessonTime{
+class BookedLesson{
     private $date;
     private $userID;
-    private $bookedLessonID;
+    private $lessonTime;
     public function __construct($bookedLesson){
         if($bookedLesson != null){
             $this->date = $bookedLesson["Date"];
-            $this->bookedLessonID = $bookedLesson["BookedLessonID"];
             $this->userID = $bookedLesson["UserID"];
+            $this->lessonTime = $bookedLesson["LessonTimeID"];
         }
+    }
+    public function setLessonTime($lessonTime){
+        $this->lessonTime = $lessonTime;
     }
     public function getUserID()
     {
@@ -20,12 +23,10 @@ class BookedLesson extends LessonTime{
         $date = new DateTime($this->date);
         return $date->format('Y-m-d');
     }
-
-    public function getBookedLessonID()
+    public function getLessonTime()
     {
-        return $this->bookedLessonID;
+        return $this->lessonTime;
     }
-
     public function makeBooking($userID, $lessonTime){
         $diff = $lessonTime->getDay() - date("w");
         if($diff < 0){
@@ -35,6 +36,7 @@ class BookedLesson extends LessonTime{
         $date = date("Y-m-d", strtotime($timestamp . " +" . $diff . " days"));
         $this->date = $date;
         $this->userID = $userID;
+        $this->lessonTime = $lessonTime;
     }
 }
 ?>

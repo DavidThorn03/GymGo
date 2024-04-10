@@ -1,24 +1,35 @@
 <?php
 //require "../common.php";
 
-function createUser($user){
+function createUser($user) {
     require "../src/DBconnection.php";
-    require "../UserClasses/Customer.php";
 
     try {
-        $sql = "INSERT INTO cust (Email, Password, Fname, Sname, DOB, EirCode, Phone) 
-        VALUES (:Fname, :Sname, :DOB, :EirCode, :Phone)";
+        // 1. Insert into 'User' table
+        $sql = "INSERT INTO user (Email, Password) VALUES (:email, :password)";
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':Email', $user->getEmail());
-        $statement->bindValue(':Password', $user->getPassword());
+        $statement->bindValue(':email', $user->getEmail());
+        $hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+        $statement->bindValue(':password', $hashedPassword);
+        $statement->execute();
+
+        // 2. Get the ID of the newly inserted user
+        $userId = $connection->lastInsertId();
+
+        // 3. Insert into 'Cust' table
+        $sql = "INSERT INTO cust (Fname, Sname, DOB, EirCode, Phone, UserID) 
+                VALUES (:Fname, :Sname, :DOB, :EirCode, :Phone, :UserID)";
+        $statement = $connection->prepare($sql);
         $statement->bindValue(':Fname', $user->getFname());
         $statement->bindValue(':Sname', $user->getSname());
         $statement->bindValue(':DOB', $user->getDOB());
         $statement->bindValue(':EirCode', $user->getEirCode());
         $statement->bindValue(':Phone', $user->getPhone());
-        $statement->bindValue(':userID', $user->getUserID());
+        $statement->bindValue(':UserID', $userId);
         $statement->execute();
+
         echo "User added successfully";
+
     } catch (PDOException $error) {
         echo "Error: " . $error->getMessage();
     }
@@ -63,12 +74,32 @@ function checkLogin($email, $userpassword){
         $sql = "SELECT count(*) FROM user WHERE Email = :email and Password = :password";
         $statement = $connection->prepare($sql);
         $statement->bindValue(':email', $email);
-        $statement->bindValue(':password', $userpassword);
+        $hashedPassword = password_verify($userpassword, PASSWORD_DEFAULT);
+        $statement->bindValue(':password', $hashedPassword);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         return $user['count(*)'];
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
+}
+
+
+function emailExists($email) {
+    require "../src/DBconnection.php";
+
+    try {
+        $sql = "SELECT COUNT(*) FROM user WHERE Email = :email";
+        $statement = $connection->prepare($sql);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+
+        $result = $statement->fetchColumn();
+        return $result > 0; // Return true if the email exists, false otherwise
+
+    } catch (PDOException $error) {
+        echo "Error: " . $error->getMessage();
+        return false; // Handle the error appropriately
+        }
 }
 ?>

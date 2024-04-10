@@ -14,6 +14,8 @@ if(isset($_POST['register'])){
     //header("Location: profile.php");
 }
 ?>
+
+
 <form action="" method="post">
 
     <head>
@@ -59,7 +61,7 @@ if(isset($_POST['register'])){
                         <input type="tel" class="form-control" id="phone" name="phone" placeholder="0861239876" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
                     </div>
                     <div class="form-group">
-                        <label>Phone Number</label>
+                        <label>Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Password" required />
                     </div>
 
@@ -70,3 +72,9 @@ if(isset($_POST['register'])){
     </div>
 
     <?php include "templates/footer.php"; ?>
+
+    //add all to db queries in userQueries.php
+    //make sure email isnt already in use (if in use tell the user and try again)
+    //make new user in user table
+    //get user id of new user made
+    //make new customer in customer table with user id

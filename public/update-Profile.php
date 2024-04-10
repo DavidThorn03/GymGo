@@ -3,6 +3,9 @@ require "templates/header.php";
 require "../dbQueries/userQueries.php";
 require "../UserClasses/customer.php";
 $user = unserialize($_SESSION['user']);
+foreach ($_POST as $key => $value) {
+    $_POST[$key] = escape($value);
+}
 if (isset($_POST['submit'])) {
     updateUser($_POST);
     $userNew = new Customer($user->getUserID(), $user->getEmail(), $user->getPassword(), $_POST['Fname'], $_POST['Sname'], $_POST['DOB'], $_POST['EirCode'], $_POST['Phone']);
@@ -45,7 +48,7 @@ if (isset($_POST['submit'])) {
         <label for="Phone"> Phone</label>
             <br>
         <input type="text" name="Phone" id="Phone"
-               value="<?php echo $user->getPhone(); ?>">
+               value="0<?php echo $user->getPhone(); ?>">
             <br>
             <br>
         <input type="hidden" name="UserID" value="<?php echo $user->getUserID(); ?>">

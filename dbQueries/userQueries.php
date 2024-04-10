@@ -3,7 +3,6 @@
 
 function createUser($user) {
     require "../src/DBconnection.php";
-
     try {
         // 1. Insert into 'User' table
         $sql = "INSERT INTO user (Email, Password) VALUES (:email, :password)";
@@ -58,7 +57,7 @@ function getUserInfo($email){
     require "../src/DBconnection.php";
 
     try {
-        $sql = "SELECT * FROM cust inner join user on cust.userid = user.userid WHERE user.email = :email";
+        $sql = "SELECT * FROM cust inner join user on cust.UserID = user.UserID where email = :email";
         $statement = $connection->prepare($sql);
         $statement->bindValue(':email', $email);
         $statement->execute();
@@ -71,14 +70,17 @@ function getUserInfo($email){
 function checkLogin($email, $userpassword){
     require "../src/DBconnection.php";
     try {
-        $sql = "SELECT count(*) FROM user WHERE Email = :email and Password = :password";
+        $sql = "SELECT Password FROM user WHERE Email = :email";
         $statement = $connection->prepare($sql);
         $statement->bindValue(':email', $email);
-        $hashedPassword = password_verify($userpassword, PASSWORD_DEFAULT);
-        $statement->bindValue(':password', $hashedPassword);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
-        return $user['count(*)'];
+        if(password_verify($userpassword, $user['Password'])){
+            return 1;
+        }
+        else{
+            return 0;
+        }
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }

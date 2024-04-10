@@ -9,7 +9,8 @@ if(isset($_POST['Submit']))
     $check = checkLogin($email, $password);
     if($check > 0) {
         $userFromDB = getUserInfo($email);
-        $user = new Customer($userFromDB['UserID'], $userFromDB['Email'], $userFromDB['Password'], $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone']);
+        var_dump($userFromDB);
+        $user = new Customer($userFromDB['UserID'], $email, $password, $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone']);
         $_SESSION['user'] = serialize($user);
         session::initialiseUserSessionItems($user->getUserID());
         header("Location: index.php");

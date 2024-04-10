@@ -8,11 +8,11 @@ if(isset($_POST['register'])){
     $date_of_birth = escape($_POST['date_of_birth']);
     $eircode = escape($_POST['eircode']);
     $phone = escape($_POST['phone']);
-    $password = escape($_POST['password']);
-    $user = new Customer(null, $email, $password, $firstname, $lastname, $date_of_birth, $eircode, $phone);
+    $userpassword = escape($_POST['password']);
+    $user = new Customer(null, $email, $userpassword, $firstname, $lastname, $date_of_birth, $eircode, $phone);
     createUser($user);
-    //method to create user in database
-    //header("Location: profile.php");
+    $_SESSION['user'] = serialize($user);
+    header("Location: profile.php");
 }
 ?>
 
@@ -25,7 +25,6 @@ if(isset($_POST['register'])){
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <!------ Include the above in your HEAD tag ---------->
-        <link href="css/register.css" rel="stylesheet">
     </head>
 
     <div class="sidenav">

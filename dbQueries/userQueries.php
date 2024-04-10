@@ -97,7 +97,7 @@ function emailExists($email) {
         $statement->execute();
 
         $result = $statement->fetchColumn();
-        return $result > 0; // Return true if the email exists, false otherwise
+        return $result; // Return true if the email exists, false otherwise
 
     } catch (PDOException $error) {
         echo "Error: " . $error->getMessage();

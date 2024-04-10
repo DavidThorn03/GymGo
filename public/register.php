@@ -3,16 +3,21 @@ require "../UserClasses/customer.php";
 if(isset($_POST['register'])){
     require_once '../dbQueries/userQueries.php';
     $email = escape($_POST['email']);
-    $firstname = escape($_POST['firstname']);
-    $lastname = escape($_POST['lastname']);
-    $date_of_birth = escape($_POST['date_of_birth']);
-    $eircode = escape($_POST['eircode']);
-    $phone = escape($_POST['phone']);
-    $userpassword = escape($_POST['password']);
-    $user = new Customer(null, $email, $userpassword, $firstname, $lastname, $date_of_birth, $eircode, $phone);
-    createUser($user);
-    $_SESSION['user'] = serialize($user);
-    header("Location: profile.php");
+    if(!emailExists($email) > 0){
+        $firstname = escape($_POST['firstname']);
+        $lastname = escape($_POST['lastname']);
+        $date_of_birth = escape($_POST['date_of_birth']);
+        $eircode = escape($_POST['eircode']);
+        $phone = escape($_POST['phone']);
+        $userpassword = escape($_POST['password']);
+        $user = new Customer(null, $email, $userpassword, $firstname, $lastname, $date_of_birth, $eircode, $phone);
+        createUser($user);
+        $_SESSION['user'] = serialize($user);
+        header("Location: profile.php");
+    }
+    else{
+        echo "Email already in use";
+    }
 }
 ?>
 
@@ -25,6 +30,7 @@ if(isset($_POST['register'])){
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <!------ Include the above in your HEAD tag ---------->
+        <link rel="stylesheet" type="text/css" href="../css/register.css">
     </head>
 
     <div class="sidenav">
@@ -72,9 +78,3 @@ if(isset($_POST['register'])){
     </div>
 
     <?php include "templates/footer.php"; ?>
-
-    //add all to db queries in userQueries.php
-    //make sure email isnt already in use (if in use tell the user and try again)
-    //make new user in user table
-    //get user id of new user made
-    //make new customer in customer table with user id

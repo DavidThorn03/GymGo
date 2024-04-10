@@ -15,20 +15,20 @@ function generateLesson($lesson){
                     <div class="detail-box">
                         <div class="heading_container">
                             <h2>
-                                <?php echo $lesson->getLessonName(); ?>
+                                <span><?php echo $lesson->getLessonName(); ?></span>
                             </h2>
                         </div>
                         <p>
-                            Duration: <?php echo $lesson->getDurationMin(); ?> Minutes
+                            <span>Duration: <?php echo $lesson->getDurationMin(); ?> Minutes</span>
                             <br>
                             <br>
-                            Number of places: <?php echo $lesson->getNumPlaces(); ?>
+                            <span>Number of places: <?php echo $lesson->getNumPlaces(); ?></span>
                             <br>
                             <br>
-                            Trainer: <?php echo $lesson->getTrainer(); ?>
+                            <span>Trainer: <?php echo $lesson->getTrainer(); ?></span>
                             <br>
                             <br>
-                            About: <?php echo $lesson->getAbout(); ?>
+                            <span>About: <?php echo $lesson->getAbout(); ?></span>
                             <br>
                         </p>
                         <a href="bookingAvailable.php" class="apply-btn">Back to Lessons</a>

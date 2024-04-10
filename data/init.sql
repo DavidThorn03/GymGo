@@ -77,7 +77,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `gymdb`.`User` (
   `UserID` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(45) NULL,
-  `Password` VARCHAR(45) NULL,
+  `Password` VARCHAR(120) NULL,
   PRIMARY KEY (`UserID`))
 ENGINE = InnoDB;
 

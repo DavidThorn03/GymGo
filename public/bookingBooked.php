@@ -1,5 +1,7 @@
 <?php
-require_once "templates/booking.php";
+require_once "templates/header.php";
+$lessons = unserialize($_SESSION['lessons']);
+
 if(!isset($_SESSION['user'])) {
     header("Location: login.php");
 }
@@ -22,7 +24,8 @@ else if(isset($_GET['lessonID'])){
 
 }
 ?>
-
+    <a href="../bookingBooked.php">Booked</a>
+    <a href="../bookingAvailable.php">Available</a>
     <section class="job_section layout_padding">
     <div class="container">
     <div class="heading_container heading_center">

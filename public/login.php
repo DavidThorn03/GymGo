@@ -4,8 +4,8 @@ require ('../dbQueries/userQueries.php');
 require ('../UserClasses/customer.php');
 if(isset($_POST['Submit']))
 {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $email = escape($_POST["email"]);
+    $password = escape($_POST["password"]);
     $check = checkLogin($email, $password);
     if($check > 0) {
         $userFromDB = getUserInfo($email);

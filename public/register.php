@@ -11,6 +11,7 @@ if(isset($_POST['register'])){
     $password = escape($_POST['password']);
     $user = new Customer(null, $email, $password, $firstname, $lastname, $date_of_birth, $eircode, $phone);
     createUser($user);
+    //method to create user in database
     //header("Location: profile.php");
 }
 ?>

@@ -1,6 +1,8 @@
 <?php
-require_once "templates/booking.php";
+require_once "templates/header.php";
 require_once "../UserClasses/customer.php";
+$lessons = unserialize($_SESSION['lessons']);
+
 if (isset($_POST['lessonTimeID'])) {
     if(isset($_SESSION['user'])) {
         $user = unserialize($_SESSION['user']);
@@ -27,16 +29,25 @@ else if(isset($_GET['lessonID'])){
     $_SESSION['lessonID'] = $_GET['lessonID'];
     header("Location: bookingInfo.php");
 }
+else if(isset($_POST['day'])){
+    $day = $_POST['day'];
+    $day = date("w", strtotime("Sunday +$day days"));
+}
+else{
+    $day = date("w");
+}
 ?>
+<a href="../bookingBooked.php">Booked</a>
+<a href="../bookingAvailable.php">Available</a>
 <form method="post">
     <div class="lesson-buttons">
-        <button type="submit" name=1 class="btn-primary">Monday</button>
-        <button type="submit" name=2 class="btn-primary">Tuesday</button>
-        <button type="submit" name=3 class="btn-primary">Wednesday</button>
-        <button type="submit" name=4 class="btn-primary">Thursday</button>
-        <button type="submit" name=5 class="btn-primary">Friday</button>
-        <button type="submit" name=6 class="btn-primary">Saturday</button>
-        <button type="submit" name=7 class="btn-primary">Sunday</button>
+        <button type="submit" name=day class="btn-primary" value="1">Monday</button>
+        <button type="submit" name=day class="btn-primary" value="2">Tuesday</button>
+        <button type="submit" name=day class="btn-primary" value="3">Wednesday</button>
+        <button type="submit" name=day class="btn-primary" value="4">Thursday</button>
+        <button type="submit" name=day class="btn-primary" value="5">Friday</button>
+        <button type="submit" name=day class="btn-primary" value="6">Saturday</button>
+        <button type="submit" name=day class="btn-primary" value="7">Sunday</button>
     </div>
 </form>
 <br>
@@ -50,15 +61,19 @@ else if(isset($_GET['lessonID'])){
         </div>
         <div class="job_container">
             <h4 class="job_heading">
-                <?php echo date("l");?>
+                <?php  if(!isset($_POST['day'])) {
+                    echo date("l");
+                    $day = date("w");
+                }
+                else{
+                    $day = $_POST['day'];
+                    echo date("l", strtotime("Sunday +$day days"));
+                }?>
             </h4>
             <div class="row">
 
                 <?php
-                if (count($_POST) == 0) {
-                    getLessonsToGenerate(date("w"), $lessons);
-                }
-                else if(isset($_POST['MoreInfo'])){
+                if(isset($_POST['MoreInfo'])){
                     foreach ($lessons as $lesson){
                         if($lesson->getLessonID() == $_POST['moreInfo']){
                             $_SESSION['lessonInfo'] = $lesson;
@@ -66,13 +81,7 @@ else if(isset($_GET['lessonID'])){
                         }
                     }
                 }
-                else{
-                    for ($i = 1; $i < 8; $i++) {
-                        if (isset($_POST[$i])) {
-                            getLessonsToGenerate($i, $lessons);
-                        }
-                    }
-                }
+                getLessonsToGenerate($day, $lessons);
 
                 function getLessonsToGenerate($dayOfWeek, $lessons){
                     foreach ($lessons as $lesson) {

@@ -141,7 +141,12 @@ public function displayCart() {
         echo '<div class="mt-3">Total Price: $' . number_format($totalPrice, 2) . '</div>';
         // Links to continue shopping or proceed to checkout
         echo '<a href="products.php" class="btn btn-primary mt-3">Continue Shopping</a>';
-        echo '<a href="CheckoutController.php" class="btn btn-success mt-3">Checkout</a>';
+        if(!isset($_SESSION['user'])) {
+            echo '<a href="login.php" class="btn btn-success mt-3">Login to Checkout</a>';
+        }
+        else {
+            echo '<a href="OrderConfirmationController.php" class="btn btn-success mt-3">Checkout</a>';
+        }
     } 
     echo '</div>'; 
 } 

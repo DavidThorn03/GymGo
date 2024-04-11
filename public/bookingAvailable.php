@@ -39,19 +39,6 @@ else{
 ?>
 <a href="../bookingBooked.php">Booked</a>
 <a href="../bookingAvailable.php">Available</a>
-<form method="post">
-    <div class="lesson-buttons">
-        <button type="submit" name=day class="btn-primary" value="1">Monday</button>
-        <button type="submit" name=day class="btn-primary" value="2">Tuesday</button>
-        <button type="submit" name=day class="btn-primary" value="3">Wednesday</button>
-        <button type="submit" name=day class="btn-primary" value="4">Thursday</button>
-        <button type="submit" name=day class="btn-primary" value="5">Friday</button>
-        <button type="submit" name=day class="btn-primary" value="6">Saturday</button>
-        <button type="submit" name=day class="btn-primary" value="7">Sunday</button>
-    </div>
-</form>
-<br>
-
 <section class="job_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
@@ -59,8 +46,19 @@ else{
                 Lessons Available
             </h2>
         </div>
+        <form method="post">
+            <div class="lesson-buttons">
+                <button type="submit" name=day class="btn-primary" value="1">Monday</button>
+                <button type="submit" name=day class="btn-primary" value="2">Tuesday</button>
+                <button type="submit" name=day class="btn-primary" value="3">Wednesday</button>
+                <button type="submit" name=day class="btn-primary" value="4">Thursday</button>
+                <button type="submit" name=day class="btn-primary" value="5">Friday</button>
+                <button type="submit" name=day class="btn-primary" value="6">Saturday</button>
+                <button type="submit" name=day class="btn-primary" value="7">Sunday</button>
+            </div>
+        </form>
         <div class="job_container">
-            <h4 class="job_heading">
+            <h4 class="heading_container heading_center">
                 <?php  if(!isset($_POST['day'])) {
                     echo date("l");
                     $day = date("w");

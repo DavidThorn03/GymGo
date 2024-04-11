@@ -1,22 +1,11 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+require 'templates/header.php';
 require_once '../ProductClasses/Order.php';
 require_once '../dbQueries/productQueries.php';
 require_once '../ProductClasses/Product.php';
 require_once '../ProductClasses/ShoppingCart.php'; 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmation</title>
-    <link rel="stylesheet" href="css/order.css">
-</head>
-<body>
     <div class="container2">
         <h1>Order Confirmation</h1>
         <?php
@@ -35,5 +24,4 @@ require_once '../ProductClasses/ShoppingCart.php';
 
         <a href="products.php">Continue Shopping</a>
     </div>
-</body>
-</html>
+<?php require 'templates/footer.php'; ?>

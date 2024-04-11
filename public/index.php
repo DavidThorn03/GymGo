@@ -45,7 +45,7 @@
                     </div>
                     <form action="" method="get">
                         <input type="submit" name="imageBtn" class="btn btn-primary" value="<">
-                        <?php for($num = 0; $num < 52; $num++){?> &nbsp; <?php } ?>
+                        <?php for($num = 0; $num < 37; $num++){?> &nbsp; <?php } ?>
                         <input type="submit" name="imageBtn" class="btn btn-primary" value=">">
                     </form>
                 </div>

@@ -14,24 +14,14 @@ session::initialiseSessionItems();
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-
-
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 
-    <!-- fonts style
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
-    -->
-    <!-- font awesome style -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" />
-    <!-- nice select
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
-    -->
 
-    <link rel="stylesheet" href="../css/style.scss" />
     <link rel="stylesheet" href="../css/style.css" />
 
-
+    <link rel="stylesheet" href="../css/main.css" />
 </head>
 
 <body>
@@ -57,6 +47,9 @@ session::initialiseSessionItems();
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="products.php"> Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ShoppingCartManager.php">Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="bookingAvailable.php">Lessons</a>

@@ -37,8 +37,9 @@ else{
     $day = date("w");
 }
 ?>
-<a href="../bookingBooked.php">Booked</a>
-<a href="../bookingAvailable.php">Available</a>
+<div class="heading_container heading_center">
+    <a href="bookingBooked.php">Go to booked</a>
+</div>
 <section class="job_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">

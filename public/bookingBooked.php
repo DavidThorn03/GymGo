@@ -24,8 +24,9 @@ else if(isset($_GET['lessonID'])){
 
 }
 ?>
-    <a href="../bookingBooked.php">Booked</a>
-    <a href="../bookingAvailable.php">Available</a>
+    <div class="heading_container heading_center">
+        <a href="bookingAvaliable.php">Back to available</a>
+    </div>
     <section class="job_section layout_padding">
     <div class="container">
     <div class="heading_container heading_center">

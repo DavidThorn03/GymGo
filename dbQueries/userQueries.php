@@ -75,11 +75,16 @@ function checkLogin($email, $userpassword){
         $statement->bindValue(':email', $email);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
-        if(password_verify($userpassword, $user['Password'])){
-            return 1;
+        if($user == false){
+            return false;
         }
-        else{
-            return 0;
+        else {
+            if (password_verify($userpassword, $user['Password'])) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();

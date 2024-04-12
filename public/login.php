@@ -2,18 +2,20 @@
 <?php
 require ('../dbQueries/userQueries.php');
 require ('../UserClasses/customer.php');
-if(isset($_POST['Submit']))
-{
+if(isset($_POST['Submit'])) {
     $email = escape($_POST["email"]);
     $password = escape($_POST["password"]);
     $check = checkLogin($email, $password);
-    if($check > 0) {
+    if($check) {
         $userFromDB = getUserInfo($email);
         var_dump($userFromDB);
         $user = new Customer($userFromDB['UserID'], $email, $password, $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone']);
         $_SESSION['user'] = serialize($user);
         session::initialiseUserSessionItems($user->getUserID());
         header("Location: index.php");
+    }
+    else{
+        echo "User name or password incorrect";
     }
 }
 ?>

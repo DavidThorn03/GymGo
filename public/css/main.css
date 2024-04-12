@@ -36,7 +36,7 @@ body, html {
 .col-md-4 {
     flex: 0 0 32%; /* 3-column layout */
     margin-bottom: 25px;
-    background-color: #ffffff;
+    background-color: #08135c;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
     padding: 15px;

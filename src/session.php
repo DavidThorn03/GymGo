@@ -33,10 +33,12 @@ class session
 
         require "../dbQueries/bookingQueries.php";
         require "../dbQueries/ImageQueries.php";
+        require "../dbQueries/productQueries.php";
         require "../BookingClasses/Lesson.php";
         require "../BookingClasses/LessonTime.php";
         require "../GalleryClasses/Image.php";
         require "../BookingClasses/BookedLesson.php";
+        require "../ProductClasses/Product.php";
 
         if(!isset($_SESSION['images'])){
             $images = array();
@@ -78,6 +80,16 @@ class session
                 $counter++;
             }
             $_SESSION['lessons'] = serialize($lessons);
+        }
+        if(!isset($_SESSION['products'])) {
+            $products = array();
+
+            $allProducts = getProducts();
+
+            foreach ($allProducts as $productData) {
+                $products[] = new Product($productData);
+            }
+            $_SESSION['products'] = serialize($products);
         }
     }
     public static function initialiseUserSessionItems($userID){

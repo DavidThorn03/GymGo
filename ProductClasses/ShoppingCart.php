@@ -1,7 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-session_start();
-}
 require_once '../dbQueries/productQueries.php';
 require_once 'Product.php';
 

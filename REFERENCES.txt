@@ -1,0 +1,14 @@
+REFERENCES
+
+-- for css template
+https://www.free-css.com/free-css-templates/page294/hirevac
+
+-- for last used id in user queries
+https://www.w3schools.com/php/php_mysql_insert_lastid.asp
+
+-- for switch cases
+https://www.w3schools.com/php/php_switch.asp
+
+
+
+-- form validation from last years project 

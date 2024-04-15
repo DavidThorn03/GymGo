@@ -1,5 +1,5 @@
 <?php
-require '../config.php'; //access the login values
+require "../config.php";
 try {
     $connection = new PDO($dsn, $username, $password, $options);
 } catch (\PDOException $e) {

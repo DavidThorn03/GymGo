@@ -8,7 +8,3 @@ https://www.w3schools.com/php/php_mysql_insert_lastid.asp
 
 -- for switch cases
 https://www.w3schools.com/php/php_switch.asp
-
-
-
--- form validation from last years project 

@@ -18,6 +18,24 @@ function getProducts(){
     }
 }
 
+function getProductById($productId) {
+    require "../config.php";
+    try {
+        $connection = new PDO($dsn, $username, $password, $options);
+
+        $sql = "SELECT * FROM products WHERE ProductID = :productId";
+
+        $statement = $connection->prepare($sql);
+        $statement->bindParam(':productId', $productId, PDO::PARAM_INT);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+
 
 
 function getOrderDetailsForUser($userID) {
@@ -30,7 +48,8 @@ function getOrderDetailsForUser($userID) {
                 FROM orders as o
                 JOIN products as p ON o.ProductID = p.ProductID
                 WHERE o.UserID = :userID
-                ORDER BY o.OrderTime DESC";
+                ORDER BY o.OrderTime DESC
+                LIMIT 50";  
 
         $statement = $connection->prepare($sql);
         $statement->bindValue(':userID', $userID, PDO::PARAM_INT);
@@ -41,6 +60,8 @@ function getOrderDetailsForUser($userID) {
         echo "Error: " . $e->getMessage();
     }
 }
+
+
 
 
 
@@ -55,13 +76,12 @@ function submitOrder($userID, $productID, $quantity, $orderTime){
         $statement = $connection->prepare($sql);
         $statement->bindValue(':userID', $userID, PDO::PARAM_INT);
         $statement->bindValue(':productID', $productID, PDO::PARAM_INT);
-        $statement->bindValue(':quantity', $quantity, PDO::PARAM_INT); // Include quantity in your insert statement
+        $statement->bindValue(':quantity', $quantity, PDO::PARAM_INT); 
         $statement->bindValue(':orderTime', $orderTime, PDO::PARAM_STR);
         $statement->execute();
     } catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
-
 
 ?>

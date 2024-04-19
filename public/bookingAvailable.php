@@ -16,6 +16,7 @@ if (isset($_POST['lessonTimeID'])) {
                     $_SESSION['bookedLessons'] = serialize($bookedLessons);
                     enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
                     header("Refresh:0");
+
                 }
                 $count++;
             }

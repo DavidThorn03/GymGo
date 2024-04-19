@@ -87,7 +87,7 @@ function checkLogin($email, $userpassword){
             }
         }
     } catch (PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
+        return false;
     }
 }
 

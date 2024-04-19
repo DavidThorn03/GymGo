@@ -7,7 +7,6 @@ if(isset($_POST['Submit'])) {
         $info[] = escape($input);
     }
     addProduct($info);
-    header("Location: adminIndex.php");
 }
 ?>
 

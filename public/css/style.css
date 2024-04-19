@@ -675,10 +675,6 @@ a:focus {
      -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 20px;
-  margin-right: 20px;
-  border: 1px solid #717171;
-  background-color: #ffffff;
 }
 
 .job_section .box .img-box img {

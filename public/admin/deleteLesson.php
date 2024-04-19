@@ -4,7 +4,6 @@ require ('../../common.php');
 if(isset($_POST['Submit'])) {
     $lessonID = escape($_POST["LessonID"]);
     deleteLesson($lessonID);
-    header("Location: adminIndex.php");
 }
 ?>
 

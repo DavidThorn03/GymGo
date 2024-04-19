@@ -23,7 +23,7 @@ function addLesson($lesson)
         $statement->bindValue(':ImageID', $lesson[6]);
         $statement->execute();
     } catch (PDOException $error) {
-        echo "Error: " . $error->getMessage();
+        echo "Invalid entry";
     }
 }
 
@@ -39,7 +39,7 @@ function addLessonTime($lessonTime)
         $statement->bindValue(":LessonID", $lessonTime[3]);
         $statement->execute();
     } catch (PDOException $error) {
-        echo "Error: " . $error->getMessage();
+        echo "Invalid entry";
     }
 }
 
@@ -57,7 +57,7 @@ function addProduct($product){
         $statement->bindValue(':ImageID', $product[6]);
         $statement->execute();
     } catch (PDOException $error) {
-        echo "Error: " . $error->getMessage();
+        echo "Invalid entry";
     }
 }
 
@@ -68,7 +68,7 @@ function deleteLesson($lessonID){
         $statement->bindValue(':LessonID', $lessonID);
         $statement->execute();
     } catch (PDOException $error) {
-        echo "Error: " . $error->getMessage();
+        echo "Invalid entry";
     }
 }
 
@@ -79,7 +79,7 @@ function deleteLessonTime($lessonTimeID){
         $statement->bindValue(':LessonTimeID', $lessonTimeID);
         $statement->execute();
     } catch (PDOException $error) {
-        echo "Error: " . $error->getMessage();
+        echo "Invalid entry";
     }
 }
 
@@ -90,7 +90,7 @@ function deleteProduct($productID){
         $statement->bindValue(':ProductID', $productID);
         $statement->execute();
     } catch (PDOException $error) {
-        echo "Error: " . $error->getMessage();
+        echo "Invalid entry";
     }
 }
 function checkAdminLogin($email, $userpassword){

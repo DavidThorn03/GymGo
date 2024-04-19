@@ -4,7 +4,6 @@ require ('../../common.php');
 if(isset($_POST['Submit'])) {
     $productID = escape($_POST["ProductID"]);
     deleteProduct($productID);
-    header("Location: adminIndex.php");
 }
 ?>
 

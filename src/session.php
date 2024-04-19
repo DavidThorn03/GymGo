@@ -3,7 +3,7 @@ use GalleryClasses\Image;
 
 class session
 {
-    public function killSession()
+    public static function killSession()
     {
         //overwrite the current session array with an empty array.
         $_SESSION = [];
@@ -19,10 +19,9 @@ class session
         session_destroy();
     }
 
-    public function forgetSession()
+    public static function forgetSession()
     {
-        $this->killSession();
-        exit;
+        session::killSession();
     }
     public static function logout(){
         unset($_SESSION['user']);

@@ -1,4 +1,9 @@
-<?php require 'adminHeader.php'; ?>
+<?php require 'adminHeader.php';
+if(isset($_POST['Logout'])){
+    session::forgetSession();
+    header("Location: ../index.php");
+}
+?>
 <section class="about_section layout_padding">
     <div class="container">
         <div class="row">
@@ -26,6 +31,11 @@
                         <br>
                         <br>
                         <a href="deleteProduct.php" class="apply-btn">Delete Product</a>
+                        <br>
+                        <br>
+                    <form method="post">
+                        <button name="Logout" class="btn btn-primary" value="Logout">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

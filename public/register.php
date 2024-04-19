@@ -60,7 +60,7 @@ if(isset($_POST['register'])){
                     </div>
                     <div class="form-group">
                         <label>Eircode</label>
-                        <input type="text" class="form-control" placeholder="Eircode" name="eircode" required>
+                        <input type="text" class="form-control" placeholder="Eircode" name="eircode" maxlength="7" required>
                     </div>
                     <div class="form-group">
                         <label>Phone Number</label>

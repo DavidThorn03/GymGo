@@ -73,7 +73,6 @@ class session
                 foreach ($lessons as $lesson) {
                     if ($lesson->getLessonID() == $row["LessonID"]) {
                         $lesson->addLessonTime(new LessonTime($row));
-                        $lessonTimes[] = new LessonTime($row);
                     }
                 }
                 $counter++;

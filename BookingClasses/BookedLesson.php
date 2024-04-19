@@ -21,7 +21,7 @@ class BookedLesson{
     public function getDate()
     {
         $date = new DateTime($this->date);
-        return $date->format('Y-m-d');
+        return $date->format('d-m-Y');
     }
     public function getLessonTime()
     {

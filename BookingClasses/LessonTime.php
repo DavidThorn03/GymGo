@@ -19,21 +19,9 @@ class LessonTime{
         return $this->time;
     }
 
-    public function getLessonTimeID(){
+    public function getLessonTimeID()
+    {
         return $this->lessonTimeID;
     }
-
-    public function setLessonTimeID($lessonTimeID){
-        $this->lessonTimeID = $lessonTimeID;
-    }
-
-    public function setDay($day){
-        $this->day = $day;
-    }
-
-    public function setTime($time){
-        $this->time = $time;
-    }
-
 }
 ?>

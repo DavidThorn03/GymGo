@@ -661,8 +661,8 @@ a:focus {
 }
 
 .job_section .box .img-box {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -679,6 +679,7 @@ a:focus {
 
 .job_section .box .img-box img {
   width: 100%;
+    padding: 10px;
 }
 
 .job_section .box .detail-box h5 {

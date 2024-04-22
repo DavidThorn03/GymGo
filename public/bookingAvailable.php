@@ -6,6 +6,7 @@ $lessons = unserialize($_SESSION['lessons']);
 if (isset($_POST['lessonTimeID'])) {
     if(isset($_SESSION['user'])) {
         $user = unserialize($_SESSION['user']);
+        $bookedLessons = unserialize($_SESSION['bookedLessons']);
         $count = 0;
         foreach ($lessons as $lesson) {
             foreach ($lesson->getLessonTimes() as $lessonTime) {
@@ -15,8 +16,10 @@ if (isset($_POST['lessonTimeID'])) {
                     $bookedLessons[] = $newBooking;
                     $_SESSION['bookedLessons'] = serialize($bookedLessons);
                     enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
+                    $lesson->removeLessonTime($lessonTime);
+                    $_SESSION['lessons'] = serialize($lessons);
+                    echo "<script>alert('Booking successful')</script>";
                     header("Refresh:0");
-
                 }
                 $count++;
             }
@@ -86,18 +89,8 @@ else{
                 function getLessonsToGenerate($dayOfWeek, $lessons){
                     foreach ($lessons as $lesson) {
                         foreach ($lesson->getLessonTimes() as $lessonTime) {
-                            if (isset($_SESSION['bookedLessons']) && sizeof(unserialize($_SESSION['bookedLessons']))){
-                                $bookedLessons = unserialize($_SESSION['bookedLessons']);
-                                foreach ($bookedLessons as $bookedLesson) {
-                                    if ($lessonTime->getLessonTimeID() != $bookedLesson->getLessonTime()->getLessonTimeID() && $lessonTime->getDay() == $dayOfWeek) {
-                                        generateLesson($lesson, $lessonTime->getLessonTimeID());
-                                    }
-                                }
-                            }
-                            else{
-                                if ($lessonTime->getDay() == $dayOfWeek) {
-                                    generateLesson($lesson, $lessonTime->getLessonTimeID());
-                                }
+                            if ($lessonTime->getDay() == $dayOfWeek) {
+                                generateLesson($lesson, $lessonTime->getLessonTimeID());
                             }
                         }
                     }
@@ -108,7 +101,7 @@ else{
                         <div class="box">
                             <div class="job_content-box">
                                 <div class="img-box">
-                                    <img src="<?php echo $lesson->getImageLink(); ?>" alt="" width="300">
+                                    <img src="<?php echo $lesson->getImageLink(); ?>" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h5>

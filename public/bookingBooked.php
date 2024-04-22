@@ -1,18 +1,25 @@
 <?php
 require_once "templates/header.php";
-$lessons = unserialize($_SESSION['lessons']);
-
 if(!isset($_SESSION['user'])) {
     header("Location: login.php");
 }
+$lessons = unserialize($_SESSION['lessons']);
+
 $bookedLessons = unserialize($_SESSION['bookedLessons']);
 if(isset($_POST['delete'])){
     $counter = 0;
     foreach ($bookedLessons as $bookedLesson){
         if($bookedLesson->getLessonTime()->getLessonTimeID() == $_POST['delete']){
             deleteBooking($bookedLesson->getUserID(), $bookedLesson->getLessonTime()->getLessonTimeID());
+            foreach($lessons as $lesson){
+                if($lesson->getLessonID() == $bookedLesson->getLessonTime()->getLessonID()){
+                    $lesson->addLessonTime($bookedLesson->getLessonTime());
+                    $_SESSION['lessons'] = serialize($lessons);
+                }
+            }
             array_splice($bookedLessons, $counter, 1);
             $_SESSION['bookedLessons'] = serialize($bookedLessons);
+            echo "<script>alert('Booking deleted')</script>";
             header("Refresh:0");
         }
         $counter++;
@@ -21,7 +28,6 @@ if(isset($_POST['delete'])){
 else if(isset($_GET['lessonID'])){
     $_SESSION['lessonID'] = $_GET['lessonID'];
     header("Location: bookingInfo.php");
-
 }
 ?>
     <div class="heading_container heading_center">
@@ -41,10 +47,8 @@ else if(isset($_GET['lessonID'])){
 
 foreach ($bookedLessons as $bookedLesson){
     foreach ($lessons as $lesson){
-        foreach ($lesson->getLessonTimes() as $lessonTime) {
-            if($lessonTime->getLessonTimeID() == $bookedLesson->getLessonTime()->getLessonTimeID()){
-                generateBooking($bookedLesson, $lesson);
-            }
+        if($lesson->getLessonID() == $bookedLesson->getLessonTime()->getLessonID()){
+            generateBooking($bookedLesson, $lesson);
         }
     }
 }

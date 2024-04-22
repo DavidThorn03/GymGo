@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-
+<div class="container">
     <h2>Update Profile Info</h2>
     <form method="post">
         <label for="Fname"> First name </label>
@@ -56,4 +56,5 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="Submit">
     </form>
     <a href="index.php">Back to home</a>
+</div>
 <?php require "templates/footer.php"; ?>

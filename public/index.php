@@ -29,10 +29,10 @@
                             </h2>
                         </div>
                         <p>
-                            Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla
-                            Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla
-                            Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla Bla de bla de bla bla
-                            Bla de bla de bla blaBla de bla de bla blaBla de bla de bla blaBla de bla de bla blaBla de bla de bla bla
+                            Welcome to GymGo!
+                            <br>
+                            Here you can see information about the goods and services we offer, including lessons, and products which can be purchased or booked through our site.
+                            Our goal is to make your fitness journey as easy and enjoyable as possible.
                         </p>
                         <a href="login.php">
                             Login here

@@ -8,7 +8,7 @@ body {
 
 /* Styles the main container for the shopping cart */
 .container {
-    background-color: white;
+    background-color: #08135c;
     width: 100%;
     max-width: 800px;
     margin: 20px auto;
@@ -32,7 +32,7 @@ h1 {
 
 /* Styles for individual cart items */
 .list-group-item {
-    background-color: #fafafa;
+    background-color: #08135c;
     border: 1px solid #eaeaea;
     border-radius: 5px;
     display: flex;

@@ -17,7 +17,7 @@ if(isset($_POST['register'])){
         header("Location: profile.php");
     }
     else{
-        echo "<script>alert('Email already exists')</script>";
+        echo "<script>alert('Email already exists. Please use a different email')</script>";
     }
 }
 ?>

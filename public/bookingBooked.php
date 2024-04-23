@@ -6,6 +6,7 @@ if(!isset($_SESSION['user'])) {
 $lessons = unserialize($_SESSION['lessons']);
 
 $bookedLessons = unserialize($_SESSION['bookedLessons']);
+var_dump($bookedLessons);
 if(isset($_POST['delete'])){
     $counter = 0;
     foreach ($bookedLessons as $bookedLesson){

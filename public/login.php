@@ -8,11 +8,9 @@ if(isset($_POST['Submit'])) {
     $check = checkLogin($email, $password);
     if($check) {
         $userFromDB = getUserInfo($email);
-        var_dump($userFromDB);
         $user = new Customer($userFromDB['UserID'], $email, $password, $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone']);
         $_SESSION['user'] = serialize($user);
         session::initialiseUserSessionItems($user->getUserID());
-        echo "<script>alert('Logged in successfully')</script>";
         header("Location: index.php");
     }
     else{

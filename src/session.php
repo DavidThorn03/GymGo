@@ -39,7 +39,7 @@ class session
         require "../BookingClasses/BookedLesson.php";
         require "../ProductClasses/Product.php";
 
-        if(!isset($_SESSION['images'])){
+        if(isset($_SESSION['images'])){
             $images = array();
 
             $imagesFromDB = getImages();
@@ -50,7 +50,7 @@ class session
             $_SESSION['images'] = serialize($images);
         }
 
-        if(!isset($_SESSION['lessons'])) {
+        if(isset($_SESSION['lessons'])) {
             $lessons = array();
 
             $lessonsFromDB = getLessonInfo();
@@ -79,20 +79,29 @@ class session
             }
             $_SESSION['lessons'] = serialize($lessons);
         }
-        if(!isset($_SESSION['products'])) {
+        if(isset($_SESSION['products'])) {
             $products = array();
 
-            $allProducts = getProducts();
+            $productsFromDB = getProducts();
 
-            foreach ($allProducts as $productData) {
-                $products[] = new Product($productData);
+            foreach ($productsFromDB as $row) {
+                $products[] = new Product($row);
+                if(isset($_SESSION['images'])) {
+                    foreach ($images as $image) {
+                        if ($image->getImageID() == $row["ImageID"]) {
+                            $products[count($products) - 1]->setImage($image);
+                        }
+                    }
+                }
             }
+
+
             $_SESSION['products'] = serialize($products);
         }
     }
     public static function initialiseUserSessionItems($userID){
         $lessons = unserialize($_SESSION['lessons']);
-        if(!isset($_SESSION['bookedLessons'])) {
+        if(isset($_SESSION['bookedLessons'])) {
             $bookedLessons = array();
             $bookedLessonsFromDB = getBooking($userID);
             $counter = 0;

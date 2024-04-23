@@ -47,11 +47,15 @@ $user = unserialize($_SESSION['user']);
                 <br>
                 <br>
 
+
+
                 <form method="post">
                     <button name="Logout" class="btn btn-primary" value="Logout">Logout</button>
                 </form>
             </div>
         </div>
+        <!-- Back to Home link -->
+        <a href="index.php" class="btn btn-primary">Back to Home</a>
     </div>
 </section>
 <?php include "templates/footer.php"; ?>

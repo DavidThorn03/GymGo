@@ -141,6 +141,8 @@ else{
 
             </div>
         </div>
+        <!-- Back to Home link -->
+        <a href="index.php" class="btn btn-primary">Back to Home</a>
     </div>
 </section>
 <?php require_once "templates/footer.php";

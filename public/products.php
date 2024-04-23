@@ -6,6 +6,8 @@ $allProducts = unserialize($_SESSION['products']);
 ?>
 <div class="container">
     <h1>Products</h1>
+    <!-- Back to Home link -->
+    <a href="index.php" class="btn btn-secondary">Back to Home</a>
     <div class="row">
         <?php foreach ($allProducts as $product){?>
             <div class="col-md-4">
@@ -19,6 +21,7 @@ $allProducts = unserialize($_SESSION['products']);
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </form>
+
             </div>
         <?php } ?>
     </div>

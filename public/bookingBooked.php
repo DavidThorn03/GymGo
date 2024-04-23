@@ -15,11 +15,11 @@ if(isset($_POST['delete'])){
                 if($lesson->getLessonID() == $bookedLesson->getLessonTime()->getLessonID()){
                     $lesson->addLessonTime($bookedLesson->getLessonTime());
                     $_SESSION['lessons'] = serialize($lessons);
+                    echo "<script>alert('Successfully cancled  " . $lesson->getLessonName() . "')</script>";
                 }
             }
             array_splice($bookedLessons, $counter, 1);
             $_SESSION['bookedLessons'] = serialize($bookedLessons);
-            echo "<script>alert('Booking deleted')</script>";
             header("Refresh:0");
         }
         $counter++;

@@ -7,12 +7,11 @@ body {
 .main-head{
     height: 150px;
     background: #FFF;
-
 }
 
 .sidenav {
     height: 100%;
-    background-color: #000;
+    background-color: #08135c;
     overflow-x: hidden;
     padding-top: 20px;
 }
@@ -60,7 +59,7 @@ body {
 .login-main-text{
     margin-top: 20%;
     padding: 60px;
-    color: #fff;
+    color: ghostwhite;
 }
 
 .login-main-text h2{
@@ -69,5 +68,5 @@ body {
 
 .btn-black{
     background-color: #000;
-    color: #fff;
+    color: ghostwhite;
 }

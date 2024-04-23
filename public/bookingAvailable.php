@@ -18,7 +18,7 @@ if (isset($_POST['lessonTimeID'])) {
                     enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
                     $lesson->removeLessonTime($lessonTime);
                     $_SESSION['lessons'] = serialize($lessons);
-                    echo "<script>alert('Booking successful')</script>";
+                    echo "<script>alert('Successfully booked " . $lesson->getLessonName() . "')</script>";
                     header("Refresh:0");
                 }
                 $count++;

@@ -13,6 +13,7 @@ if(isset($_POST['register'])){
         $user = new Customer(null, $email, $userpassword, $firstname, $lastname, $date_of_birth, $eircode, $phone);
         createUser($user);
         $_SESSION['user'] = serialize($user);
+        echo "<script>alert('Registered successfully')</script>";
         header("Location: profile.php");
     }
     else{
@@ -27,8 +28,6 @@ if(isset($_POST['register'])){
     <head>
         <title>Register</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <!------ Include the above in your HEAD tag ---------->
         <link rel="stylesheet" type="text/css" href="../css/register.css">
     </head>
@@ -71,7 +70,7 @@ if(isset($_POST['register'])){
                         <input type="password" class="form-control" name="password" placeholder="Password" required />
                     </div>
 
-                    <button type="submit" class="btn main" name="register">Register</button>
+                    <button type="submit" class="btn btn-primary" name="register">Register</button>
                 </form>
             </div>
         </div>

@@ -1,7 +1,7 @@
 /* GENERAL BODY */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #08135c;
     margin: 0;
     padding: 20px;
 }
@@ -33,7 +33,7 @@ h1 {
 /* Styles for individual cart items */
 .list-group-item {
     background-color: #08135c;
-    border: 1px solid #eaeaea;
+    border: 1px solid #08135c;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;

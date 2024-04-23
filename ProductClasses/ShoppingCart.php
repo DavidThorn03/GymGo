@@ -47,6 +47,7 @@ class ShoppingCart {
             $this->quantities[$productId] += $quantity;
         } else {
             $this->quantities[$productId] = $quantity;
+            echo "<script>alert('Product added to basket successfully')</script>";
         }
     }
 
@@ -114,10 +115,6 @@ class ShoppingCart {
         $products = $this->getProductDetails();
         $totalPrice = $this->getTotalPrice();
         $totalItems = $this->getTotalItems();
-
-        //var_dump($products);
-
-        //var_dump($this->quantities);
 
         echo '<div class="container">';
         echo '<h1>Your Cart</h1>';

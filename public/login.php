@@ -12,10 +12,11 @@ if(isset($_POST['Submit'])) {
         $user = new Customer($userFromDB['UserID'], $email, $password, $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone']);
         $_SESSION['user'] = serialize($user);
         session::initialiseUserSessionItems($user->getUserID());
+        echo "<script>alert('Logged in successfully')</script>";
         header("Location: index.php");
     }
     else{
-        echo "User name or password incorrect";
+        echo "<script>alert('Incorrect password or username, please try again')</script>";
     }
 }
 ?>
@@ -45,7 +46,7 @@ if(isset($_POST['Submit'])) {
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <button name="Submit" value="Login" class="button" type="submit">Sign in</button>
+        <button name="Submit" value="Login" class="btn btn-primary" type="submit">Sign in</button>
     </form>
     <p>
         Not a member? <a href="register.php">Register Here</a>

@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
     updateUser($_POST);
     $userNew = new Customer($user->getUserID(), $user->getEmail(), $user->getPassword(), $_POST['Fname'], $_POST['Sname'], $_POST['DOB'], $_POST['EirCode'], $_POST['Phone']);
     $_SESSION['user'] = serialize($userNew);
+    echo "<script>alert('Profile updated successfully')</script>";
     header("Location: profile.php");
 }
 
@@ -17,40 +18,26 @@ if (isset($_POST['submit'])) {
 <div class="container">
     <h2>Update Profile Info</h2>
     <form method="post">
-        <label for="Fname"> First name </label>
-            <br>
-        <input type="text" name="Fname" id="Fname"
-               value="<?php echo $user->getFname(); ?>">
-            <br>
-            <br>
-
-        <label for="Sname"> Surname</label>
-            <br>
-        <input type="text" name="Sname" id="Sname"
-               value="<?php echo $user->getSname(); ?>">
-            <br>
-            <br>
-
-        <label for="DOB"> Date of Birth</label>
-            <br>
-        <input type="text" name="DOB" id="DOB"
-               value="<?php echo $user->getDOB(); ?>">
-            <br>
-            <br>
-
-        <label for="EirCode"> EirCode</label>
-            <br>
-        <input type="text" name="EirCode" id="EirCode"
-               value="<?php echo $user->getEirCode(); ?>">
-            <br>
-            <br>
-
-        <label for="Phone"> Phone</label>
-            <br>
-        <input type="text" name="Phone" id="Phone"
-               value="0<?php echo $user->getPhone(); ?>">
-            <br>
-            <br>
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" placeholder="First Name"  name="firstname" required>
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" placeholder="Last Name" name="lastname" required>
+        </div>
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control" placeholder="Date of Birth" name="date_of_birth" required>
+        </div>
+        <div class="form-group">
+            <label>Eircode</label>
+            <input type="text" class="form-control" placeholder="Eircode" name="eircode" maxlength="7" required>
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="0861239876" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
+        </div>
         <input type="hidden" name="UserID" value="<?php echo $user->getUserID(); ?>">
 
         <input type="submit" name="submit" value="Submit">

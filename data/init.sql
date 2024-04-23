@@ -150,7 +150,6 @@ CREATE TABLE IF NOT EXISTS `gymdb`.`Orders` (
   `Quantity` INT NOT NULL,
   `ProductID` INT NOT NULL,
   `OrderTime` DATETIME NULL,
-  PRIMARY KEY (`UserID`, `ProductID`),
   INDEX `fk_User_has_Products_Products2_idx` (`ProductID` ASC) VISIBLE,
   INDEX `fk_User_has_Products_User2_idx` (`UserID` ASC) VISIBLE,
   CONSTRAINT `fk_User_has_Products_User2`

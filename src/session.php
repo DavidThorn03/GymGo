@@ -89,10 +89,17 @@ class session
         if(!isset($_SESSION['products'])) {
             $products = array();
 
-            $allProducts = getProducts();
+            $productsFromDB = getProducts();
 
-            foreach ($allProducts as $productData) {
-                $products[] = new Product($productData);
+            foreach ($productsFromDB as $row) {
+                $products[] = new Product($row);
+                if (isset($_SESSION['images'])) {
+                    foreach ($images as $image) {
+                        if ($image->getImageID() == $row["ImageID"]) {
+                            $products[count($products) - 1]->setImage($image);
+                        }
+                    }
+                }
             }
             $_SESSION['products'] = serialize($products);
         }

@@ -24,13 +24,16 @@ class session
     }
     public static function logout(){
         unset($_SESSION['user']);
-        foreach(unserialize($_SESSION['bookedLessons']) as $bookedLesson){
-            foreach($_SESSION['lessons'] as $lesson){
+        $bookedLessons = unserialize($_SESSION['bookedLessons']);
+        $lessons = unserialize($_SESSION['lessons']);
+        foreach($bookedLessons as $bookedLesson){
+            foreach($lessons as $lesson){
                 if($lesson->getLessonID() == $bookedLesson->getLessonTime()->getLessonID()){
                     $lesson->addLessonTime($bookedLesson->getLessonTime());
                 }
             }
         }
+        $_SESSION['lessons'] = serialize($lessons);
         unset($_SESSION['bookedLessons']);
         header("Location: login.php");
     }

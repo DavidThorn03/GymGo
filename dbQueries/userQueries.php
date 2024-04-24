@@ -27,8 +27,7 @@ function createUser($user) {
         $statement->bindValue(':UserID', $userId);
         $statement->execute();
 
-        echo "User added successfully";
-
+        return $userId;
     } catch (PDOException $error) {
         echo "Error: " . $error->getMessage();
     }

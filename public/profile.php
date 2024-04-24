@@ -35,7 +35,7 @@ $user = unserialize($_SESSION['user']);
                         Eircode: <?php echo $user->getEirCode(); ?>
                         <br>
                         <br>
-                        Phone: 0<?php echo $user->getPhone(); ?>
+                        Phone: <?php echo $user->getPhone(); ?>
                     </p>
                 </div>
             </div>

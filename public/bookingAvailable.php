@@ -19,7 +19,7 @@ if (isset($_POST['lessonTimeID'])) {
                     $lesson->removeLessonTime($lessonTime);
                     $_SESSION['lessons'] = serialize($lessons);
                     echo "<script>alert('Successfully booked " . $lesson->getLessonName() . "')</script>";
-                    header("Refresh:0");
+                    //header("Refresh:0");
                 }
                 $count++;
             }

@@ -7,7 +7,6 @@ $allProducts = unserialize($_SESSION['products']);
 <div class="container">
     <h1>Products</h1>
     <!-- Back to Home link -->
-    <a href="index.php" class="btn btn-secondary">Back to Home</a>
     <div class="row">
         <?php foreach ($allProducts as $product){?>
             <div class="col-md-4">
@@ -25,5 +24,6 @@ $allProducts = unserialize($_SESSION['products']);
             </div>
         <?php } ?>
     </div>
+    <a href="index.php" class="btn btn-primary">Back to Home</a>
 </div>
 <?php require 'templates/footer.php'; ?>

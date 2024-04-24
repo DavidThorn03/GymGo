@@ -4,6 +4,9 @@ if(isset($_POST['register'])){
     require_once '../dbQueries/userQueries.php';
     $email = escape($_POST['email']);
     if(!emailExists($email) > 0){
+        if(isset($_SESSION['user'])){
+            session::logout();
+        }
         $firstname = escape($_POST['firstname']);
         $lastname = escape($_POST['lastname']);
         $date_of_birth = escape($_POST['date_of_birth']);
@@ -11,9 +14,11 @@ if(isset($_POST['register'])){
         $phone = escape($_POST['phone']);
         $userpassword = escape($_POST['password']);
         $user = new Customer(null, $email, $userpassword, $firstname, $lastname, $date_of_birth, $eircode, $phone);
-        createUser($user);
+        $userID = createUser($user);
+        $user->setUserID($userID);
         $_SESSION['user'] = serialize($user);
         echo "<script>alert('Registered successfully')</script>";
+        $_SESSION['BookedLessons'] = serialize(array());
         header("Location: profile.php");
     }
     else{

@@ -22,6 +22,9 @@ class User {
     public function getPassword() {
         return $this->Password;
     }
+    public function setUserID($id){
+        $this->UserID = $id;
+    }
 }
 
 ?>

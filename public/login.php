@@ -7,6 +7,9 @@ if(isset($_POST['Submit'])) {
     $password = escape($_POST["password"]);
     $check = checkLogin($email, $password);
     if($check) {
+        if(isset($_SESSION['user'])){
+            session::logout();
+        }
         $userFromDB = getUserInfo($email);
         $user = new Customer($userFromDB['UserID'], $email, $password, $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone']);
         $_SESSION['user'] = serialize($user);

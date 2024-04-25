@@ -130,6 +130,18 @@ class ShoppingCart {
                          ' | Quantity: ' . $quantity .
                          ' | Price: $' . number_format($product->getPrice(), 2) .
                          ' | Subtotal: $' . number_format($product->getPrice() * $quantity, 2) . '</div>';
+                    echo '<div class="adjust-quantity">';
+                    echo '<form action="ShoppingCartManager.php" method="post" style="display: inline-flex;">' .
+                         '<input type="hidden" name="productID" value="' . htmlspecialchars($productId) . '">' .
+                         '<input type="hidden" name="action" value="increase">' .
+                         '<button type="submit" class="btn btn-info">+</button>' .
+                         '</form>';
+                    echo '<form action="ShoppingCartManager.php" method="post" style="display: inline-flex;">' .
+                         '<input type="hidden" name="productID" value="' . htmlspecialchars($productId) . '">' .
+                         '<input type="hidden" name="action" value="decrease">' .
+                         '<button type="submit" class="btn btn-warning">-</button>' .
+                         '</form>';
+                    echo '</div>';
                     echo '</li>';
                 }
             }

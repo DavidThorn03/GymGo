@@ -130,18 +130,6 @@ class ShoppingCart {
                          ' | Quantity: ' . $quantity .
                          ' | Price: $' . number_format($product->getPrice(), 2) .
                          ' | Subtotal: $' . number_format($product->getPrice() * $quantity, 2) . '</div>';
-                    echo '<div class="adjust-quantity">';
-                    echo '<form action="ShoppingCartManager.php" method="post" style="display: inline-flex;">' .
-                         '<input type="hidden" name="productID" value="' . htmlspecialchars($productId) . '">' .
-                         '<input type="hidden" name="action" value="increase">' .
-                         '<button type="submit" class="btn btn-info btn-sm">+</button>' .
-                         '</form>';
-                    echo '<form action="ShoppingCartManager.php" method="post" style="display: inline-flex;">' .
-                         '<input type="hidden" name="productID" value="' . htmlspecialchars($productId) . '">' .
-                         '<input type="hidden" name="action" value="decrease">' .
-                         '<button type="submit" class="btn btn-warning btn-sm">-</button>' .
-                         '</form>';
-                    echo '</div>';
                     echo '</li>';
                 }
             }
@@ -151,7 +139,8 @@ class ShoppingCart {
             if (!isset($_SESSION['user'])) {
                 echo '<a href="login.php" class="btn btn-success mt-3">Login to Checkout</a>';
             } else {
-                echo '<form action="OrderConfirmationController.php" method="post">';
+                echo '<script src="js/confirmCheckout.js"></script>'; 
+                echo '<form action="OrderConfirmationController.php" method="post" onsubmit="return confirmCheckout();">';
                 echo '<button type="submit" class="btn btn-success mt-3">Checkout</button>';
                 echo '</form>';
             }

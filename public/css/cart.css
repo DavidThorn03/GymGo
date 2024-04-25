@@ -1,25 +1,6 @@
-/* GENERAL BODY */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #08135c;
-    margin: 0;
-    padding: 20px;
-}
 
-/* Styles the main container for the shopping cart */
-.container {
-    background-color: #08135c;
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Sets styles for page titles */
 h1 {
-    color: #333;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -45,8 +26,7 @@ h1 {
 /* Styles for product information */
 .product-info {
     font-size: 16px;
-    color: #333;
-    background-color: #08135c;
+    color: #ffffff;
 }
 
 /* Container for quantity adjustment buttons */
@@ -64,10 +44,12 @@ h1 {
     font-size: 14px;
 }
 
-/* Styles for different button types */
+.btn-info, .btn-warning, .btn-primary, .btn-success {
+    color: white;
+}
+
 .btn-info {
     background-color: #17a2b8;
-    color: white;
 }
 
 .btn-warning {
@@ -77,19 +59,14 @@ h1 {
 
 .btn-primary {
     background-color: #007bff;
-    color: white;
 }
 
 .btn-success {
     background-color: #28a745;
-    color: white;
 }
 
 /* Button hover effects */
-.btn-info:hover,
-.btn-warning:hover,
-.btn-primary:hover,
-.btn-success:hover {
+.btn:hover {
     opacity: 0.9;
 }
 

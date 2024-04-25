@@ -2,28 +2,38 @@
 require_once "templates/header.php";
 require_once "../UserClasses/customer.php";
 $lessons = unserialize($_SESSION['lessons']);
+function bookLesson($lessons){
+    $user = unserialize($_SESSION['user']);
+    $bookedLessons = unserialize($_SESSION['bookedLessons']);
+    foreach ($lessons as $lesson) {
+        foreach ($lesson->getLessonTimes() as $lessonTime) {
+            if ($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']) {
+                $newBooking = new BookedLesson(null);
+                $newBooking->makeBooking($user->getUserID(), $lessonTime);
+                $bookedLessons[] = $newBooking;
+                $_SESSION['bookedLessons'] = serialize($bookedLessons);
+                enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
+                $lesson->removeLessonTime($lessonTime);
+                $_SESSION['lessons'] = serialize($lessons);
+                echo "<script>alert('Successfully booked " . $lesson->getLessonName() . "')</script>";
+                header("Refresh:0");
+            }
+        }
+    }
+}
+function getLessonsToGenerate($dayOfWeek, $lessons){
+    foreach ($lessons as $lesson) {
+        foreach ($lesson->getLessonTimes() as $lessonTime) {
+            if ($lessonTime->getDay() == $dayOfWeek) {
+                generateLesson($lesson, $lessonTime->getLessonTimeID());
+            }
+        }
+    }
+}
 
 if (isset($_POST['lessonTimeID'])) {
     if(isset($_SESSION['user'])) {
-        $user = unserialize($_SESSION['user']);
-        $bookedLessons = unserialize($_SESSION['bookedLessons']);
-        $count = 0;
-        foreach ($lessons as $lesson) {
-            foreach ($lesson->getLessonTimes() as $lessonTime) {
-                if ($lessonTime->getLessonTimeID() == $_POST['lessonTimeID']) {
-                    $newBooking = new BookedLesson(null);
-                    $newBooking->makeBooking($user->getUserID(), $lessonTime);
-                    $bookedLessons[] = $newBooking;
-                    $_SESSION['bookedLessons'] = serialize($bookedLessons);
-                    enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
-                    $lesson->removeLessonTime($lessonTime);
-                    $_SESSION['lessons'] = serialize($lessons);
-                    echo "<script>alert('Successfully booked " . $lesson->getLessonName() . "')</script>";
-                    //header("Refresh:0");
-                }
-                $count++;
-            }
-        }
+        bookLesson($lessons);
     }
     else{
         header("Location: login.php");
@@ -85,16 +95,6 @@ else{
                     }
                 }
                 getLessonsToGenerate($day, $lessons);
-
-                function getLessonsToGenerate($dayOfWeek, $lessons){
-                    foreach ($lessons as $lesson) {
-                        foreach ($lesson->getLessonTimes() as $lessonTime) {
-                            if ($lessonTime->getDay() == $dayOfWeek) {
-                                generateLesson($lesson, $lessonTime->getLessonTimeID());
-                            }
-                        }
-                    }
-                }
                 function generateLesson($lesson, $lessonTimeID){
                     ?>
                     <div class="col-lg-6">

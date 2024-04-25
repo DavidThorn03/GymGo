@@ -4,9 +4,8 @@ if(!isset($_SESSION['user'])) {
     header("Location: login.php");
 }
 $lessons = unserialize($_SESSION['lessons']);
-
 $bookedLessons = unserialize($_SESSION['bookedLessons']);
-if(isset($_POST['delete'])){
+function removeBooking($bookedLessons, $lessons){
     $counter = 0;
     foreach ($bookedLessons as $bookedLesson){
         if($bookedLesson->getLessonTime()->getLessonTimeID() == $_POST['delete']){
@@ -24,6 +23,10 @@ if(isset($_POST['delete'])){
         }
         $counter++;
     }
+}
+
+if(isset($_POST['delete'])){
+    removeBooking($bookedLessons, $lessons);
 }
 else if(isset($_GET['lessonID'])){
     $_SESSION['lessonID'] = $_GET['lessonID'];

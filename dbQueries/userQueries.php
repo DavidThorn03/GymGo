@@ -69,7 +69,7 @@ function getUserInfo($email){
 function checkLogin($email, $userpassword){
     require "../src/DBconnection.php";
     try {
-        $sql = "SELECT Password FROM user WHERE Email = :email";
+        $sql = "SELECT Password FROM user WHERE Email = :email and userID != 1";
         $statement = $connection->prepare($sql);
         $statement->bindValue(':email', $email);
         $statement->execute();

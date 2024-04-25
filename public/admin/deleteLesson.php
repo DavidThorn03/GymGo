@@ -12,7 +12,7 @@ if(isset($_POST['Submit'])) {
         <h2 class="form-signin-heading">Delete Lesson</h2>
         <label for="LessonID" >Lesson ID</label>
         <input name="LessonID" type="number" id="LessonID" class="form-control" required>
-        <button name="Submit" class="button" type="submit">Delete Lesson</button>
+        <button name="Submit" class="btn btn-primary" type="submit">Delete Lesson</button>
     </form>
 </div>
 

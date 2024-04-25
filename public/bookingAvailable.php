@@ -142,6 +142,8 @@ else{
             </div>
         </div>
         <!-- Back to Home link -->
+        <br>
+        <br>
         <a href="index.php" class="btn btn-primary">Back to Home</a>
     </div>
 </section>

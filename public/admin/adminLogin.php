@@ -29,7 +29,7 @@ if(isset($_POST['Submit'])) {
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <button name="Submit" value="Login" class="button" type="submit">Sign in</button>
+        <button name="Submit" value="Login" class="btn btn-primary" type="submit">Sign in</button>
     </form>
 </div>
 

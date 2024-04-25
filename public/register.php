@@ -18,7 +18,7 @@ if(isset($_POST['register'])){
         $user->setUserID($userID);
         $_SESSION['user'] = serialize($user);
         echo "<script>alert('Registered successfully')</script>";
-        $_SESSION['BookedLessons'] = serialize(array());
+        $_SESSION['bookedLessons'] = serialize(array());
         header("Location: profile.php");
     }
     else{

@@ -22,8 +22,9 @@ function addLesson($lesson)
         $statement->bindValue(':About', $lesson[5]);
         $statement->bindValue(':ImageID', $lesson[6]);
         $statement->execute();
+        echo "<script>alert('Successfully added lesson')</script>";
     } catch (PDOException $error) {
-        echo "Invalid entry";
+        echo "<script>alert('Invalid entry')</script>";
     }
 }
 
@@ -38,8 +39,9 @@ function addLessonTime($lessonTime)
         $statement->bindValue(":Day" , $lessonTime[2]);
         $statement->bindValue(":LessonID", $lessonTime[3]);
         $statement->execute();
+        echo "<script>alert('Successfully added lesson time')</script>";
     } catch (PDOException $error) {
-        echo "Invalid entry";
+        echo "<script>alert('Invalid entry')</script>";
     }
 }
 
@@ -56,19 +58,28 @@ function addProduct($product){
         $statement->bindValue(':Colour', $product[5]);
         $statement->bindValue(':ImageID', $product[6]);
         $statement->execute();
+        echo "<script>alert('Successfully added product')</script>";
     } catch (PDOException $error) {
-        echo "Invalid entry";
+        echo "<script>alert('Invalid entry')</script>";
     }
 }
 
 function deleteLesson($lessonID){
     try {
-        $sql = "DELETE FROM lessons where LessonID = :LessonID";
+        $sql = "DELETE FROM `lesson-time` where LessonID = :LessonID";
         $statement = setConnection()->prepare($sql);
         $statement->bindValue(':LessonID', $lessonID);
         $statement->execute();
     } catch (PDOException $error) {
-        echo "Invalid entry";
+    }
+    try {
+        $sql = "DELETE FROM lessons where LessonID = :LessonID";
+        $statement = setConnection()->prepare($sql);
+        $statement->bindValue(':LessonID', $lessonID);
+        $statement->execute();
+        echo "<script>alert('Successfully deleted lesson')</script>";
+    } catch (PDOException $error) {
+        echo "<script>alert('Invalid entry')</script>";
     }
 }
 
@@ -78,8 +89,9 @@ function deleteLessonTime($lessonTimeID){
         $statement = setConnection()->prepare($sql);
         $statement->bindValue(':LessonTimeID', $lessonTimeID);
         $statement->execute();
+        echo "<script>alert('Successfully deleted lesson time')</script>";
     } catch (PDOException $error) {
-        echo "Invalid entry";
+        echo "<script>alert('Invalid entry')</script>";
     }
 }
 
@@ -89,8 +101,9 @@ function deleteProduct($productID){
         $statement = setConnection()->prepare($sql);
         $statement->bindValue(':ProductID', $productID);
         $statement->execute();
+        echo "<script>alert('Successfully deleted product')</script>";
     } catch (PDOException $error) {
-        echo "Invalid entry";
+        echo "<script>alert('Invalid entry')</script>";
     }
 }
 function checkAdminLogin($email, $userpassword){

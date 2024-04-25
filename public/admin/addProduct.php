@@ -28,7 +28,7 @@ if(isset($_POST['Submit'])) {
         <input name="Colour" type="text" id="Colour" class="form-control" required>
         <label for="ImageID">Image ID</label>
         <input name="ImageID" type="number" id="ImageID" class="form-control">
-        <button name="Submit" class="button" type="submit">Add Product</button>
+        <button name="Submit" class="btn btn-primary" type="submit">Add Product</button>
     </form>
 </div>
 

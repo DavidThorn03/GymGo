@@ -22,7 +22,7 @@ if(isset($_POST['Submit'])) {
         <input name="Day" type="number" id="Day" class="form-control" required>
         <label for="LessonID">Lesson ID</label>
         <input name="LessonID" type="number" id="LessonID" class="form-control" required>
-        <button name="Submit" class="button" type="submit">Add Lesson Time</button>
+        <button name="Submit" class="btn btn-primary" type="submit">Add Lesson Time</button>
     </form>
 </div>
 

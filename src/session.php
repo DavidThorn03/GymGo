@@ -113,11 +113,11 @@ class session
                     foreach ($bookedLessonsFromDB as $row) {
                         if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
                             $newBookedLesson = new BookedLesson($row);
-                        //if($newBookedLesson->getDate() < new DateTime("now")){
+                        if($newBookedLesson->getDate() < new DateTime("now")){
                             $newBookedLesson->setLessonTime($lessonTime);
                             $bookedLessons[] = $newBookedLesson;
                             $lesson->removeLessonTime($lessonTime);
-                        //}
+                        }
                     }
                 }
             }

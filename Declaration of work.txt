@@ -1,5 +1,0 @@
-Declaration of work
-The products, cart and orders sections were completed by Patryk.
-The Lessons, bookings and admin functionality were completed by David.
-The user sections were completed by Alexandru.
-The design and layout were completed with the combined effort of them team using a free CSS template.

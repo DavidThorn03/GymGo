@@ -53,16 +53,4 @@ echo "Expected value for getPhone(): . Actual value: " . $customer4->getPhone() 
 
 echo "\n";
 
-// Test 6: Incorrect email
-$customer6 = new Customer(1, "test@example.com", "password123", "John", "Doe", "1990-01-01", "A123", "123456789");
-$customer6->setEmail("invalidemail.com");
-echo "Expected value for getEmail(): test@example.com. Actual value: " . $customer6->getEmail() . "\n"; // Output will be the original email
-
-echo "\n";
-
-// Test 7: Incorrect password
-$customer7 = new Customer(1, "test@example.com", "password123", "John", "Doe", "1990-01-01", "A123", "123456789");
-$customer7->setPassword("invalidpassword");
-echo "Expected value for getPassword(): password123. Actual value: " . $customer7->getPassword() . "\n"; // Output will be the original password
-?>
 

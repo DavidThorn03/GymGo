@@ -243,4 +243,60 @@ $_POST["delete"] = $ids[0];
 removeBooking($bookedLessons, $lessons);//errors as user is null
 
 
+//handle cart
+
+$cart = new ShoppingCart();
+
+// Test 1 Add Product
+echo "Test 1 Add Product<br>";
+$_POST = ['productID' => '1', 'action' => 'add'];
+$cart->handleCartActions();
+echo "Cart should have 1 item of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
+
+// Test 2 Increase Quantity
+echo "Test 2 Increase Quantity<br>";
+$_POST = ['productID' => '1', 'action' => 'increase', 'quantity' => '2'];
+$cart->handleCartActions();
+echo "Cart should have 3 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
+
+// Test 3 Update Product
+echo "Test 3 Update Product<br>";
+$_POST = ['productID' => '1', 'action' => 'update', 'quantity' => '5'];
+$cart->handleCartActions();
+echo "Cart should have 5 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
+
+// Test 4 Decrease Quantity
+echo "Test 4 Decrease Quantity<br>";
+$_POST = ['productID' => '1', 'action' => 'decrease', 'quantity' => '1'];
+$cart->handleCartActions();
+echo "Cart should have 4 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
+
+// Test 5 Remove Product
+echo "Test 5 Remove Product<br>";
+$_POST = ['productID' => '1', 'action' => 'remove'];
+$cart->handleCartActions();
+echo "Cart should have 0 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
+
+// Test 6 Missing Product ID
+echo "Test 6 Missing Product ID<br>";
+$_POST = ['action' => 'add', 'quantity' => '1'];
+$cart->handleCartActions();
+echo "Attempt to add with missing product ID, fail.<br><br>";
+
+// Test 7 String Instead of Integer for Product ID
+echo "Test 7 String Instead of Integer for Product ID<br>";
+$_POST = ['productID' => 'one', 'action' => 'add', 'quantity' => '1'];
+$cart->handleCartActions();
+echo "Attempt to add with non integer product ID, fail.<br><br>";
+
+// Test 8 Validating action
+echo "Test 8 Unrecognized action used<br>";
+$_POST = ['productID' => '1', 'action' => 'test', 'quantity' => '1'];
+$cart->handleCartActions();
+echo "Attempt to add with unrecognized action, fail.<br><br>";
+
+// Display the cart just to see if all works
+$cart->displayCart();
+
+
 ?>

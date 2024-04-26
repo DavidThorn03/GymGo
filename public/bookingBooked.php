@@ -16,7 +16,7 @@ function removeBooking($bookedLessons, $lessons){
                     $lesson->addLessonTime($bookedLesson->getLessonTime());
                     $_SESSION['lessons'] = serialize($lessons);
                     $user = unserialize($_SESSION['user']);
-                    $user->setBadge(count($bookedLessons));
+                    $user->setNumBookings($user->getNumBookings() - 1);
                     $_SESSION['user'] = serialize($user);
                 }
             }
@@ -50,7 +50,6 @@ else if(isset($_GET['lessonID'])){
     <div class="row">
 
 <?php
-
 foreach ($bookedLessons as $bookedLesson){
     foreach ($lessons as $lesson){
         if($lesson->getLessonID() == $bookedLesson->getLessonTime()->getLessonID()){

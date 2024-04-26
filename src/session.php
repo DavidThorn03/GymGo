@@ -108,20 +108,21 @@ class session
         $lessons = unserialize($_SESSION['lessons']);
         $bookedLessons = array();
         $bookedLessonsFromDB = getBooking($user->getUserID());
-        $counter = 0;
-        foreach ($bookedLessonsFromDB as $row) {
             foreach($lessons as $lesson) {
                 foreach ($lesson->getLessonTimes() as $lessonTime) {
-                    if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
-                        $bookedLessons[] = new BookedLesson($row);
-                        $bookedLessons[$counter]->setLessonTime($lessonTime);
-                        $lesson->removeLessonTime($lessonTime);
+                    foreach ($bookedLessonsFromDB as $row) {
+                        if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
+                            $newBookedLesson = new BookedLesson($row);
+                        //if($newBookedLesson->getDate() < new DateTime("now")){
+                            $newBookedLesson->setLessonTime($lessonTime);
+                            $bookedLessons[] = $newBookedLesson;
+                            $lesson->removeLessonTime($lessonTime);
+                        //}
                     }
                 }
             }
-            $counter++;
         }
-        $user->setBadge(count($bookedLessons));
+        $user->setNumBookings(count($bookedLessonsFromDB));
         $_SESSION['user'] = serialize($user);
         $_SESSION['bookedLessons'] = serialize($bookedLessons);
         $_SESSION['lessons'] = serialize($lessons);

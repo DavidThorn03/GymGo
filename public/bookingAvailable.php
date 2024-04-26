@@ -12,7 +12,7 @@ function bookLesson($lessons){
                 $newBooking->makeBooking($user->getUserID(), $lessonTime);
                 $bookedLessons[] = $newBooking;
                 $_SESSION['bookedLessons'] = serialize($bookedLessons);
-                $user->setBadge(count($bookedLessons));
+                $user->setNumBookings($user->getNumBookings() + 1);
                 $_SESSION['user'] = serialize($user);
                 enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
                 $lesson->removeLessonTime($lessonTime);

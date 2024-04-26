@@ -557,7 +557,8 @@ a:focus {
 }
 
 .category_section .box .img-box img {
-  width: 100%;
+    width: 100%; /* Increase the width */
+    height: auto; /* Let the height adjust proportionally */
 }
 
 .category_section .box .detail-box {
@@ -582,7 +583,8 @@ a:focus {
 }
 
 .about_section .img-box img {
-  width: 100%;
+    width: 100%; /* Increase the width */
+    height: auto; /* Let the height adjust proportionally */
   border-radius: 15px;
 }
 
@@ -678,7 +680,8 @@ a:focus {
 }
 
 .job_section .box .img-box img {
-  width: 100%;
+    width: 200%; /* Increase the width */
+    height: auto; /* Let the height adjust proportionally */
     padding: 10px;
 }
 
@@ -791,7 +794,8 @@ a:focus {
 }
 
 .expert_section .box .img-box img {
-  width: 100%;
+    width: 100%; /* Increase the width */
+    height: auto; /* Let the height adjust proportionally */
 }
 
 .expert_section .box .detail-box {
@@ -886,7 +890,8 @@ a:focus {
 }
 
 .blog_section .box .img-box img {
-  width: 100%;
+    width: 100%; /* Increase the width */
+    height: auto; /* Let the height adjust proportionally */
 }
 
 .blog_section .box .detail-box {

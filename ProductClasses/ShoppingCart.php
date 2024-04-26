@@ -19,13 +19,19 @@ class ShoppingCart {
 
     public function handleCartActions() {
         if (isset($_POST['productID'])) {
-            $productId = $_POST['productID'];
+            $productId = (int)$_POST['productID']; 
+    
+            if ($productId <= 0) {
+                echo "Invalid product ID";
+                return; 
+            }
+    
             $action = $_POST['action'];
             if (isset($_POST['quantity'])) {
                 $quantity = (int)$_POST['quantity'];
             } else {
                 $quantity = 1;
-            }
+            }    
             switch ($action) {
                 case 'add':
                 case 'increase':
@@ -35,12 +41,20 @@ class ShoppingCart {
                     $this->updateProduct($productId, $quantity);
                     break;
                 case 'remove':
+                    $this->removeProduct($productId);
+                    break;
                 case 'decrease':
                     $this->updateQuantity($productId, -$quantity);
                     break;
+                default:
+                    echo "Invalid action"; 
+                    break;
             }
+        } else {
+            echo "No product ID provided"; 
         }
     }
+    
 
     private function addProduct($productId, $quantity) {
         if (isset($this->quantities[$productId])) {
@@ -79,8 +93,14 @@ class ShoppingCart {
     }
 
     public function getQuantity($productId) {
-        return $this->quantities[$productId];
+        if (isset($this->quantities[$productId])) {
+            return $this->quantities[$productId];
+        } else {
+            return 0;
+        }
     }
+    
+    
 
     public function clearCart() {
         $this->quantities = [];
@@ -115,10 +135,10 @@ class ShoppingCart {
         $products = $this->getProductDetails();
         $totalPrice = $this->getTotalPrice();
         $totalItems = $this->getTotalItems();
-
+        
         echo '<div class="container">';
         echo '<h1>Your Cart</h1>';
-        if ($totalItems == 0) {
+        if ($totalItems == 0 && $totalPrice == 0) {
             echo '<p>Your cart is empty.</p>';
         } else {
             echo '<ul class="list-group">';

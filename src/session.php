@@ -104,10 +104,10 @@ class session
             $_SESSION['products'] = serialize($products);
         }
     }
-    public static function initialiseUserSessionItems($userID){
+    public static function initialiseUserSessionItems($user){
         $lessons = unserialize($_SESSION['lessons']);
         $bookedLessons = array();
-        $bookedLessonsFromDB = getBooking($userID);
+        $bookedLessonsFromDB = getBooking($user->getUserID());
         $counter = 0;
         foreach ($bookedLessonsFromDB as $row) {
             foreach($lessons as $lesson) {
@@ -121,6 +121,8 @@ class session
             }
             $counter++;
         }
+        $user->setBadge(count($bookedLessons));
+        $_SESSION['user'] = serialize($user);
         $_SESSION['bookedLessons'] = serialize($bookedLessons);
         $_SESSION['lessons'] = serialize($lessons);
     }

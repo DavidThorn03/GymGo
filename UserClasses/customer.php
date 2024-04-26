@@ -6,6 +6,7 @@ class Customer extends User {
     protected $DOB;
     protected $EirCode;
     protected $Phone;
+    protected $badge;
 
     public function __construct($UserID, $Email, $Password, $Fname, $Sname, $DOB, $EirCode, $Phone) {
         parent::__construct($UserID, $Email, $Password);
@@ -34,6 +35,37 @@ class Customer extends User {
 
     public function getPhone() {
         return $this->Phone;
+    }
+
+    public function getBadge(){
+        return $this->badge;
+    }
+
+    public function setBadge($numBookings){
+        if($numBookings <= 5){
+            $this->badge = "Wooden";
+        }
+        else if($numBookings <= 10){
+            $this->badge = "Plastic";
+        }
+        else if($numBookings <= 15){
+            $this->badge = "Iron";
+        }
+        else if($numBookings <= 20){
+            $this->badge = "Bronze";
+        }
+        else if($numBookings <= 25){
+            $this->badge = "Silver";
+        }
+        else if($numBookings <= 30){
+            $this->badge = "Gold";
+        }
+        else if($numBookings <= 35){
+            $this->badge = "Platinum";
+        }
+        else if($numBookings <= 40){
+            $this->badge = "Diamond";
+        }
     }
 }
 

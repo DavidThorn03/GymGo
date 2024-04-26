@@ -1,5 +1,6 @@
 <?php
 require_once "templates/header.php";
+require_once "../UserClasses/customer.php";
 if(!isset($_SESSION['user'])) {
     header("Location: login.php");
 }
@@ -14,7 +15,9 @@ function removeBooking($bookedLessons, $lessons){
                 if($lesson->getLessonID() == $bookedLesson->getLessonTime()->getLessonID()){
                     $lesson->addLessonTime($bookedLesson->getLessonTime());
                     $_SESSION['lessons'] = serialize($lessons);
-                    echo "<script>alert('Successfully cancled  " . $lesson->getLessonName() . "')</script>";
+                    $user = unserialize($_SESSION['user']);
+                    $user->setBadge(count($bookedLessons));
+                    $_SESSION['user'] = serialize($user);
                 }
             }
             array_splice($bookedLessons, $counter, 1);
@@ -87,7 +90,7 @@ function generateBooking($bookedLesson, $lesson){
                     <input type="submit" value="More Info" class="apply-btn">
                 </form>
                 &nbsp;&nbsp;
-                <form method="post">
+                <form method="post" onsubmit="return confirmCancel();">
                     <input type="hidden" name="delete" value="<?php echo $bookedLesson->getLessonTime()->getLessonTimeID(); ?>">
                     <input type="submit" value="Delete" class="apply-btn">
                 </form>

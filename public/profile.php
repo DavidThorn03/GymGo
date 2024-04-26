@@ -29,6 +29,9 @@ $user = unserialize($_SESSION['user']);
                         Email: <?php echo $user->getEmail(); ?>
                         <br>
                         <br>
+                        Workout Badge: <?php echo $user->getBadge(); ?>
+                        <br>
+                        <br>
                         Date of Birth: <?php echo $user->getDOB(); ?>
                         <br>
                         <br>
@@ -46,9 +49,6 @@ $user = unserialize($_SESSION['user']);
                 <br>
                 <br>
                 <br>
-
-
-
                 <form method="post">
                     <button name="Logout" class="btn btn-primary" value="Logout">Logout</button>
                 </form>

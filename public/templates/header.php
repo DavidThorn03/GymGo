@@ -21,6 +21,10 @@ session::initialiseSessionItems();
     <link rel="stylesheet" href="../css/style.css" />
 
     <link rel="stylesheet" href="../css/main.css" />
+
+    <script src="../js/confirmBooking.js"></script>
+    <script src="../js/confirmCheckout.js"></script>
+    <script src="../js/confirmCancel.js"></script>
 </head>
 
 <body>
@@ -57,20 +61,10 @@ session::initialiseSessionItems();
                             <a class="nav-link" href="profile.php">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>
-                    Login
-                  </span>
-                            </a>
+                            <a class="nav-link" href="login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="register.php">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>
-                    Sign Up
-                  </span>
-                            </a>
+                            <a class="nav-link" href="register.php">Sign Up</a>
                         </li>
                     </ul>
                 </div>

@@ -16,6 +16,7 @@ if(isset($_POST['register'])){
         $user = new Customer(null, $email, $userpassword, $firstname, $lastname, $date_of_birth, $eircode, $phone);
         $userID = createUser($user);
         $user->setUserID($userID);
+        $user->setBadge(0);
         $_SESSION['user'] = serialize($user);
         echo "<script>alert('Registered successfully')</script>";
         $_SESSION['bookedLessons'] = serialize(array());

@@ -12,10 +12,11 @@ function bookLesson($lessons){
                 $newBooking->makeBooking($user->getUserID(), $lessonTime);
                 $bookedLessons[] = $newBooking;
                 $_SESSION['bookedLessons'] = serialize($bookedLessons);
+                $user->setBadge(count($bookedLessons));
+                $_SESSION['user'] = serialize($user);
                 enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
                 $lesson->removeLessonTime($lessonTime);
                 $_SESSION['lessons'] = serialize($lessons);
-                echo "<script>alert('Successfully booked " . $lesson->getLessonName() . "')</script>";
                 header("Refresh:0");
             }
         }
@@ -130,7 +131,7 @@ else{
                                     <input type="submit" value="More Info" class="apply-btn">
                                 </form>
                                 &nbsp;&nbsp;
-                                <form method="post">
+                                <form method="post" onsubmit="return confirmBooking();">
                                     <input type="hidden" name="lessonTimeID" value="<?php echo $lessonTimeID; ?>">
                                     <input type="submit" value="Book" class="apply-btn">
                                 </form>

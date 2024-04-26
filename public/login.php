@@ -13,7 +13,7 @@ if(isset($_POST['Submit'])) {
         $userFromDB = getUserInfo($email);
         $user = new Customer($userFromDB['UserID'], $email, $password, $userFromDB['Fname'], $userFromDB['Sname'], $userFromDB['DOB'], $userFromDB['EirCode'], $userFromDB['Phone']);
         $_SESSION['user'] = serialize($user);
-        session::initialiseUserSessionItems($user->getUserID());
+        session::initialiseUserSessionItems($user);
         header("Location: index.php");
     }
     else{
@@ -21,20 +21,6 @@ if(isset($_POST['Submit'])) {
     }
 }
 ?>
-
-<!DOCTYPE html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../public/css/signin.css">
-    <link rel="stylesheet" type="text/css" href="../public/css/stylesheet.css">
-    <title>Sign in</title>
-</head>
-
-<html>
-<body>
 <div class="container">
     <form action="" method="post" name="Login_Form" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
@@ -53,8 +39,6 @@ if(isset($_POST['Submit'])) {
         Not a member? <a href="register.php">Register Here</a>
     </p>
 </div>
-</body>
-</html>
 
 
 <?php include "../public/templates/footer.php"; ?>

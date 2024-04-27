@@ -660,6 +660,7 @@ a:focus {
 }
 
 .job_section .box .job_content-box {
+    margin-bottom: 20px; /* Add some space between boxes*/
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;

@@ -8,7 +8,7 @@ function enterBooking($date, $lessonTimeID, $userID){
         $sql = "INSERT INTO `booked-lesson` (`Date`, LessonTimeID, UserID) VALUES (:date, :lessonTimeID, :userID)";
 
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':date', $date, PDO::PARAM_STR);
+        $statement->bindValue(':date', $date->format("Y-m-d"), PDO::PARAM_STR);
         $statement->bindValue(':lessonTimeID', $lessonTimeID, PDO::PARAM_INT);
         $statement->bindValue(':userID', $userID, PDO::PARAM_INT);
         $statement->execute();

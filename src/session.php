@@ -108,12 +108,14 @@ class session
         $lessons = unserialize($_SESSION['lessons']);
         $bookedLessons = array();
         $bookedLessonsFromDB = getBooking($user->getUserID());
-            foreach($lessons as $lesson) {
-                foreach ($lesson->getLessonTimes() as $lessonTime) {
-                    foreach ($bookedLessonsFromDB as $row) {
-                        if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
-                            $newBookedLesson = new BookedLesson($row);
-                        if($newBookedLesson->getDate() < new DateTime("now")){
+        $today =  new DateTime();
+        $today->setTime(0,0,0);
+        foreach($lessons as $lesson) {
+            foreach ($lesson->getLessonTimes() as $lessonTime) {
+                foreach ($bookedLessonsFromDB as $row) {
+                    if ($lessonTime->getLessonTimeID() == $row["LessonTimeID"]) {
+                        $newBookedLesson = new BookedLesson($row);
+                        if($newBookedLesson->getDate() >= $today) {
                             $newBookedLesson->setLessonTime($lessonTime);
                             $bookedLessons[] = $newBookedLesson;
                             $lesson->removeLessonTime($lessonTime);

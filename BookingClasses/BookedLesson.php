@@ -6,7 +6,7 @@ class BookedLesson{
     private $lessonTime;
     public function __construct($bookedLesson){
         if($bookedLesson != null){
-            $this->date = $bookedLesson["Date"];
+            $this->date = new DateTime($bookedLesson["Date"]);
             $this->userID = $bookedLesson["UserID"];
             $this->lessonTime = $bookedLesson["LessonTimeID"];
         }
@@ -20,8 +20,7 @@ class BookedLesson{
     }
     public function getDate()
     {
-        $date = new DateTime($this->date);
-        return $date->format('Y-m-d');
+        return $this->date;
     }
     public function getLessonTime()
     {
@@ -32,8 +31,8 @@ class BookedLesson{
         if($diff < 0){
             $diff = $diff + 7;
         }
-        $timestamp = date("Y-m-d");
-        $date = date("Y-m-d", strtotime($timestamp . " +" . $diff . " days"));
+        $timestamp = new DateTime();
+        $date = $timestamp->modify("+$diff days");
         $this->date = $date;
         $this->userID = $userID;
         $this->lessonTime = $lessonTime;

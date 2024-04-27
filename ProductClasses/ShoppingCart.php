@@ -1,8 +1,4 @@
 <?php
-require_once '../dbQueries/productQueries.php';
-require_once 'Product.php';
-
-
 class ShoppingCart {
     private $quantities;  
 
@@ -25,6 +21,7 @@ class ShoppingCart {
                 echo "Invalid product ID";
                 return; 
             }
+
     
             $action = $_POST['action'];
             if (isset($_POST['quantity'])) {

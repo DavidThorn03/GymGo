@@ -78,7 +78,7 @@ function generateBooking($bookedLesson, $lesson){
                             <span>Time: <?php echo $bookedLesson->getLessonTime()->getTime(); ?></span>
                         </h6>
                         <h6>
-                            <span>Date: <?php echo $bookedLesson->getDate(); ?></span>
+                            <span>Date: <?php echo $bookedLesson->getDate()->format("d-m-Y"); ?></span>
                         </h6>
                     </div>
                 </div>

@@ -1,8 +1,10 @@
 <?php
 require_once "../src/session.php";
 require "../UserClasses/customer.php";
+require "../ProductClasses/ShoppingCart.php";
 session_start();
 session::initialiseSessionItems();
+
 if(!isset($_SESSION['bookedLessons'])) {
     $user = new Customer(2, "user@gmail.com", "password", "John", "Doe", "01/01/2000", "D01 123", "0871234567");
     session::initialiseUserSessionItems($user);
@@ -243,60 +245,164 @@ $_POST["delete"] = $ids[0];
 removeBooking($bookedLessons, $lessons);//errors as user is null
 
 
-//handle cart
+//validation testing for adding/updating cart
 
+echo "<br><br> Testing for adding/updating cart<br> <br>";
+
+//functions to test adding to cart
+
+
+/*
+ * Test 1: As expected
+ * Expected: Product will be added to cart successfully
+ */
+echo "Test 1: As expected <br>";
+
+//user selects a product to add to cart
 $cart = new ShoppingCart();
-
-// Test 1 Add Product
-echo "Test 1 Add Product<br>";
-$_POST = ['productID' => '1', 'action' => 'add'];
+$_POST['productID'] = 1;
+$_POST['action'] = 'add';
+echo "Product with id 1 selected to with action add.<br>";//extra for testing
 $cart->handleCartActions();
-echo "Cart should have 1 item of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
 
-// Test 2 Increase Quantity
-echo "Test 2 Increase Quantity<br>";
-$_POST = ['productID' => '1', 'action' => 'increase', 'quantity' => '2'];
-$cart->handleCartActions();
-echo "Cart should have 3 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
-
-// Test 3 Update Product
-echo "Test 3 Update Product<br>";
-$_POST = ['productID' => '1', 'action' => 'update', 'quantity' => '5'];
-$cart->handleCartActions();
-echo "Cart should have 5 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
-
-// Test 4 Decrease Quantity
-echo "Test 4 Decrease Quantity<br>";
-$_POST = ['productID' => '1', 'action' => 'decrease', 'quantity' => '1'];
-$cart->handleCartActions();
-echo "Cart should have 4 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
-
-// Test 5 Remove Product
-echo "Test 5 Remove Product<br>";
-$_POST = ['productID' => '1', 'action' => 'remove'];
-$cart->handleCartActions();
-echo "Cart should have 0 items of product ID 1: " . $cart->getQuantity(1) . "<br><br>";
-
-// Test 6 Missing Product ID
-echo "Test 6 Missing Product ID<br>";
-$_POST = ['action' => 'add', 'quantity' => '1'];
-$cart->handleCartActions();
-echo "Attempt to add with missing product ID, fail.<br><br>";
-
-// Test 7 String Instead of Integer for Product ID
-echo "Test 7 String Instead of Integer for Product ID<br>";
-$_POST = ['productID' => 'one', 'action' => 'add', 'quantity' => '1'];
-$cart->handleCartActions();
-echo "Attempt to add with non integer product ID, fail.<br><br>";
-
-// Test 8 Validating action
-echo "Test 8 Unrecognized action used<br>";
-$_POST = ['productID' => '1', 'action' => 'test', 'quantity' => '1'];
-$cart->handleCartActions();
-echo "Attempt to add with unrecognized action, fail.<br><br>";
-
-// Display the cart just to see if all works
-$cart->displayCart();
+//system displays product added to cart
+$cart->getProductDetails();
+$found = false;
+foreach($cart->getProductDetails() as $product){
+    echo "Product with id " . $product->getProductID() . " added to cart successfully <br>";//extra for testing
+    $found = true;
+}
+if(!$found){
+    echo "Product not found in cart <br>";//extra for testing
+}
+unset($_SESSION['quantities']);//clear cart for next test
 
 
+/*
+ * Test 2: With out of range product id
+ * Expected: No product added to cart
+ *          error as no product id to add
+ * Result: Errors as expected
+ */
+
+echo "<br>Test 2: With empty arrays <br>";
+
+//user selects a product to add to cart
+$cart = new ShoppingCart();
+$_POST['productID'] = 5;//invalid id
+$_POST['action'] = 'add';
+echo "Product with id 5 selected to with action add.<br>";
+$cart->handleCartActions();//errors as id is out of range
+
+//system displays product added to cart
+$cart->getProductDetails();//no products to display
+$found = false;
+foreach($cart->getProductDetails() as $product){//loop to see if product is added
+    echo "Product with id " . $product->getProductID() . " added to cart successfully <br>";//extra for testing
+    $found = true;
+}
+if(!$found){
+    echo "Product not found in cart <br>";//extra for testing
+}
+unset($_SESSION['quantities']);//clear cart for next test
+
+
+/*
+ * Test 3: Incorrect action
+ * Expected: No product added to cart
+ * Result: As expected
+ */
+echo "<br>Test 3: Incorrect action <br>";
+
+//user selects a product to add to cart
+$cart = new ShoppingCart();
+$_POST['productID'] = 1;
+$_POST['action'] = 'wrong';//incorrect action
+echo "Product with id 1 selected to with action wrong.<br>";
+$cart->handleCartActions();//error as action is incorrect
+
+//system displays product added to cart
+$cart->getProductDetails();//no products to display
+$found = false;
+foreach($cart->getProductDetails() as $product){//loop to see if product is added
+    echo "Product with id " . $product->getProductID() . " added to cart successfully <br>";//extra for testing
+    $found = true;
+}
+if(!$found){
+    echo "Product not found in cart <br>";//extra for testing
+}
+unset($_SESSION['quantities']);//clear cart for next test
+
+
+/*
+ * Test 4: Update missing product id
+ * Expected: No product to update
+ *         product with id is added as new product
+ * Result: As expected
+ */
+echo "<br>Test 4: Update missing product id <br>";
+
+//set product id to update
+$cart = new ShoppingCart();
+$_SESSION['quantities'][1] = 1;//set product id to update
+
+//user selects a product to update in cart
+$_POST['productID'] = 3;//doesnt match in cart
+$_POST['action'] = 'update';
+echo "Product with id 3 selected to with action update.<br>";
+$cart->handleCartActions();//errors as product id doesnt match
+
+//system displays product added to cart
+$cart->getProductDetails();//no products to display
+$found = false;
+foreach($cart->getProductDetails() as $product){//loop to see if product is added
+    echo "Product with id " . $product->getProductID() . " added to cart successfully <br>";//extra for testing
+    $found = true;
+}
+if(!$found){
+    echo "Product not found in cart <br>";//extra for testing
+}
+unset($_SESSION['quantities']);//clear cart for next test
+
+
+
+
+/*
+ * Test 5: With unset products array
+ * Expected: No product added to cart
+ *          error as no product id to add
+ * Result: Errors as expected
+ */
+echo "<br>Test 5: With empty arrays <br>";
+
+//unset products array
+$products = unserialize($_SESSION['products']);//to re-add later
+unset($_SESSION['products']);
+
+
+//user selects a product to add to cart
+$cart = new ShoppingCart();
+$_POST['productID'] = 1;
+$_POST['action'] = 'add';
+echo "Product with id 1 selected to with action add.<br>";//extra for testing
+$cart->handleCartActions();//errors as no products available
+
+//system displays product added to cart
+$cart->getProductDetails();//no products to display
+$found = false;
+foreach($cart->getProductDetails() as $product){//loop to see if product is added
+    echo "Product with id " . $product->getProductID() . " added to cart successfully <br>";//extra for testing
+    $found = true;
+}
+if(!$found){
+    echo "Product not found in cart <br>";//extra for testing
+}
+unset($_SESSION['quantities']);//clear cart for next test
+$_SESSION['products'] = serialize($products);//re-add products array
+
+
+
+
+session::forgetSession();
+unset($_POST);
 ?>

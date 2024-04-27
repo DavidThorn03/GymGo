@@ -10,7 +10,7 @@ echo "Expected value for getUserID(): 1. Actual value: " . $bookedLesson1->getUs
 echo "Expected value for getDate(): 25-12-2020. Actual value: " . $bookedLesson1->getDate() . "<br>";
 echo "Expected value for getLessonTime():";
 var_dump($lessonTimeCorrect);
-echo "Actual value: ";
+echo "<br>Actual value: ";
 var_dump($bookedLesson1->getLessonTime());
 
 echo "<br><br>";
@@ -21,7 +21,7 @@ echo "Expected value for getUserID(): 2. Actual value: " . $bookedLesson2->getUs
 echo "Expected value for getDate(): 25-12-2020. Actual value: " . $bookedLesson2->getDate() . "<br>";
 echo "Expected value for getLessonTime():";
 var_dump($lessonTimeCorrect);
-echo "Actual value: ";
+echo "<br>Actual value: ";
 var_dump($bookedLesson2->getLessonTime());
 
 echo "<br><br>";
@@ -32,7 +32,7 @@ echo "Expected value for getUserID(): 3. Actual value: " . $bookedLesson3->getUs
 echo "Expected value for getDate(): 25-12-2020. Actual value: " . $bookedLesson3->getDate() . "<br>";
 echo "Expected value for getLessonTime():";
 var_dump($lessonTimeCorrect);
-echo "Actual value: ";
+echo "<br>Actual value: ";
 var_dump($bookedLesson3->getLessonTime());
 
 echo "<br><br>";
@@ -43,7 +43,7 @@ echo "Expected value for getUserID(): 4. Actual value: " . $bookedLesson4->getUs
 echo "Expected value for getDate(): 25-12-2020. Actual value: " . $bookedLesson4->getDate() . "<br>";
 echo "Expected value for getLessonTime():";
 var_dump($lessonTimeCorrect);
-echo "Actual value: ";
+echo "<br>Actual value: ";
 var_dump($bookedLesson4->getLessonTime());
 
 echo "<br><br>";
@@ -54,7 +54,7 @@ echo "Expected value for getUserID(): 2. Actual value: " . $bookedLesson5->getUs
 echo "Expected value for getDate(): 25-12-2020. Actual value: " . $bookedLesson5->getDate() . "<br>";
 echo "Expected value for getLessonTime():";
 var_dump($lessonTimeCorrect);
-echo "Actual value: ";
+echo "<br>Actual value: ";
 var_dump($bookedLesson5->getLessonTime());
 
 ?>

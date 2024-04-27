@@ -583,8 +583,8 @@ a:focus {
 }
 
 .about_section .img-box img {
-    width: 100%; /* Increase the width */
-    height: auto; /* Let the height adjust proportionally */
+    width: 100%;
+    height: auto;
   border-radius: 15px;
 }
 
@@ -613,6 +613,7 @@ a:focus {
 }
 
 .job_section {
+    width: auto;
   background-color: #08135c;
   color: #ffffff;
 }
@@ -641,14 +642,21 @@ a:focus {
      -moz-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 20px;
-  border: 1px solid #a4a4a4;
-  margin-top: 25px;
-  -webkit-transition: all .3s;
-  -o-transition: all .3s;
-  -moz-transition: all .3s;
-  transition: all .3s;
-  border-radius: 5px;
+    padding: 50px; /* You can adjust this padding as needed */
+    border: 2px solid #a4a4a4;
+    margin-top: 25px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+    border-radius: 10px;
+    width: 100%; /* Adjust the width as needed */
+    height: 100%;
+}
+
+.job_section .box {
+    border-bottom: 2px solid #ccc; /* Add a border below each box */
+    padding-bottom: 15px; /* Add padding below each box for better spacing */
 }
 
 .job_section .box .job_content-box {
@@ -665,6 +673,7 @@ a:focus {
 .job_section .box .img-box {
   width: 100px;
   height: 100px;
+    margin-left: 30px; /* Push the image a little to the right */
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -680,20 +689,29 @@ a:focus {
 }
 
 .job_section .box .img-box img {
-    width: 200%; /* Increase the width */
-    height: auto; /* Let the height adjust proportionally */
+    width: 300%; /* Increase the width of the image */
+    height: 200px; /* Let the height adjust proportionally */
     padding: 10px;
 }
 
-.job_section .box .detail-box h5 {
-  font-weight: 600;
+.job_section .box .detail-box {
+    padding-left: 100px; /* Adjust the padding-left as needed */
 }
+
+.job_section .box .detail-box h5 {
+    margin-left: 50px;
+  font-weight: 700;
+    text-decoration: underline;
+}
+
 
 .job_section .box .detail-box .detail-info {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
-  display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Arrange the info in a 2-column grid */
+    gap: 20px; /* Add some space between grid items */
 }
 
 .job_section .box .detail-box .detail-info h6 {
@@ -772,6 +790,12 @@ a:focus {
   color: #e41a2b;
 }
 
+.job_section .job_container {
+    border-top: 1px solid #ccc; /* Add a border above the first box */
+    padding-top: 20px; /* Add space above the first box */
+}
+
+
 .expert_section .box {
   display: -webkit-box;
   display: -moz-box;
@@ -794,8 +818,8 @@ a:focus {
 }
 
 .expert_section .box .img-box img {
-    width: 100%; /* Increase the width */
-    height: auto; /* Let the height adjust proportionally */
+    width: 100%;
+    height: auto;
 }
 
 .expert_section .box .detail-box {

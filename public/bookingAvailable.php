@@ -127,11 +127,13 @@ else{
                             </div>
                             <div class="option-box">
                                 <form method="get">
+                                    <br>
                                     <input type="hidden" name="lessonID" value="<?php echo $lesson->getLessonID(); ?>">
                                     <input type="submit" value="More Info" class="apply-btn">
                                 </form>
                                 &nbsp;&nbsp;
                                 <form method="post" onsubmit="return confirmBooking();">
+                                    <br>
                                     <input type="hidden" name="lessonTimeID" value="<?php echo $lessonTimeID; ?>">
                                     <input type="submit" value="Book" class="apply-btn">
                                 </form>

@@ -405,4 +405,32 @@ $_SESSION['products'] = serialize($products);//re-add products array
 
 session::forgetSession();
 unset($_POST);
+
+echo "<br>Validation Testing for removing & decreasing quantity products <br>";
+
+// Test with direct removal of a product
+echo "<br>Test with direct removal of a product:\n";
+$_POST['productID'] = 1; // Assuming product ID 1 is valid
+$_POST['action'] = 'add'; // Add a product to the cart
+$cart->handleCartActions();
+echo "Before direct removal:\n";
+$cart->displayCart();
+echo "After direct removal:\n";
+$cart->removeProduct(1); // Directly remove product with ID 1
+$cart->displayCart();
+echo "\n";
+
+// Test with decreasing quantity to zero
+echo "Test with decreasing quantity to zero:\n";
+$_POST['productID'] = 2; // Assuming product ID 2 is valid
+$_POST['action'] = 'add'; // Add a product to the cart
+$cart->handleCartActions();
+echo "Before decreasing quantity:\n";
+$cart->displayCart();
+echo "After decreasing quantity:\n";
+$_POST['productID'] = 2;
+$_POST['action'] = 'decrease'; // Decrease quantity of product with ID 2 to zero
+$cart->handleCartActions();
+$cart->displayCart();
+
 ?>

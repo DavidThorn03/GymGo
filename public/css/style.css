@@ -672,9 +672,9 @@ a:focus {
 }
 
 .job_section .box .img-box {
-  width: 100px;
-  height: 100px;
-    margin-left: 30px; /* Push the image a little to the right */
+  width: 200px;
+  height: 60px;
+    margin-left: 50px; /* Push the image a little to the right */
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;

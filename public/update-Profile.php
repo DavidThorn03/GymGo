@@ -40,8 +40,9 @@ if (isset($_POST['submit'])) {
         </div>
         <input type="hidden" name="UserID" value="<?php echo $user->getUserID(); ?>">
 
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
     </form>
+    <br>
     <a href="index.php">Back to home</a>
 </div>
 <?php require "templates/footer.php"; ?>

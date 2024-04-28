@@ -404,33 +404,117 @@ $_SESSION['products'] = serialize($products);//re-add products array
 session::forgetSession();
 unset($_POST);
 
+<<<<<<< Updated upstream
 
 
 echo "<br><br>Validation Testing for removing & decreasing quantity products <br>";
+=======
+echo "<br>Testing for removing from cart<br> <br>";
+>>>>>>> Stashed changes
 
-// Test with direct removal of a product
-echo "<br>Test with direct removal of a product:\n";
-$_POST['productID'] = 1; // Assuming product ID 1 is valid
-$_POST['action'] = 'add'; // Add a product to the cart
-$cart->handleCartActions();
-echo "Before direct removal:\n";
-$cart->displayCart();
-echo "After direct removal:\n";
-$cart->removeProduct(1); // Directly remove product with ID 1
-$cart->displayCart();
-echo "\n";
+/*
+ * Test 1: Remove as Expected
+ * Expected: Product will be removed from the cart successfully
+ */
+echo "Test 1: Remove as Expected <br>";
 
-// Test with decreasing quantity to zero
-echo "Test with decreasing quantity to zero:\n";
-$_POST['productID'] = 2; // Assuming product ID 2 is valid
-$_POST['action'] = 'add'; // Add a product to the cart
+// Initialize the cart
+$cart = new ShoppingCart();
+$_POST['productID'] = 1;
+$_POST['action'] = 'add';
+$cart->handleCartActions(); // Add some items to the cart
+
+// Attempt to remove an item from the cart
+$_POST['productID'] = 1; // Product to remove
+$_POST['action'] = 'remove';
+echo "Product with id 1 selected to with action remove.<br>";
+$cart->handleCartActions(); // Remove the item
+
+// Verify that the item is removed from the cart
+$cartItems = $cart->getProductDetails();
+$found = false;
+foreach ($cartItems as $product) {
+    if ($product->getProductID() === 1) {
+        $found = true;
+        break;
+    }
+}
+if ($found) {
+    echo "Product with id 1 still found in cart. Remove operation failed.<br>";
+} else {
+    echo "Product with id 1 removed from cart successfully.<br>";
+}
+
+
+/*
+ * Test 2: Remove Product Not in Cart
+ * Expected: Cart should remain unchanged
+ */
+echo "<br>Test 2: Remove Product Not in Cart <br>";
+
+// Attempt to remove a product not in the cart
+$cart = new ShoppingCart();
+$_POST['productID'] = 2; // Product not in the cart
+$_POST['action'] = 'remove';
+echo "Product with id 2 selected to with action remove.<br>";
+$cart->handleCartActions(); // Attempt removal
+
+// Verify that the cart remains unchanged
+$cartItems = $cart->getProductDetails();
+if (empty($cartItems)) {
+    echo "Cart is empty. No products to remove.<br>";
+} else {
+    echo "Cart still contains products after attempted removal.<br>";
+}
+
+
+/*
+ * Test 3: Incorrect Action
+ * Expected: Cart should remain unchanged
+ */
+echo "<br>Test 3: Incorrect Action <br>";
+
+// Add some items to the cart
+$cart = new ShoppingCart();
+$_POST['productID'] = 1;
+$_POST['action'] = 'add';
 $cart->handleCartActions();
-echo "Before decreasing quantity:\n";
-$cart->displayCart();
-echo "After decreasing quantity:\n";
-$_POST['productID'] = 2;
-$_POST['action'] = 'decrease'; // Decrease quantity of product with ID 2 to zero
-$cart->handleCartActions();
-$cart->displayCart();
+
+// Attempt to remove items using an incorrect action
+$_POST['productID'] = 3;
+$_POST['action'] = 'wrong'; // Incorrect action
+echo "Product with id 3 selected to with action wrong.<br>";
+$cart->handleCartActions(); // Attempt removal
+
+// Verify that the cart remains unchanged
+$cartItems = $cart->getProductDetails();
+if (empty($cartItems)) {
+    echo "Cart is empty. No products to remove.<br>";
+} else {
+    echo "Cart still contains products after attempted removal.<br>";
+}
+
+
+/*
+ * Test 4: No Products Array
+ * Expected: Cart should remain unchanged
+ */
+echo "<br>Test 4: No Products Array <br>";
+
+
+// Attempt to remove items from the cart
+$cart = new ShoppingCart();
+$_POST['productID'] = 1;
+$_POST['action'] = 'remove';
+echo "Product with id 1 selected to with action remove.<br>";
+$cart->handleCartActions(); // Attempt removal
+
+// Verify that the cart remains unchanged
+$cartItems = $cart->getProductDetails();
+if (empty($cartItems)) {
+    echo "Cart is empty. No products to remove.<br>";
+} else {
+    echo "Cart still contains products after attempted removal.<br>";
+}
 
 ?>

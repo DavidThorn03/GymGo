@@ -401,16 +401,12 @@ unset($_SESSION['quantities']);//clear cart for next test
 $_SESSION['products'] = serialize($products);//re-add products array
 
 
+
+
 session::forgetSession();
 unset($_POST);
 
-<<<<<<< Updated upstream
-
-
-echo "<br><br>Validation Testing for removing & decreasing quantity products <br>";
-=======
 echo "<br>Testing for removing from cart<br> <br>";
->>>>>>> Stashed changes
 
 /*
  * Test 1: Remove as Expected

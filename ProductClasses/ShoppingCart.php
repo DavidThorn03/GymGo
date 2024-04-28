@@ -6,11 +6,13 @@ class ShoppingCart {
         $this->initializeCart();
     }
 
+    // method to initialize the cart by retrieving or creating quantities array in session
     private function initializeCart() {
+        // checking if quantities array exists in session
         if (!isset($_SESSION['quantities'])) {
-            $_SESSION['quantities'] = [];
+            $_SESSION['quantities'] = []; // if not create an empty array
         }
-        $this->quantities = &$_SESSION['quantities'];
+        $this->quantities = &$_SESSION['quantities']; // referencing the quantities array
     }
 
     public function handleCartActions() {
@@ -52,22 +54,26 @@ class ShoppingCart {
     
 
     private function addProduct($productId, $quantity) {
+        // Checking if the product already exists in the cart
         if (isset($this->quantities[$productId])) {
-            $this->quantities[$productId] += $quantity;
+            $this->quantities[$productId] += $quantity; // increment if exists
         } else {
-            $this->quantities[$productId] = $quantity;
+            $this->quantities[$productId] = $quantity; // add product
             echo "<script>alert('Product added to basket successfully')</script>";
         }
     }
 
+    // method to update the quantity of a product in the cart
     private function updateProduct($productId, $quantity) {
+        // checking if quantity is zero or negative
         if ($quantity <= 0) {
-            $this->removeProduct($productId);
+            $this->removeProduct($productId); // If zero or negative remove the product
         } else {
-            $this->quantities[$productId] = $quantity;
+            $this->quantities[$productId] = $quantity; // If positive update the quantity
         }
     }
 
+    // method to update the quantity of a product by a change
     private function updateQuantity($productId, $change) {
         if (isset($this->quantities[$productId])) {
             $newQuantity = $this->quantities[$productId] + $change;
@@ -104,26 +110,29 @@ class ShoppingCart {
     public function getTotalPrice() {
         $totalPrice = 0;
         $products = $this->getProductDetails();
+        // iterating through quantities and calculating total price
         foreach ($this->quantities as $productId => $quantity) {
             if (isset($products[$productId])) {
-                $totalPrice += $products[$productId]->getPrice() * $quantity;
+                $totalPrice += $products[$productId]->getPrice() * $quantity; // adding subtotal of each product
             }
         }
-        return $totalPrice;
+        return $totalPrice; // returning the total price
     }
 
+    // method to get details of products in the cart
     public function getProductDetails() {
-        $products = [];
+        $products = []; // initializing product details array
+        // checking if product data exists in session
         if (isset($_SESSION['products'])) {
-            $productsArray = unserialize($_SESSION['products']);
+            $productsArray = unserialize($_SESSION['products']); // deserializing product data
 
             foreach ($productsArray as $product) {
                 if (isset($this->quantities[$product->getProductID()])) {
-                    $products[$product->getProductID()] = $product;
+                    $products[$product->getProductID()] = $product; 
                 }
             }
         }
-        return $products;
+        return $products; 
     }
 
     public function displayCart() {
@@ -137,6 +146,7 @@ class ShoppingCart {
             echo '<p>Your cart is empty.</p>';
         } else {
             echo '<ul class="list-group">';
+            // iterating through products and displaying their information
             foreach ($this->quantities as $productId => $quantity) {
                 if (isset($products[$productId])) {
                     $product = $products[$productId];

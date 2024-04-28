@@ -47,8 +47,6 @@ class ShoppingCart {
                     echo "Invalid action"; 
                     break;
             }
-        } else {
-            echo "No product ID provided"; 
         }
     }
     

@@ -48,6 +48,9 @@ else if(isset($_POST['day'])){
     $day = $_POST['day'];
     $day = date("w", strtotime("Sunday +$day days"));
 }
+else if(date("w") == 0){
+    $day = 7;
+}
 else{
     $day = date("w");
 }
@@ -75,14 +78,7 @@ else{
         </form>
         <div class="job_container">
             <h4 class="heading_container heading_center">
-                <?php  if(!isset($_POST['day'])) {
-                    echo date("l");
-                    $day = date("w");
-                }
-                else{
-                    $day = $_POST['day'];
-                    echo date("l", strtotime("Sunday +$day days"));
-                }?>
+                <?php echo date("l", strtotime("Sunday +$day days")); ?>
             </h4>
             <div class="row">
 

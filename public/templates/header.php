@@ -23,7 +23,9 @@ session::initialiseSessionItems();
     <link rel="stylesheet" href="../css/main.css" />
 
     <script src="../js/confirmBooking.js"></script>
+
     <script src="../js/confirmCheckout.js"></script>
+
     <script src="../js/confirmCancel.js"></script>
 </head>
 

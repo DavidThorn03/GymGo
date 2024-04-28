@@ -21,7 +21,6 @@ if ($userId) {
 }
 
 echo '<div class="container2">';
-echo '<h1>Order Confirmation</h1>';
 echo '<a href="products.php">Continue Shopping</a>';
 echo '</div>';
 

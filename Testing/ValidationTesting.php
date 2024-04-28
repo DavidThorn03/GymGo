@@ -401,12 +401,12 @@ unset($_SESSION['quantities']);//clear cart for next test
 $_SESSION['products'] = serialize($products);//re-add products array
 
 
-
-
 session::forgetSession();
 unset($_POST);
 
-echo "<br>Validation Testing for removing & decreasing quantity products <br>";
+
+
+echo "<br><br>Validation Testing for removing & decreasing quantity products <br>";
 
 // Test with direct removal of a product
 echo "<br>Test with direct removal of a product:\n";

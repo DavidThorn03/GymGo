@@ -406,7 +406,7 @@ $_SESSION['products'] = serialize($products);//re-add products array
 session::forgetSession();
 unset($_POST);
 
-echo "<br>Testing for removing from cart<br> <br>";
+echo "<br><br>Testing for removing from cart<br> <br>";
 
 /*
  * Test 1: Remove as Expected

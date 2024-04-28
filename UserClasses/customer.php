@@ -42,7 +42,7 @@ class Customer extends User {
         return $this->badge;
     }
 
-    private function setBadge($numBookings){
+    public function setBadge($numBookings){
         if($numBookings <= 5){
             $this->badge = "Wooden";
         }

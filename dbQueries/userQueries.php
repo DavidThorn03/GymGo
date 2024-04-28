@@ -40,11 +40,11 @@ function updateUser($user){
         where UserID = :userID";
 
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':Fname', $user["Fname"]);
-        $statement->bindValue(':Sname', $user["Sname"]);
-        $statement->bindValue(':DOB', $user["DOB"]);
-        $statement->bindValue(':EirCode', $user["EirCode"]);
-        $statement->bindValue(':Phone', $user["Phone"]);
+        $statement->bindValue(':Fname', $user["firstname"]);
+        $statement->bindValue(':Sname', $user["lastname"]);
+        $statement->bindValue(':DOB', $user["date_of_birth"]);
+        $statement->bindValue(':EirCode', $user["eircode"]);
+        $statement->bindValue(':Phone', $user["phone"]);
         $statement->bindValue(':userID', $user["UserID"]);
         $statement->execute();
         echo "User updated successfully";

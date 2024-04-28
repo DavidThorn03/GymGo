@@ -8,7 +8,7 @@ foreach ($_POST as $key => $value) {
 }
 if (isset($_POST['submit'])) {
     updateUser($_POST);
-    $userNew = new Customer($user->getUserID(), $user->getEmail(), $user->getPassword(), $_POST['Fname'], $_POST['Sname'], $_POST['DOB'], $_POST['EirCode'], $_POST['Phone']);
+    $userNew = new Customer($user->getUserID(), $user->getEmail(), $user->getPassword(), $_POST['firstname'], $_POST['lastname'], $_POST['date_of_birth'], $_POST['eircode'], $_POST['phone']);
     $_SESSION['user'] = serialize($userNew);
     echo "<script>alert('Profile updated successfully')</script>";
     header("Location: profile.php");

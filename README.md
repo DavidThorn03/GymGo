@@ -8,6 +8,8 @@ Alexandru Diaconu B00151494
 
 <br>
 
+Project Link: https://github.com/DavidThorn03/WebProject.git
+
 The project has to be ran from the public folder in order for the css templete we used to work
 
 All % used is based on our commits

@@ -17,7 +17,7 @@ function bookLesson($lessons){
                 enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
                 $lesson->removeLessonTime($lessonTime);
                 $_SESSION['lessons'] = serialize($lessons);
-                header("Refresh:0");
+                //header("Refresh:0");
             }
         }
     }
@@ -44,7 +44,8 @@ else if(isset($_GET['lessonID'])){
     $_SESSION['lessonID'] = $_GET['lessonID'];
     header("Location: bookingInfo.php");
 }
-else if(isset($_POST['day'])){
+
+if(isset($_POST['day'])){
     $day = $_POST['day'];
     $day = date("w", strtotime("Sunday +$day days"));
 }

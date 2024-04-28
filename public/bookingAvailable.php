@@ -17,7 +17,7 @@ function bookLesson($lessons){
                 enterBooking($newBooking->getDate(), $lessonTime->getLessonTimeID(), $newBooking->getUserID());
                 $lesson->removeLessonTime($lessonTime);
                 $_SESSION['lessons'] = serialize($lessons);
-                //header("Refresh:0");
+                header("Refresh:0");
             }
         }
     }

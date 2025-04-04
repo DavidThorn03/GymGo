@@ -1,4 +1,24 @@
-# WebProject - Declaration of work
+# GymGo website
+
+This project was completed as a part of the Software Engineering and Testing
+
+This involved creating a web application using PHP, HTML/CSS and MySQL.
+
+The development of this web app included all stages of the development lifecycle, including planning, design, implementation and testing phases.
+
+The project was developed using an agile methodology, with the development team having regular scrum meetings with a project supervisor.
+
+Planning phase included submission of Proposal and Requirements documentation.
+
+I was team lead during the design and implementation phases of development.
+
+The app was a gym website which had functionality to book lessons and order products, which would be sent to a MySQL database via PDO connection. The app also included implementation of session to keep track of user activity.
+
+The final app was tested using both black box and white box methods, including UI, Requirements, Base Path, Unit, Validation and equivalence partition.
+
+Upon completion of the project, My team and did an oral defence of our project, explaining all components of the finished product, testing, version control implementation and communication structure.
+
+# Declaration of work
 
 David Thornton B00152842
 
@@ -7,8 +27,6 @@ Patryk Miciniak B00154442
 Alexandru Diaconu B00151494
 
 <br>
-
-Project Link: https://github.com/DavidThorn03/WebProject.git
 
 The project has to be ran from the public folder in order for the css templete we used to work
 
